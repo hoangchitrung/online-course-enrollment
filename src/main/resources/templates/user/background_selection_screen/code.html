@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlexLearn - Background Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9833f0",
+                        "primary-hover": "#8020d0",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1a1022",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d2038",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for dropdown if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex items-center justify-center p-4">
+<!-- Main Container -->
+<main class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Left Side: Hero Image / Decorative (Hidden on mobile for cleaner focus) -->
+<div class="hidden lg:flex lg:col-span-5 flex-col justify-center h-full relative">
+<div class="absolute inset-0 bg-primary/10 rounded-2xl transform -rotate-2 scale-95 z-0"></div>
+<div class="relative z-10 bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden h-[500px]">
+<img alt="Students studying together in library" class="absolute inset-0 w-full h-full object-cover opacity-90" data-alt="Group of diverse students studying together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM7pZxiyAzuekYZJmq_8E4OBHHwc-3qxmSZXFIcktt21ajB_RIozmdasAz_-wyx76FTNubjXdqi7JFu-j7U__RPMWUacyW1SuBxXyuiPanDJDS2baWHl22yJSgRZQ1tkvOi2B0EXHMyyMpChV_jUErAcnQeZ0ChEAW8ydz0S1ET0HMq4D_5DgrxxZMWYPKfNRpERMxmI8syB2gN7BhLWt-oS1ZYPvn7eTLkfEtvvBkj-k1u7-DjvlpbguSsVB9YUEUWRficyD7kp8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 text-white">
+<div class="inline-flex items-center gap-2 bg-primary/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium mb-3">
+<span class="material-icons-round text-sm">school</span>
+<span>Personalized Learning</span>
+</div>
+<h3 class="text-2xl font-bold leading-tight">Your path to knowledge starts here.</h3>
+</div>
+</div>
+</div>
+<!-- Right Side: Form Content -->
+<div class="lg:col-span-7 w-full">
+<div class="bg-surface-light dark:bg-surface-dark p-8 md:p-10 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700/50 relative">
+<!-- Progress Header -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-2">
+<div class="h-2 w-8 rounded-full bg-primary"></div>
+<div class="h-2 w-8 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 w-8 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+<span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Step 1 of 3</span>
+</div>
+<!-- Title Section -->
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2 font-display">Tell us about yourself</h1>
+<p class="text-slate-500 dark:text-slate-400">Help us tailor the FlexLearn experience to match your current level and needs.</p>
+</div>
+<!-- Form -->
+<form class="space-y-8" onsubmit="event.preventDefault();">
+<!-- Question 1: Educational Background -->
+<div class="space-y-3">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="education">
+                            Highest Level of Education
+                        </label>
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-icons-round">school</span>
+</span>
+<select class="block w-full pl-10 pr-10 py-3 text-base border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm appearance-none cursor-pointer" id="education" name="education">
+<option disabled="" selected="" value="">Select your education level</option>
+<option value="hs">High School Diploma / GED</option>
+<option value="associate">Associate Degree</option>
+<option value="bachelor">Bachelor's Degree</option>
+<option value="master">Master's Degree</option>
+<option value="phd">Doctorate (PhD)</option>
+<option value="other">Other / Self-Taught</option>
+</select>
+<span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-icons-round">expand_more</span>
+</span>
+</div>
+</div>
+<!-- Question 2: Preferred Language (Card Selection) -->
+<div class="space-y-3">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                            Preferred Learning Language
+                        </label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Language Option: English -->
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="language" type="radio" value="english"/>
+<div class="flex items-center p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary">
+<div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-lg font-bold mr-3 shadow-sm">
+                                        🇺🇸
+                                    </div>
+<div>
+<div class="font-medium text-slate-900 dark:text-white">English</div>
+<div class="text-xs text-slate-500">Native / Fluent</div>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-icons-round">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Language Option: Spanish -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="language" type="radio" value="spanish"/>
+<div class="flex items-center p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary">
+<div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg font-bold mr-3 shadow-sm">
+                                        🇪🇸
+                                    </div>
+<div>
+<div class="font-medium text-slate-900 dark:text-white">Spanish</div>
+<div class="text-xs text-slate-500">Español</div>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-icons-round">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Language Option: French -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="language" type="radio" value="french"/>
+<div class="flex items-center p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary">
+<div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg font-bold mr-3 shadow-sm">
+                                        🇫🇷
+                                    </div>
+<div>
+<div class="font-medium text-slate-900 dark:text-white">French</div>
+<div class="text-xs text-slate-500">Français</div>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-icons-round">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Language Option: German -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="language" type="radio" value="german"/>
+<div class="flex items-center p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:ring-1 peer-checked:ring-primary">
+<div class="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-lg font-bold mr-3 shadow-sm">
+                                        🇩🇪
+                                    </div>
+<div>
+<div class="font-medium text-slate-900 dark:text-white">German</div>
+<div class="text-xs text-slate-500">Deutsch</div>
+</div>
+<div class="ml-auto opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-icons-round">check_circle</span>
+</div>
+</div>
+</label>
+</div>
+<p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+<span class="material-icons-round text-sm">info</span>
+                            You can change this later in your settings.
+                        </p>
+</div>
+<!-- Actions -->
+<div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+<button class="w-full sm:w-auto flex-1 bg-primary hover:bg-primary-hover text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-0.5 focus:ring-4 focus:ring-primary/20 flex items-center justify-center gap-2 group" type="submit">
+                            Continue
+                            <span class="material-icons-round group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<a class="text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm transition-colors px-4 py-2" href="#">
+                            Skip for now
+                        </a>
+</div>
+</form>
+</div>
+<!-- Footer Text -->
+<div class="text-center mt-6 text-xs text-slate-400">
+                © 2023 FlexLearn Inc. All rights reserved.
+            </div>
+</div>
+</main>
+</body></html>
