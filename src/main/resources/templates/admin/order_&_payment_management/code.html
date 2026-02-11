@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order &amp; Payment Management - FlexLearn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "primary-50": "#eff6ff",
+                        "primary-100": "#dbeafe",
+                        "primary-900": "#1e3a8a",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1f2937",
+                        "success-light": "#ecfdf5",
+                        "success-text": "#047857",
+                        "warning-light": "#fff7ed",
+                        "warning-text": "#c2410c",
+                        "neutral-light": "#f3f4f6",
+                        "neutral-dark": "#374151"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table container */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+            background-color: #94a3b8;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation (Simplified for Context) -->
+<header class="bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-700 h-16 flex items-center justify-between px-6 sticky top-0 z-20">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">FL</div>
+<h1 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">FlexLearn Admin</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
+<span class="material-icons text-[20px]">notifications</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="Admin user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI1BTqIa3t7QT9XIkAuXdmvdfQljksTcNRHLzf3gl9iYFQt1BehxAdxdIGZDvCtBMjMhH-5Rmf0gTMsbIUW6MUhY98NDpdAOdQDdlAiV6kPTQMuX7SUxThADqUzGh3sn5CPxHThF0tQA6cudoiVe4_qEw5qrnyzjef-WPk-m_Q7YPbVwiOBQNEOQaO97oehJPqJexx5hD1QjBFyXwtjKFdNqwCmX-9HPsXTb6fpz_8q8CPgWsWJ7Q-OjJGvKIidEoNObae9IMslIU"/>
+</div>
+<span class="text-sm font-medium hidden sm:block">Admin User</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-4 md:p-8 max-w-[1600px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary transition-colors" href="#">Dashboard</a></li>
+<li><span class="material-icons text-[16px] align-middle">chevron_right</span></li>
+<li><span class="font-medium text-slate-900 dark:text-white">Order &amp; Payment Management</span></li>
+</ol>
+</nav>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Order &amp; Payment Management</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Monitor transactions, reconcile payments, and manage order statuses.</p>
+</div>
+<button class="inline-flex items-center justify-center px-4 py-2.5 bg-primary hover:bg-primary-900 text-white font-medium rounded-lg shadow-sm transition-all focus:ring-2 focus:ring-offset-2 focus:ring-primary gap-2 group">
+<span class="material-icons text-[20px] group-hover:rotate-180 transition-transform duration-500">sync</span>
+                Sync with PayOS
+            </button>
+</div>
+<!-- Metric Cards (Quick Overview) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Revenue (Today)</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">12,450,000 ₫</h3>
+<div class="flex items-center mt-2 text-xs text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 w-fit px-2 py-0.5 rounded-full">
+<span class="material-icons text-[14px] mr-1">trending_up</span> +12% vs yesterday
+                    </div>
+</div>
+<div class="p-3 bg-primary/10 rounded-lg">
+<span class="material-icons text-primary text-[24px]">payments</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Pending Orders</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">24</h3>
+<div class="flex items-center mt-2 text-xs text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 w-fit px-2 py-0.5 rounded-full">
+<span class="material-icons text-[14px] mr-1">access_time</span> Requires attention
+                    </div>
+</div>
+<div class="p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+<span class="material-icons text-orange-600 dark:text-orange-400 text-[24px]">hourglass_empty</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-start justify-between">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Successful Transactions</p>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1">1,204</h3>
+<p class="text-xs text-slate-400 mt-2">Last updated: Just now</p>
+</div>
+<div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+<span class="material-icons text-green-600 dark:text-green-400 text-[24px]">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Filters & Table Section -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<!-- Filter Bar -->
+<div class="p-5 border-b border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+<div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+<!-- Search Input -->
+<div class="relative w-full sm:w-64">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons text-slate-400 text-[20px]">search</span>
+</span>
+<input class="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Search Order ID or User..." type="text"/>
+</div>
+<!-- Date Range Filter -->
+<div class="relative w-full sm:w-auto">
+<button class="w-full sm:w-auto px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center justify-between gap-2">
+<span class="flex items-center gap-2">
+<span class="material-icons text-[18px] text-slate-400">calendar_today</span>
+                                Oct 1, 2023 - Oct 31, 2023
+                            </span>
+<span class="material-icons text-[18px] text-slate-400">arrow_drop_down</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 w-full lg:w-auto justify-start lg:justify-end">
+<!-- Status Filter -->
+<select class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer outline-none">
+<option value="all">All Statuses</option>
+<option value="paid">Paid</option>
+<option value="pending">Pending</option>
+<option value="failed">Failed</option>
+</select>
+<!-- Payment Method Filter -->
+<select class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-sm text-slate-700 dark:text-slate-200 focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer outline-none">
+<option value="all">All Payment Methods</option>
+<option value="payos">PayOS</option>
+<option value="vietqr">VietQR</option>
+</select>
+<button class="p-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-500 hover:text-primary hover:border-primary hover:bg-primary-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-icons text-[20px]">filter_list</span>
+</button>
+<button class="p-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-500 hover:text-primary hover:border-primary hover:bg-primary-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-icons text-[20px]">file_download</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-neutral-light dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-xs uppercase font-semibold tracking-wider border-b border-slate-200 dark:border-slate-700">
+<th class="p-4 w-12 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</th>
+<th class="p-4 cursor-pointer hover:text-primary transition-colors group">
+                                Order ID <span class="material-icons text-[14px] align-middle opacity-0 group-hover:opacity-100 text-slate-400">arrow_downward</span>
+</th>
+<th class="p-4">Customer</th>
+<th class="p-4">Date &amp; Time</th>
+<th class="p-4">Payment Method</th>
+<th class="p-4 text-right">Amount</th>
+<th class="p-4 text-center">Status</th>
+<th class="p-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800/20">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="p-4 font-medium text-primary">
+<a class="hover:underline" href="#">#ORD-9024</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Nguyen Van A" class="h-full w-full object-cover" data-alt="Avatar of Nguyen Van A" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnOosthXmZ70f5lKXyZ0gJHRPD1zaIht3iR1SFZEoDz8UTKsxBOO95_0Tn43aFzsg333LyIDkiE1dgdGc9FNNMV_SPqUEhnVtifTn1wxRauHsFGKLq_ez69zezlXc1BxsF9Q7yNLbDS8yBh2GpWYcIk76D5NMGwyMYY2f5JB6QvCQ12Qk0dxW5UNt8sKOS4Zl_gn1zObDHoAJg1C_glsG100ynEjVkAy6CaVZKN2sXJgs_OK6_M8jcLhpVpC2DrnjSR8GOVIaLqzk"/>
+</div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Nguyen Van A</div>
+<div class="text-xs text-slate-500">nguyenvana@gmail.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-slate-600 dark:text-slate-300">
+<div class="font-medium">Oct 24, 2023</div>
+<div class="text-xs text-slate-400">14:30 PM</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded bg-purple-100 flex items-center justify-center shrink-0">
+<span class="material-icons text-purple-600 text-[14px]">qr_code_2</span>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-200">PayOS QR</span>
+</div>
+</td>
+<td class="p-4 text-right font-medium text-slate-900 dark:text-white font-mono tabular-nums">
+                                500,000 ₫
+                            </td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-light text-success-text border border-green-200 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                                    PAID
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="p-4 font-medium text-primary">
+<a class="hover:underline" href="#">#ORD-9023</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Le Thi B" class="h-full w-full object-cover" data-alt="Avatar of Le Thi B" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6e6SAAYWFdNzjpswBZoouDgrGkurTxdX3Rg01AO4nKUOpQVjJeSRQf3JgLCGAvmJIqOLQCUE2rD1s6MbyPtz7Y9e9U-NMOJFhkXUGLmXXtXF2MeWhqKMsQzjPn2wicPd5p86Zuk6C7fohw-ZwU3WKsW6ZXtqTS08w8jFfgeYGHIBAxRQgsag0Jyqr9FBaIDDBT8KQ4mzPxH6YsmGPgkcyAnF9PIFW2qW0JtMa35LHo7ZNtWbVzA4hTifNx_8066_7DdAYue1PCdg"/>
+</div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Le Thi B</div>
+<div class="text-xs text-slate-500">lethib@outlook.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-slate-600 dark:text-slate-300">
+<div class="font-medium">Oct 24, 2023</div>
+<div class="text-xs text-slate-400">12:15 PM</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded bg-blue-100 flex items-center justify-center shrink-0">
+<span class="material-icons text-blue-600 text-[14px]">smartphone</span>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-200">VietQR Transfer</span>
+</div>
+</td>
+<td class="p-4 text-right font-medium text-slate-900 dark:text-white font-mono tabular-nums">
+                                250,000 ₫
+                            </td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning-light text-warning-text border border-orange-200 dark:bg-orange-900/30 dark:border-orange-800 dark:text-orange-300">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-1.5 animate-pulse"></span>
+                                    PENDING
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="p-4 font-medium text-primary">
+<a class="hover:underline" href="#">#ORD-9022</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Tran Minh C" class="h-full w-full object-cover" data-alt="Avatar of Tran Minh C" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSUtT5BOkq53yc0nlZPc20wGUYX44yp_JU9dqxmGErcju7el5g24A--tm-QIBl0wEYHx7broK65bJoKwBWXo4UWhKbkzIpSqGRwq6fNp1v4H1ml46waiozQCZBvARPIM1PJkpTQnCRjQYjWr2F_YgAyKzBSgYZkj537ZLZ5mW_XVfg7U3OxU-vzgEj6CzfNi0cJJzWHlWBqdAzi3d9sBuThUkufGDdYTcCRsEN4HzpX0hH11FwdtCu-k4do__sxhGx_sQRblSQOzk"/>
+</div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Tran Minh C</div>
+<div class="text-xs text-slate-500">minhtran@gmail.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-slate-600 dark:text-slate-300">
+<div class="font-medium">Oct 23, 2023</div>
+<div class="text-xs text-slate-400">09:45 AM</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded bg-purple-100 flex items-center justify-center shrink-0">
+<span class="material-icons text-purple-600 text-[14px]">qr_code_2</span>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-200">PayOS QR</span>
+</div>
+</td>
+<td class="p-4 text-right font-medium text-slate-900 dark:text-white font-mono tabular-nums">
+                                1,200,000 ₫
+                            </td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-light text-success-text border border-green-200 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                                    PAID
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="p-4 font-medium text-primary">
+<a class="hover:underline" href="#">#ORD-9021</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Pham Duc D" class="h-full w-full object-cover" data-alt="Avatar of Pham Duc D" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvxau0YwSk_igNDbPPvCi08CCT3oiy7DbaixafQZ6E3NXgYodUY-cLrepQXxe5kZs4Z2UjGmre88z5G-iougfjk84TDyILxQ9edDD5tLskJBtsQlY0aieC06cmjnqrt3Jb0bnzJKB7RPj8LzCiFVr5nU92Zqdo8eiyE9mPJssKiDUHoZz2yyXAaHZceUYclB9VZ60YqhLPi2ZX45zeodOq14UpkOt4UE8y9PSx5osEKKOikEIKnMVR0hZgKNoK56DNMSKjRu0j9QA"/>
+</div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Pham Duc D</div>
+<div class="text-xs text-slate-500">ducpham@corp.vn</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-slate-600 dark:text-slate-300">
+<div class="font-medium">Oct 22, 2023</div>
+<div class="text-xs text-slate-400">18:00 PM</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded bg-purple-100 flex items-center justify-center shrink-0">
+<span class="material-icons text-purple-600 text-[14px]">qr_code_2</span>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-200">PayOS QR</span>
+</div>
+</td>
+<td class="p-4 text-right font-medium text-slate-900 dark:text-white font-mono tabular-nums">
+                                150,000 ₫
+                            </td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5"></span>
+                                    FAILED
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="p-4 font-medium text-primary">
+<a class="hover:underline" href="#">#ORD-9020</a>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden shrink-0">
+<img alt="Hoang Yen" class="h-full w-full object-cover" data-alt="Avatar of Hoang Yen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNDRLNEnVrvnDGt_ipVBC5trrM1AI-V6rP-Q0AbIB9GHW0e_zD-wFPps4kQy9ktX4LyAn8wP4ujcrCM7qRKU9YAqv5oOTO5wKAb868TzpipAT0HwIyEP5l5uJDh9rtbqh7crozOgeYLNetgUanNaSMGQSWnTDmcORRQtgMGybWdxxf2_QxIDdAq_2NVZQuyhIIkd0csi3TwtWh4n8g9GrQcdr_HxPxA3p4RBHLUDNYv34hFkEwKpL0f0v91rb6eNVUtW2gQwv0DFY"/>
+</div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Hoang Yen</div>
+<div class="text-xs text-slate-500">yentran@gmail.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-slate-600 dark:text-slate-300">
+<div class="font-medium">Oct 21, 2023</div>
+<div class="text-xs text-slate-400">08:10 AM</div>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded bg-blue-100 flex items-center justify-center shrink-0">
+<span class="material-icons text-blue-600 text-[14px]">smartphone</span>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-200">VietQR Transfer</span>
+</div>
+</td>
+<td class="p-4 text-right font-medium text-slate-900 dark:text-white font-mono tabular-nums">
+                                2,000,000 ₫
+                            </td>
+<td class="p-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-light text-success-text border border-green-200 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                                    PAID
+                                </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors p-1">
+<span class="material-icons text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-5 py-4 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-sm text-slate-500 dark:text-slate-400">
+                    Showing <span class="font-medium text-slate-900 dark:text-white">1</span> to <span class="font-medium text-slate-900 dark:text-white">5</span> of <span class="font-medium text-slate-900 dark:text-white">24</span> entries
+                </div>
+<div class="flex items-center gap-2">
+<select class="form-select text-sm border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 py-1.5 px-3 focus:ring-primary focus:border-primary">
+<option>10 per page</option>
+<option>25 per page</option>
+<option>50 per page</option>
+</select>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 focus:z-20" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-icons text-[18px]">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center border border-primary bg-primary-50 dark:bg-primary/20 px-4 py-2 text-sm font-medium text-primary focus:z-20" href="#">1</a>
+<a class="relative inline-flex items-center border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 focus:z-20" href="#">2</a>
+<a class="relative inline-flex items-center border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 focus:z-20" href="#">3</a>
+<span class="relative inline-flex items-center border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-400">...</span>
+<a class="relative inline-flex items-center rounded-r-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-2 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 focus:z-20" href="#">
+<span class="sr-only">Next</span>
+<span class="material-icons text-[18px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</main>
+</body></html>

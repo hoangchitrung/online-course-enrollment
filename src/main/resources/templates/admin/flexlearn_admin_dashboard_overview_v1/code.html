@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlexLearn Admin Dashboard V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#5A3FE6", // Purple
+              secondary: "#26a69a", // Greenish accent
+              "background-light": "#F3F4F6", // Slightly darker gray for better contrast with white cards
+              "background-dark": "#0F172A",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#1E293B",
+              "header-dark": "#1c1d1f",
+              "border-light": "#E5E7EB",
+              "border-dark": "#334155",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+            boxShadow: {
+                'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+            }
+          },
+        },
+      };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-active {
+            background-color: rgba(90, 63, 230, 0.08);
+            color: #5A3FE6;
+            border-right: 3px solid #5A3FE6;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 transition-colors duration-200">
+<header class="bg-surface-light dark:bg-header-dark border-b border-border-light dark:border-border-dark sticky top-0 z-50 h-16">
+<div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-full">
+<div class="flex justify-between items-center h-full">
+<div class="flex items-center gap-8">
+<a class="flex-shrink-0 flex items-center gap-2" href="#">
+<div class="w-8 h-8 relative">
+<svg fill="none" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 20C10 20 15 30 20 30C25 30 35 10 35 10" stroke="#26a69a" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<path d="M5 35C5 35 15 35 20 25" stroke="#3b82f6" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+<span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">Flex<span class="text-secondary">Learn</span></span>
+</a>
+</div>
+<div class="flex-1 max-w-2xl mx-auto px-4 hidden md:block">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg leading-5 bg-slate-50 dark:bg-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm text-slate-900 dark:text-slate-100 transition-all shadow-sm" placeholder="Search courses, students, or transactions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-header-dark"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block"></div>
+<div class="flex items-center gap-3 cursor-pointer pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200 leading-none">Hoàng C. Trung</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Super Admin</p>
+</div>
+<div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-sm ring-2 ring-white dark:ring-slate-700">HT</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)] overflow-hidden">
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark hidden md:flex flex-col shadow-[1px_0_3px_rgba(0,0,0,0.05)] z-10">
+<div class="flex flex-col flex-1 py-6 overflow-y-auto">
+<nav class="space-y-1 px-3">
+<a class="sidebar-active group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px]">dashboard</span>
+                        Dashboard
+                    </a>
+<div class="pt-6 pb-2 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                        Management
+                    </div>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">school</span>
+                        Courses
+                    </a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">people</span>
+                        Students
+                    </a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">cast_for_education</span>
+                        Live Boot Camps
+                    </a>
+<div class="pt-6 pb-2 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                        Finance
+                    </div>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">receipt_long</span>
+                        Transactions
+                    </a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-[22px] text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">analytics</span>
+                        Reports
+                    </a>
+</nav>
+</div>
+<div class="border-t border-border-light dark:border-border-dark p-4 bg-slate-50/50 dark:bg-slate-800/50">
+<a class="group block w-full rounded-lg p-2 hover:bg-white dark:hover:bg-slate-700 transition-all shadow-sm ring-1 ring-transparent hover:ring-slate-200 dark:hover:ring-slate-600" href="#">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-500 mr-3">settings</span>
+<div>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200">Settings</p>
+</div>
+</div>
+</a>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Overview</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Welcome back, Admin. Here's what's happening with your courses today.</p>
+</div>
+<div class="flex gap-3">
+<button class="inline-flex items-center px-4 py-2 bg-white dark:bg-surface-dark border border-slate-300 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-sm transition-all">
+<span class="material-symbols-outlined text-[20px] mr-2">rate_review</span>
+                            Review Apps
+                        </button>
+<button class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-sm transition-all">
+<span class="material-symbols-outlined text-[20px] mr-2">add</span>
+                            New Course
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-subtle hover:shadow-card transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Total Revenue</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">₫1.24B</h3>
+</div>
+<div class="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400">payments</span>
+</div>
+</div>
+<div class="mt-4 flex items-center text-sm">
+<span class="text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-2 py-0.5 rounded-full font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span> 
+                                12.5%
+                            </span>
+<span class="text-slate-400 ml-2">vs last month</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-subtle hover:shadow-card transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Active Students</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">14,203</h3>
+</div>
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">school</span>
+</div>
+</div>
+<div class="mt-4 flex items-center text-sm">
+<span class="text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-2 py-0.5 rounded-full font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span> 
+                                8.2%
+                            </span>
+<span class="text-slate-400 ml-2">vs last month</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-subtle hover:shadow-card transition-shadow">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Course Sales (Mo.)</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">892</h3>
+</div>
+<div class="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+<span class="material-symbols-outlined text-primary">local_library</span>
+</div>
+</div>
+<div class="mt-4 flex items-center text-sm">
+<span class="text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 px-2 py-0.5 rounded-full font-medium flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_down</span> 
+                                2.1%
+                            </span>
+<span class="text-slate-400 ml-2">vs last month</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<div class="xl:col-span-2 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="px-6 py-5 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/30">
+<h2 class="text-base font-semibold text-slate-900 dark:text-white">Course Performance</h2>
+<div class="flex bg-white dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 p-0.5 shadow-sm">
+<button class="px-3 py-1 bg-slate-100 dark:bg-slate-600 text-slate-800 dark:text-white rounded-md text-xs font-medium shadow-sm border border-slate-200 dark:border-slate-500">Week</button>
+<button class="px-3 py-1 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-md text-xs font-medium">Month</button>
+</div>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">videocam</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200">Self-Paced</h3>
+<span class="text-xs text-slate-500 dark:text-slate-400">10 Modules Active</span>
+</div>
+</div>
+</div>
+<div class="space-y-5">
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-600 dark:text-slate-300">Completion Rate</span>
+<span class="font-bold text-slate-900 dark:text-white">78%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5">
+<div class="bg-secondary h-2.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-600 dark:text-slate-300">Avg. Rating</span>
+<span class="font-bold text-slate-900 dark:text-white">4.8/5</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5">
+<div class="bg-secondary h-2.5 rounded-full" style="width: 96%"></div>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto">
+<div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-secondary font-semibold uppercase tracking-wide mb-1">Top Performer</p>
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-200">Practical SQL With SQLite</p>
+<span class="text-xs text-slate-500">4.9 <span class="material-symbols-outlined text-[10px] align-middle text-yellow-500">star</span></span>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden md:block absolute left-1/2 top-20 bottom-10 w-px bg-slate-100 dark:bg-slate-700"></div>
+<div class="space-y-6 md:pl-8 border-t md:border-t-0 border-slate-100 dark:border-slate-700 pt-6 md:pt-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-slate-200">Live Boot Camp</h3>
+<span class="text-xs text-slate-500 dark:text-slate-400">8 Sessions Active</span>
+</div>
+</div>
+</div>
+<div class="space-y-5">
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-600 dark:text-slate-300">Attendance Rate</span>
+<span class="font-bold text-slate-900 dark:text-white">92%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-600 dark:text-slate-300">Project Submission</span>
+<span class="font-bold text-slate-900 dark:text-white">85%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto">
+<div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-primary font-semibold uppercase tracking-wide mb-1">Top Cohort</p>
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-200">Java Spring Boot Full Stack</p>
+<span class="text-xs text-slate-500">Batch #04</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm flex flex-col">
+<div class="px-6 py-5 border-b border-border-light dark:border-border-dark flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/30">
+<h2 class="text-base font-semibold text-slate-900 dark:text-white">Recent Enrollments</h2>
+<a class="text-xs text-primary font-medium hover:text-primary/80 flex items-center" href="#">View All <span class="material-symbols-outlined text-[14px] ml-1">arrow_forward</span></a>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="min-w-full">
+<thead class="bg-slate-50/80 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">Student</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">Course</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700 bg-white dark:bg-surface-dark">
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xs font-bold ring-2 ring-white dark:ring-slate-700">AN</div>
+<div class="ml-3">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Alice N.</div>
+<div class="text-xs text-slate-500">En</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">Python Bootcamp</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 mt-0.5">
+                                              Self-Paced
+                                            </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold ring-2 ring-white dark:ring-slate-700">MT</div>
+<div class="ml-3">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Minh T.</div>
+<div class="text-xs text-slate-500">Vi</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">Java Spring Boot</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 mt-0.5">
+                                              Live Cohort
+                                            </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold ring-2 ring-white dark:ring-slate-700">SL</div>
+<div class="ml-3">
+<div class="text-sm font-medium text-slate-900 dark:text-white">Sarah L.</div>
+<div class="text-xs text-slate-500">En</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">Figma UI/UX</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 mt-0.5">
+                                              Self-Paced
+                                            </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xs font-bold ring-2 ring-white dark:ring-slate-700">DK</div>
+<div class="ml-3">
+<div class="text-sm font-medium text-slate-900 dark:text-white">David K.</div>
+<div class="text-xs text-slate-500">En</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">SQL with SQLite</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 mt-0.5">
+                                              Self-Paced
+                                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-border-light dark:border-border-dark pt-6 text-center">
+<p class="text-xs text-slate-500 dark:text-slate-400">© 2026 FlexLearn, Inc. Admin Dashboard v1.1</p>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

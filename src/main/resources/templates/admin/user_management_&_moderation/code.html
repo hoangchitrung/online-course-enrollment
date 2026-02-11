@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management - FlexLearn Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f49bd",
+                        "primary-hover": "#0c3b99",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2233",
+                        "text-light": "#1f2937",
+                        "text-dark": "#f3f4f6",
+                        "muted-light": "#6b7280",
+                        "muted-dark": "#9ca3af",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0f49bd;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0f49bd;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen text-text-light dark:text-text-dark antialiased transition-colors duration-200">
+<!-- Sidebar & Content Wrapper -->
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation (Simplified for context) -->
+<aside class="hidden lg:flex w-64 flex-col bg-surface-light dark:bg-surface-dark border-r border-gray-200 dark:border-gray-800">
+<div class="flex h-16 items-center justify-center border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">F</div>
+<span class="text-xl font-bold tracking-tight text-primary">FlexLearn</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-primary/10 px-3 py-2 text-primary transition-colors" href="#">
+<span class="material-icons text-[20px]">group</span>
+<span class="text-sm font-medium">User Management</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-[20px]">school</span>
+<span class="text-sm font-medium">Courses</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-[20px]">bar_chart</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-light dark:text-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="border-t border-gray-200 dark:border-gray-800 p-4">
+<div class="flex items-center gap-3">
+<img class="h-9 w-9 rounded-full object-cover ring-2 ring-primary/20" data-alt="Admin user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfR5HCe1EW9mC4VEx6Psgicl47euAsNwm1Iaho-x7jxU__MgRXZ6yh4-9WJYAH6juX3cQN6aPlWIsVqLdAWj9AmZLBzsPjCOGUQyjs3yfAP0MQRdm65W4ikilwqYhrApmWJ1X07rkBqHWPznzozyQRRM19h5JTcsIe3lP71SL1KY55Ac0br-Vp8o5tM5yxglinSCgDyS56ptabfLHrziq5vMm3biU_oDIiEVuCdCUDAKlxobWU52qhgbjNjGXiYdpr2swHLo4gFQU"/>
+<div class="flex flex-col">
+<span class="text-sm font-medium">Admin User</span>
+<span class="text-xs text-muted-light dark:text-muted-dark">admin@flexlearn.com</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Top Header -->
+<header class="h-16 flex items-center justify-between px-6 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 shrink-0">
+<div class="flex items-center gap-4">
+<button class="lg:hidden text-muted-light dark:text-muted-dark hover:text-primary">
+<span class="material-icons">menu</span>
+</button>
+<nav class="flex text-sm font-medium text-muted-light dark:text-muted-dark">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="mx-2">/</span>
+<span class="text-primary">User Management</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-muted-light dark:text-muted-dark hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark"></span>
+</button>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+<span class="material-icons text-sm">add</span>
+                        Add New User
+                    </button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-auto p-6 lg:p-8">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Page Title & Stats -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">User Management</h1>
+<p class="text-sm text-muted-light dark:text-muted-dark mt-1">Manage user roles, access, and educational backgrounds.</p>
+</div>
+<!-- Simple Stats Cards -->
+<div class="flex gap-4">
+<div class="px-4 py-3 bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-icons text-xl">people</span>
+</div>
+<div>
+<p class="text-xs text-muted-light dark:text-muted-dark font-medium">Total Users</p>
+<p class="text-lg font-bold text-gray-900 dark:text-white">12,453</p>
+</div>
+</div>
+<div class="px-4 py-3 bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center gap-3">
+<div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400">
+<span class="material-icons text-xl">warning</span>
+</div>
+<div>
+<p class="text-xs text-muted-light dark:text-muted-dark font-medium">Flagged</p>
+<p class="text-lg font-bold text-gray-900 dark:text-white">24</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Filters & Search Toolbar -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex flex-col md:flex-row gap-4 justify-between items-center">
+<div class="relative w-full md:w-96 group">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-light dark:text-muted-dark group-focus-within:text-primary transition-colors">
+<span class="material-icons">search</span>
+</span>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg leading-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-muted-light dark:placeholder-muted-dark focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition duration-150 ease-in-out" placeholder="Search users by email..." type="text"/>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<select class="block pl-3 pr-10 py-2.5 text-sm border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-primary focus:border-primary rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 cursor-pointer">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Moderator</option>
+<option>User</option>
+</select>
+<select class="block pl-3 pr-10 py-2.5 text-sm border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-primary focus:border-primary rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 cursor-pointer">
+<option>All Backgrounds</option>
+<option>Student</option>
+<option>Teacher</option>
+<option>Professional</option>
+</select>
+<button class="p-2.5 border border-gray-300 dark:border-gray-600 rounded-lg text-muted-light dark:text-muted-dark hover:text-primary hover:border-primary bg-white dark:bg-gray-800 transition-colors" title="Export Data">
+<span class="material-icons text-[20px]">file_download</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800/50">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-semibold text-muted-light dark:text-muted-dark uppercase tracking-wider" scope="col">
+                                            User
+                                        </th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-muted-light dark:text-muted-dark uppercase tracking-wider" scope="col">
+                                            Role
+                                        </th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-muted-light dark:text-muted-dark uppercase tracking-wider" scope="col">
+                                            Educational Background
+                                        </th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-muted-light dark:text-muted-dark uppercase tracking-wider" scope="col">
+                                            Joined Date
+                                        </th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-muted-light dark:text-muted-dark uppercase tracking-wider" scope="col">
+                                            Account Status
+                                        </th>
+<th class="relative px-6 py-4" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="bg-white dark:bg-surface-dark divide-y divide-gray-200 dark:divide-gray-700">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 relative">
+<img alt="" class="h-10 w-10 rounded-full object-cover" data-alt="Portrait of Sarah Connor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJabD7N7BCwSgNRXIqBD83xPHF59y_Vft2zWOZKO3iiIOHNjmz1HnrwCju-ngdnnmvHMd5yKEJPd6IG9yZmygvEornHQfzJNV1XP91bdER2OuQm5Fj5t3wTSx6SoFb5YhX26v-iI6F74KRnEAReq9HyijamVjs3kxEk1tmvgaqnaeyLspQMVW2vkAgtZ9M16eTPKmoBp4GMmlDX0xq-sua5oQZ0c5J-5meAqwPyOlQ3cF6Uvks_KuuXDI7qfYpskeH2kUu7LZd6Jo"/>
+<span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white dark:ring-surface-dark"></span>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Sarah Connor</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">sarah.c@flexlearn.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                                                Instructor
+                                            </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+<span class="material-icons text-sm mr-2 text-muted-light dark:text-muted-dark">school</span>
+                                                PhD Computer Science
+                                            </div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">
+                                            Oct 24, 2023
+                                        </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 outline-none transition-all duration-300 ease-in-out" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out" for="toggle1"></label>
+</div>
+<span class="text-sm font-medium text-gray-900 dark:text-white ml-2">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-muted-light dark:text-muted-dark hover:text-primary transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 relative">
+<img alt="" class="h-10 w-10 rounded-full object-cover" data-alt="Portrait of Michael Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBndXmjXfUwuWgkFbOzQnOQOxoT4ph8CGGpxiZvIi1TxgoaCuDlQ60Ddy8XrZ29GJEyWwRK87BEgvPc_PT00rstbglkGFAgyDhKsfE7IVSzMOsLj0NJjrx_2jLaovZix3Nw98w2-zc6xa7vG_S5E3fMCtrLH_hSn7aW1aPAfEJ9eCPHvryLTtZQYbEAqJnqKIffvlJvKJVxOnvvmjRU_L912wrMNR_-9P7OCUFukix10Jez0klXrYGSbqsOsMHZmD-firwDG5nAfhs"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Michael Chen</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">m.chen99@gmail.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                                Student
+                                            </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+<span class="material-icons text-sm mr-2 text-muted-light dark:text-muted-dark">book</span>
+                                                Undergraduate (Year 3)
+                                            </div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">
+                                            Nov 12, 2023
+                                        </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 outline-none transition-all duration-300 ease-in-out" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out" for="toggle2"></label>
+</div>
+<span class="text-sm font-medium text-gray-900 dark:text-white ml-2">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-muted-light dark:text-muted-dark hover:text-primary transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 (Disabled User) -->
+<tr class="bg-red-50/50 dark:bg-red-900/5 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 relative">
+<img alt="" class="h-10 w-10 rounded-full object-cover grayscale opacity-70" data-alt="Portrait of banned user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU8B8gd_tnJjVhoBiynDZVOek125iEXGKsAWtssuNkkqv70DYaTg5ZO_TMnZb8Jr4UFjLJds0S2PYRjOwiTBv4dWCJohFgQCLr18uwr76AN3sfsBqT-FT76vp0JW4C62c3M-CfzdBpvkKOk31i3B_jdJ7FBr_kmFr9QvRuJc4MWZ0IDKOpTdzpWBcD59zSYIzPhNv_YpkBNQcyOXgrzYMGQecGaMOunaQO2XNyJgRL2aVkMNIa1rkG9XkbizJom6JaGceg-51RTmw"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-500 dark:text-gray-400 decoration-slice">James Wilson</div>
+<div class="text-sm text-muted-light dark:text-muted-dark italic">james.w@suspicious.net</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                                                Student
+                                            </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+<span class="material-icons text-sm mr-2 text-muted-light dark:text-muted-dark">work_outline</span>
+                                                High School Diploma
+                                            </div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">
+                                            Jan 05, 2024
+                                        </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 outline-none transition-all duration-300 ease-in-out" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out" for="toggle3"></label>
+</div>
+<span class="text-sm font-medium text-red-600 dark:text-red-400 ml-2">Disabled</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-muted-light dark:text-muted-dark hover:text-primary transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 relative">
+<div class="h-10 w-10 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-semibold text-sm">
+                                                        EL
+                                                    </div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Elena Lopez</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">elena.design@studio.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                                                Professional
+                                            </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+<span class="material-icons text-sm mr-2 text-muted-light dark:text-muted-dark">business_center</span>
+                                                UX Designer (Senior)
+                                            </div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">
+                                            Feb 18, 2024
+                                        </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 outline-none transition-all duration-300 ease-in-out" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out" for="toggle4"></label>
+</div>
+<span class="text-sm font-medium text-gray-900 dark:text-white ml-2">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-muted-light dark:text-muted-dark hover:text-primary transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 relative">
+<img alt="" class="h-10 w-10 rounded-full object-cover" data-alt="Portrait of David Kim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-iqThvz8WrJqYF53jvpIXlthlyH-oXOLt97sDoiV1rumJ_FxzOAZwgqCV7_RJxnFnZkZun0U-X7eNQ8YaXsUpz_-MNG-S526GBX929n01riS8k_w7RX62gU3ezM3iliHuh0H2f8W5eIwHzSEpJ3f5sQLjE4v8ZJhpoh4sx8dr83kpj33sXaTBFU7HVhrZkW14swMk8qzGb52m9LqCtvJtdLqx34aKSGAALieGWVrYrBtzoGWjU7s5TdEhkCnUrbFohB5cfNsD03I"/>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">David Kim</div>
+<div class="text-sm text-muted-light dark:text-muted-dark">dkim@techu.edu</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                                                Instructor
+                                            </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+<span class="material-icons text-sm mr-2 text-muted-light dark:text-muted-dark">science</span>
+                                                MSc Physics
+                                            </div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-muted-light dark:text-muted-dark">
+                                            Mar 02, 2024
+                                        </td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 outline-none transition-all duration-300 ease-in-out" id="toggle5" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out" for="toggle5"></label>
+</div>
+<span class="text-sm font-medium text-gray-900 dark:text-white ml-2">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-muted-light dark:text-muted-dark hover:text-primary transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white dark:bg-surface-dark px-4 py-3 border-t border-gray-200 dark:border-gray-700 sm:px-6">
+<div class="flex items-center justify-between">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-muted-light dark:text-muted-dark">
+                                            Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">97</span> results
+                                        </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-muted-light dark:text-muted-dark hover:bg-gray-50 dark:hover:bg-gray-700" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-icons text-sm">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                                1
+                                            </a>
+<a class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-muted-light dark:text-muted-dark hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                                2
+                                            </a>
+<a class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-muted-light dark:text-muted-dark hover:bg-gray-50 dark:hover:bg-gray-700 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">
+                                                3
+                                            </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-muted-light dark:text-muted-dark">
+                                                ...
+                                            </span>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-muted-light dark:text-muted-dark hover:bg-gray-50 dark:hover:bg-gray-700" href="#">
+<span class="sr-only">Next</span>
+<span class="material-icons text-sm">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination -->
+<div class="flex sm:hidden justify-between w-full gap-2">
+<a class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-muted-light dark:text-muted-dark bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 w-full justify-center" href="#">
+                                        Previous
+                                    </a>
+<a class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-muted-light dark:text-muted-dark bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 w-full justify-center" href="#">
+                                        Next
+                                    </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Section: Quick Actions / Invite -->
+<div class="mt-8 bg-gradient-to-r from-primary to-blue-700 rounded-xl p-8 text-white relative overflow-hidden shadow-lg">
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div>
+<h3 class="text-xl font-bold">Invite Bulk Users</h3>
+<p class="text-blue-100 mt-2 max-w-lg">Need to onboard a whole class or department? Upload a CSV file to add multiple users at once.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-5 py-2.5 bg-white text-primary rounded-lg font-semibold text-sm hover:bg-blue-50 transition-colors shadow-sm">
+                                    Upload CSV
+                                </button>
+<button class="px-5 py-2.5 bg-primary-hover/50 text-white border border-white/20 rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors">
+                                    Download Template
+                                </button>
+</div>
+</div>
+<!-- Abstract Background Decoration -->
+<div class="absolute right-0 top-0 h-full w-1/3 bg-white/5 skew-x-12 transform translate-x-12"></div>
+<div class="absolute right-20 top-0 h-full w-1/6 bg-white/5 skew-x-12 transform translate-x-12"></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
