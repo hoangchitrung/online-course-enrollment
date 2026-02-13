@@ -147,6 +147,7 @@ CREATE TABLE enrollments (
     course_id BIGINT NOT NULL,
     order_id BIGINT,
     cohort_id BIGINT,
+    type VARCHAR(50) NOT NULL DEFAULT 'SELF_PACED',
     status VARCHAR(50) NOT NULL DEFAULT 'PENDING',
     progress_percentage INT DEFAULT 0,
     completed_lessons INT DEFAULT 0,

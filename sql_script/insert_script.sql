@@ -140,12 +140,12 @@ INSERT INTO payments (order_id, user_id, amount, payment_method, transaction_id,
 (4, 5, 249.99, 'VNPAY', 'TXN-004-VNPAY', 'PENDING');
 
 -- ===== ENROLLMENTS =====
-INSERT INTO enrollments (user_id, course_id, order_id, cohort_id, status, progress_percentage, completed_lessons) VALUES 
-(1, 1, 1, NULL, 'ACTIVE', 25, 2), -- John: Java (Self-Paced)
-(1, 2, 1, NULL, 'ACTIVE', 10, 1), -- John: Spring Boot
-(2, 3, 2, 1, 'ACTIVE', 50, 4), -- Jane: ReactJS (Live Cohort)
-(4, 4, 3, NULL, 'ACTIVE', 30, 3), -- Bob: Python
-(5, 5, 4, 3, 'PENDING', 0, 0); -- Alice: UX Design (not started yet)
+INSERT INTO enrollments (user_id, course_id, order_id, cohort_id, type, status, progress_percentage, completed_lessons) VALUES 
+(1, 1, 1, NULL, 'SELF_PACED','ACTIVE', 25, 2), -- John: Java (Self-Paced)
+(1, 2, 1, NULL, 'LIVE','ACTIVE', 10, 1), -- John: Spring Boot
+(2, 3, 2, 1, 'LIVE','ACTIVE', 50, 4), -- Jane: ReactJS (Live Cohort)
+(4, 4, 3, NULL, 'SELF_PACED','ACTIVE', 30, 3), -- Bob: Python
+(5, 5, 4, 3, 'SELF_PACED','PENDING', 0, 0); -- Alice: UX Design (not started yet)
 
 -- ===== USER LESSON PROGRESS =====
 INSERT INTO user_lesson_progress (user_id, lesson_id, is_completed, completed_at) VALUES 
