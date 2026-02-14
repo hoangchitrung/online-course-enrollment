@@ -1,3 +1,0 @@
-FROM mysql:8.0
-COPY ./sql_script/create_table.sql /docker-entrypoint-initdb.d/01_create_table.sql
-RUN chmod 644 /docker-entrypoint-initdb.d/01_create_table.sql
