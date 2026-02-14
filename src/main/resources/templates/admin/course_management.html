@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>FlexLearn - Course Management</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FlexLearn - Course Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -26,399 +31,491 @@
                     fontFamily: {
                         "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen font-display antialiased flex flex-col">
-<!-- Navbar -->
-<header class="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark sticky top-0 z-30 h-16">
-<div class="px-6 h-full flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">F</div>
-<span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">FlexLearn</span>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors">
-<span class="material-icons text-xl">notifications</span>
-</button>
-<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
-<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGF04bdCS_EajawBorppb53ifiqfP7o_X406LxkTIPfHop6zAJIxTUIl-TSWx198GO9dihyETKDxyq_NSl0UwSgCz2nDknohZJ2LoYRmfMoo5AMVvefbIt5gy-RL7aAEYsooODI5ZjVoE_Cj-cywUCBG15w8zQ2n6jQbtSelmwKUqrWmmKSwc_tQ1TLKQH302RmuE6FBApRfcDy09hlY4Jlfr8BRjXJw5RKU9h8WL1-lEZh7D7JE8WXQkM-WV6r7ZDCzB2pmVl9EU"/>
-</div>
-</div>
-</div>
-</header>
-<div class="flex flex-1 overflow-hidden">
-<!-- Sidebar (Desktop) -->
-<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark hidden md:flex flex-col">
-<nav class="flex-1 px-4 py-6 space-y-1">
-<a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors" href="#">
-<span class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">dashboard</span>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen font-display antialiased flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark sticky top-0 z-30 h-16">
+        <div class="px-6 h-full flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                    F</div>
+                <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">FlexLearn</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white transition-colors">
+                    <span class="material-icons text-xl">notifications</span>
+                </button>
+                <div
+                    class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border border-slate-300 dark:border-slate-600">
+                    <img alt="User Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a man"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGF04bdCS_EajawBorppb53ifiqfP7o_X406LxkTIPfHop6zAJIxTUIl-TSWx198GO9dihyETKDxyq_NSl0UwSgCz2nDknohZJ2LoYRmfMoo5AMVvefbIt5gy-RL7aAEYsooODI5ZjVoE_Cj-cywUCBG15w8zQ2n6jQbtSelmwKUqrWmmKSwc_tQ1TLKQH302RmuE6FBApRfcDy09hlY4Jlfr8BRjXJw5RKU9h8WL1-lEZh7D7JE8WXQkM-WV6r7ZDCzB2pmVl9EU" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar (Desktop) -->
+        <aside
+            class="w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark hidden md:flex flex-col">
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors"
+                    href="#">
+                    <span
+                        class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">dashboard</span>
                     Dashboard
                 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg group transition-colors" href="#">
-<span class="material-icons text-primary text-xl">school</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-primary bg-primary/10 dark:bg-primary/20 rounded-lg group transition-colors"
+                    href="#">
+                    <span class="material-icons text-primary text-xl">school</span>
                     Courses
                 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors" href="#">
-<span class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">people</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors"
+                    href="#">
+                    <span
+                        class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">people</span>
                     Students
                 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors" href="#">
-<span class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">assessment</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors"
+                    href="#">
+                    <span
+                        class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">assessment</span>
                     Analytics
                 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors" href="#">
-<span class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">settings</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg group transition-colors"
+                    href="#">
+                    <span
+                        class="material-icons text-slate-400 group-hover:text-primary dark:text-slate-500 dark:group-hover:text-primary-hover text-xl">settings</span>
                     Settings
                 </a>
-</nav>
-</aside>
-<!-- Main Content -->
-<main class="flex-1 overflow-y-auto p-6 md:p-8">
-<!-- Page Header -->
-<div class="mb-8">
-<nav class="flex mb-2 text-sm text-slate-500 dark:text-slate-400">
-<a class="hover:text-primary transition-colors" href="#">Home</a>
-<span class="mx-2">/</span>
-<span class="text-slate-900 dark:text-white font-medium">Course Management</span>
-</nav>
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<div>
-<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Course Management</h1>
-<p class="text-slate-500 dark:text-slate-400 mt-1 text-sm">Create, edit, and manage your educational content.</p>
-</div>
-<button class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-medium rounded-lg shadow-sm shadow-primary/30 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-<span class="material-icons text-lg">add</span>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <nav class="flex mb-2 text-sm text-slate-500 dark:text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="#">Home</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-slate-900 dark:text-white font-medium">Course Management</span>
+                </nav>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Course Management</h1>
+                        <p class="text-slate-500 dark:text-slate-400 mt-1 text-sm">Create, edit, and manage your
+                            educational content.</p>
+                    </div>
+                    <button
+                        class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-medium rounded-lg shadow-sm shadow-primary/30 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        <span class="material-icons text-lg">add</span>
                         Add New Course
                     </button>
-</div>
-</div>
-<!-- Filters & Actions Bar -->
-<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-t-xl border border-border-light dark:border-border-dark border-b-0 flex flex-col sm:flex-row gap-4 items-center justify-between">
-<!-- Search -->
-<div class="relative w-full sm:w-96 group">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-icons text-slate-400 text-xl group-focus-within:text-primary transition-colors">search</span>
-</div>
-<input class="block w-full pl-10 pr-3 py-2.5 border border-border-light dark:border-slate-600 rounded-lg leading-5 bg-white dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-shadow" placeholder="Search courses by name or ID..." type="text"/>
-</div>
-<!-- Filters -->
-<div class="flex items-center gap-3 w-full sm:w-auto">
-<div class="relative">
-<select class="appearance-none bg-white dark:bg-slate-800/50 border border-border-light dark:border-slate-600 text-slate-700 dark:text-slate-200 py-2.5 pl-4 pr-10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
-<option value="all">All Types</option>
-<option value="live">Live Class</option>
-<option value="self">Self-Paced</option>
-</select>
-<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
-<span class="material-icons text-lg">expand_more</span>
-</div>
-</div>
-<button class="p-2.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white border border-border-light dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" title="Export Data">
-<span class="material-icons text-xl">download</span>
-</button>
-</div>
-</div>
-<!-- Data Table -->
-<div class="bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-b-xl overflow-hidden shadow-sm">
-<div class="overflow-x-auto">
-<table class="min-w-full divide-y divide-border-light dark:divide-border-dark">
-<thead class="bg-slate-50 dark:bg-slate-800/50">
-<tr>
-<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">
-<div class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                </div>
+            </div>
+            <!-- Filters & Actions Bar -->
+            <div
+                class="bg-surface-light dark:bg-surface-dark p-4 rounded-t-xl border border-border-light dark:border-border-dark border-b-0 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                <!-- Search -->
+                <div class="relative w-full sm:w-96 group">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span
+                            class="material-icons text-slate-400 text-xl group-focus-within:text-primary transition-colors">search</span>
+                    </div>
+                    <input
+                        class="block w-full pl-10 pr-3 py-2.5 border border-border-light dark:border-slate-600 rounded-lg leading-5 bg-white dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-shadow"
+                        placeholder="Search courses by name or ID..." type="text" />
+                </div>
+                <!-- Filters -->
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <div class="relative">
+                        <select
+                            class="appearance-none bg-white dark:bg-slate-800/50 border border-border-light dark:border-slate-600 text-slate-700 dark:text-slate-200 py-2.5 pl-4 pr-10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+                            <option value="all">All Types</option>
+                            <option value="live">Live Class</option>
+                            <option value="self">Self-Paced</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                            <span class="material-icons text-lg">expand_more</span>
+                        </div>
+                    </div>
+                    <button
+                        class="p-2.5 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white border border-border-light dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                        title="Export Data">
+                        <span class="material-icons text-xl">download</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Data Table -->
+            <div
+                class="bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-b-xl overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-border-light dark:divide-border-dark">
+                        <thead class="bg-slate-50 dark:bg-slate-800/50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                                    scope="col">
+                                    <div class="flex items-center gap-1 cursor-pointer hover:text-primary">
                                         Course Name
                                         <span class="material-icons text-sm">unfold_more</span>
-</div>
-</th>
-<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">
+                                    </div>
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                                    scope="col">
                                     Type
                                 </th>
-<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">
-<div class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                                    scope="col">
+                                    <div class="flex items-center gap-1 cursor-pointer hover:text-primary">
                                         Enrollments
                                         <span class="material-icons text-sm">unfold_more</span>
-</div>
-</th>
-<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">
+                                    </div>
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                                    scope="col">
                                     Price
                                 </th>
-<th class="px-6 py-4 text-right text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">
+                                <th class="px-6 py-4 text-right text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                                    scope="col">
                                     Actions
                                 </th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border-light dark:divide-border-dark bg-surface-light dark:bg-surface-dark">
-<!-- Row 1 -->
-<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center">
-<div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Abstract code on screen" class="h-12 w-12 object-cover" data-alt="Code on a computer screen close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAieWeG8UjzvVLIbItFM0669t40ILashiyUsHa-x1iwtvDaEVGpX_9r0758FlpsZyIQYLsnaIKchdvIwAUzIVtR8zsgV5go-YoVBRFLQcLBOZt7bjpo2UiS3-2Ko4SNGtzHd_4XHFv84Lhh5Ig1AYfO98pEAJrXTVsGWSGT-Ak4QyBtDUXcOHg-SGN49yBy5b9gTgoFDpt8s8e-GkSPPUvkvo4_zvbu9k-ayiDsCo56STVqgAhPzshKgZk9BHoDgOai1YoRkwpXEc"/>
-</div>
-<div class="ml-4">
-<div class="text-sm font-semibold text-slate-900 dark:text-white">Advanced React Patterns</div>
-<div class="text-xs text-slate-500 dark:text-slate-400">ID: CS-101</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
-<span class="w-1.5 h-1.5 rounded-full bg-purple-500 mr-1.5"></span>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="divide-y divide-border-light dark:divide-border-dark bg-surface-light dark:bg-surface-dark">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
+                                            <img alt="Abstract code on screen" class="h-12 w-12 object-cover"
+                                                data-alt="Code on a computer screen close up"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAieWeG8UjzvVLIbItFM0669t40ILashiyUsHa-x1iwtvDaEVGpX_9r0758FlpsZyIQYLsnaIKchdvIwAUzIVtR8zsgV5go-YoVBRFLQcLBOZt7bjpo2UiS3-2Ko4SNGtzHd_4XHFv84Lhh5Ig1AYfO98pEAJrXTVsGWSGT-Ak4QyBtDUXcOHg-SGN49yBy5b9gTgoFDpt8s8e-GkSPPUvkvo4_zvbu9k-ayiDsCo56STVqgAhPzshKgZk9BHoDgOai1YoRkwpXEc" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Advanced
+                                                React Patterns</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">ID: CS-101</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mr-1.5"></span>
                                         Live Class
                                     </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">1,240</div>
-<div class="text-xs text-slate-500">students</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex flex-col">
-<span class="text-sm font-bold text-slate-900 dark:text-white">$49.00</span>
-<span class="text-xs text-slate-400 line-through">$99.00</span>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="View Modules">
-<span class="material-icons text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit Course">
-<span class="material-icons text-lg">edit</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete Course">
-<span class="material-icons text-lg">delete_outline</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center">
-<div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Abstract 3D shapes" class="h-12 w-12 object-cover" data-alt="Abstract colorful 3D geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3S6VBkMwvj0514nXwj_T1d4aMTUntH7Ikp031dJ2IveY-UztLnYDoap8DP33YmZ0IuGIyMn-eS-_G9YDRMuEOTBW_9RSgoeQADYAORvHm4kQYD_y-zZ_1Q4x2BnwyCTVxjTxnpau7_-qW6ybHEtm6TZac6daUWST_EIiFmXvwNTyIqkC1YMvSkUJ58_HKJWC6935oXFwAU5O70q5we-OoIgR8VWjaFf_MO8FiQS_vmyhfsFq1uDnhrFtvfRukVaWIRkGpshp0DZA"/>
-</div>
-<div class="ml-4">
-<div class="text-sm font-semibold text-slate-900 dark:text-white">UI/UX Design Masterclass</div>
-<div class="text-xs text-slate-500 dark:text-slate-400">ID: DS-204</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-<span class="material-icons text-[10px] mr-1">play_circle</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-900 dark:text-slate-200 font-medium">1,240</div>
+                                    <div class="text-xs text-slate-500">students</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">$49.00</span>
+                                        <span class="text-xs text-slate-400 line-through">$99.00</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors"
+                                            title="View Modules">
+                                            <span class="material-icons text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors"
+                                            title="Edit Course">
+                                            <span class="material-icons text-lg">edit</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
+                                            title="Delete Course">
+                                            <span class="material-icons text-lg">delete_outline</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
+                                            <img alt="Abstract 3D shapes" class="h-12 w-12 object-cover"
+                                                data-alt="Abstract colorful 3D geometric shapes"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3S6VBkMwvj0514nXwj_T1d4aMTUntH7Ikp031dJ2IveY-UztLnYDoap8DP33YmZ0IuGIyMn-eS-_G9YDRMuEOTBW_9RSgoeQADYAORvHm4kQYD_y-zZ_1Q4x2BnwyCTVxjTxnpau7_-qW6ybHEtm6TZac6daUWST_EIiFmXvwNTyIqkC1YMvSkUJ58_HKJWC6935oXFwAU5O70q5we-OoIgR8VWjaFf_MO8FiQS_vmyhfsFq1uDnhrFtvfRukVaWIRkGpshp0DZA" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-slate-900 dark:text-white">UI/UX
+                                                Design Masterclass</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">ID: DS-204</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                        <span class="material-icons text-[10px] mr-1">play_circle</span>
                                         Self-Paced
                                     </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">856</div>
-<div class="text-xs text-slate-500">students</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex flex-col">
-<span class="text-sm font-bold text-slate-900 dark:text-white">$89.00</span>
-<!-- No discount -->
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">edit</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
-<span class="material-icons text-lg">delete_outline</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center">
-<div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Technical dashboard screen" class="h-12 w-12 object-cover" data-alt="Close up of dashboard analytics interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVu8rf5loE43_bXsaTf89inoWCur5fcG8c_HIwR63VBM4elenxXxK67j3yOTtkBzip6n2cGftCPLgPjRHxJyTGeJ1ZMOq2OWRfI4eNck9xUHd1lPErOuGZ_r22veSMLNgZI3MLkSMsd8FFZ257LowD_TlECRvD7WftcLEaSCH7n7S7_ktwnrakx9H0Zj-ZFdK4E221pOL1pmf--TCg6xucD24Vq52x51xsOcA9HyTmmjdo5gGJ-WxDO_J2W3UyqsyQbkYRRr57lB0"/>
-</div>
-<div class="ml-4">
-<div class="text-sm font-semibold text-slate-900 dark:text-white">Full Stack Web Dev 2024</div>
-<div class="text-xs text-slate-500 dark:text-slate-400">ID: FS-305</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
-<span class="w-1.5 h-1.5 rounded-full bg-purple-500 mr-1.5"></span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-900 dark:text-slate-200 font-medium">856</div>
+                                    <div class="text-xs text-slate-500">students</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">$89.00</span>
+                                        <!-- No discount -->
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">edit</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+                                            <span class="material-icons text-lg">delete_outline</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
+                                            <img alt="Technical dashboard screen" class="h-12 w-12 object-cover"
+                                                data-alt="Close up of dashboard analytics interface"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVu8rf5loE43_bXsaTf89inoWCur5fcG8c_HIwR63VBM4elenxXxK67j3yOTtkBzip6n2cGftCPLgPjRHxJyTGeJ1ZMOq2OWRfI4eNck9xUHd1lPErOuGZ_r22veSMLNgZI3MLkSMsd8FFZ257LowD_TlECRvD7WftcLEaSCH7n7S7_ktwnrakx9H0Zj-ZFdK4E221pOL1pmf--TCg6xucD24Vq52x51xsOcA9HyTmmjdo5gGJ-WxDO_J2W3UyqsyQbkYRRr57lB0" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Full Stack
+                                                Web Dev 2024</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">ID: FS-305</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mr-1.5"></span>
                                         Live Class
                                     </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">3,421</div>
-<div class="text-xs text-slate-500">students</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex flex-col">
-<span class="text-sm font-bold text-slate-900 dark:text-white">$129.00</span>
-<span class="text-xs text-slate-400 line-through">$199.00</span>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">edit</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
-<span class="material-icons text-lg">delete_outline</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4 -->
-<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center">
-<div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Abstract code terminal" class="h-12 w-12 object-cover" data-alt="Code syntax on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHzxZNM1v0DtLoY447yRsHVeLeUaIDlea8u8x-nlNbI1tb53miZENPA1_xEPQ3cREs-4WaSVuu9uJjxONXCKo1hogh2UkxreGJOx2AiRRAET9VNKdN1mPmvhU2XHQ4P2gdRmCSCiuFHdn_hwLy7-Gbx_ieUo6niYv3jSciDUc_Z63VP95evJaM2LFcRB1dR6fMmYJBHqKocbjILMqsJ6cI6SCOBUOjk6JMRjTtLB_Gkmt6DQUMjJ93Lb-QTpdHbEHBzjDVjaoZy0o"/>
-</div>
-<div class="ml-4">
-<div class="text-sm font-semibold text-slate-900 dark:text-white">Python for Data Science</div>
-<div class="text-xs text-slate-500 dark:text-slate-400">ID: PY-002</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-<span class="material-icons text-[10px] mr-1">play_circle</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-900 dark:text-slate-200 font-medium">3,421</div>
+                                    <div class="text-xs text-slate-500">students</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">$129.00</span>
+                                        <span class="text-xs text-slate-400 line-through">$199.00</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">edit</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+                                            <span class="material-icons text-lg">delete_outline</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
+                                            <img alt="Abstract code terminal" class="h-12 w-12 object-cover"
+                                                data-alt="Code syntax on dark background"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHzxZNM1v0DtLoY447yRsHVeLeUaIDlea8u8x-nlNbI1tb53miZENPA1_xEPQ3cREs-4WaSVuu9uJjxONXCKo1hogh2UkxreGJOx2AiRRAET9VNKdN1mPmvhU2XHQ4P2gdRmCSCiuFHdn_hwLy7-Gbx_ieUo6niYv3jSciDUc_Z63VP95evJaM2LFcRB1dR6fMmYJBHqKocbjILMqsJ6cI6SCOBUOjk6JMRjTtLB_Gkmt6DQUMjJ93Lb-QTpdHbEHBzjDVjaoZy0o" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Python for
+                                                Data Science</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">ID: PY-002</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                        <span class="material-icons text-[10px] mr-1">play_circle</span>
                                         Self-Paced
                                     </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">9,102</div>
-<div class="text-xs text-slate-500">students</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex flex-col">
-<span class="text-sm font-bold text-slate-900 dark:text-white">$29.99</span>
-<span class="text-xs text-slate-400 line-through">$59.99</span>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">edit</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
-<span class="material-icons text-lg">delete_outline</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 5 -->
-<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center">
-<div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Mobile app design sketch" class="h-12 w-12 object-cover" data-alt="Digital tablet showing finance app design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbKmyWyx5e0xWpck1PgF3wgPrPE82UeoluzFyk-tr6r_zttRgE6Cej-4opdP6svveNmlkg0q4iOTdb2xvmJDWPCwVb9mx852vnjssqzVriI2UjAeSkvrpgHgwFFegdIZsL_YwGhP8HL54RemMRRSj4azOFmhIfbmDPw7l73QQIBU2aftt-cTBtm-WryY1fbServxSyIJDaxAdOzXeXGbFPyHVqKr3Vt8HSJd-QrJe9eq_USbpc_FvG7rxsoXK2s6gb4QR_g8fWgTg"/>
-</div>
-<div class="ml-4">
-<div class="text-sm font-semibold text-slate-900 dark:text-white">Mobile App UX Principles</div>
-<div class="text-xs text-slate-500 dark:text-slate-400">ID: UX-505</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-<span class="material-icons text-[10px] mr-1">play_circle</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-900 dark:text-slate-200 font-medium">9,102</div>
+                                    <div class="text-xs text-slate-500">students</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">$29.99</span>
+                                        <span class="text-xs text-slate-400 line-through">$59.99</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">edit</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+                                            <span class="material-icons text-lg">delete_outline</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden bg-slate-200">
+                                            <img alt="Mobile app design sketch" class="h-12 w-12 object-cover"
+                                                data-alt="Digital tablet showing finance app design"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbKmyWyx5e0xWpck1PgF3wgPrPE82UeoluzFyk-tr6r_zttRgE6Cej-4opdP6svveNmlkg0q4iOTdb2xvmJDWPCwVb9mx852vnjssqzVriI2UjAeSkvrpgHgwFFegdIZsL_YwGhP8HL54RemMRRSj4azOFmhIfbmDPw7l73QQIBU2aftt-cTBtm-WryY1fbServxSyIJDaxAdOzXeXGbFPyHVqKr3Vt8HSJd-QrJe9eq_USbpc_FvG7rxsoXK2s6gb4QR_g8fWgTg" />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-semibold text-slate-900 dark:text-white">Mobile App
+                                                UX Principles</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">ID: UX-505</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                        <span class="material-icons text-[10px] mr-1">play_circle</span>
                                         Self-Paced
                                     </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="text-sm text-slate-900 dark:text-slate-200 font-medium">543</div>
-<div class="text-xs text-slate-500">students</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex flex-col">
-<span class="text-sm font-bold text-slate-900 dark:text-white">$75.00</span>
-<!-- No discount -->
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
-<span class="material-icons text-lg">edit</span>
-</button>
-<button class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
-<span class="material-icons text-lg">delete_outline</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="px-6 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between">
-<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-<div>
-<p class="text-sm text-slate-500 dark:text-slate-400">
-                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">24</span> results
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-slate-900 dark:text-slate-200 font-medium">543</div>
+                                    <div class="text-xs text-slate-500">students</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white">$75.00</span>
+                                        <!-- No discount -->
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-primary hover:bg-primary/10 rounded transition-colors">
+                                            <span class="material-icons text-lg">edit</span>
+                                        </button>
+                                        <button
+                                            class="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+                                            <span class="material-icons text-lg">delete_outline</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div
+                    class="px-6 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between">
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of
+                                <span class="font-medium">24</span> results
                             </p>
-</div>
-<div>
-<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" href="#">
-<span class="sr-only">Previous</span>
-<span class="material-icons text-lg">chevron_left</span>
-</a>
-<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                        </div>
+                        <div>
+                            <nav aria-label="Pagination"
+                                class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                                <a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                                    href="#">
+                                    <span class="sr-only">Previous</span>
+                                    <span class="material-icons text-lg">chevron_left</span>
+                                </a>
+                                <a aria-current="page"
+                                    class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                                    href="#">
                                     1
                                 </a>
-<a class="bg-surface-light dark:bg-slate-800 border-border-light dark:border-slate-600 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors" href="#">
+                                <a class="bg-surface-light dark:bg-slate-800 border-border-light dark:border-slate-600 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors"
+                                    href="#">
                                     2
                                 </a>
-<a class="bg-surface-light dark:bg-slate-800 border-border-light dark:border-slate-600 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors" href="#">
+                                <a class="bg-surface-light dark:bg-slate-800 border-border-light dark:border-slate-600 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors"
+                                    href="#">
                                     3
                                 </a>
-<span class="relative inline-flex items-center px-4 py-2 border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500">
+                                <span
+                                    class="relative inline-flex items-center px-4 py-2 border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500">
                                     ...
                                 </span>
-<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" href="#">
-<span class="sr-only">Next</span>
-<span class="material-icons text-lg">chevron_right</span>
-</a>
-</nav>
-</div>
-</div>
-<!-- Mobile Pagination -->
-<div class="flex sm:hidden justify-between w-full">
-<button class="relative inline-flex items-center px-4 py-2 border border-border-light rounded-md text-sm font-medium text-slate-700 bg-white hover:bg-slate-50">
+                                <a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-border-light dark:border-slate-600 bg-surface-light dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                                    href="#">
+                                    <span class="sr-only">Next</span>
+                                    <span class="material-icons text-lg">chevron_right</span>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Mobile Pagination -->
+                    <div class="flex sm:hidden justify-between w-full">
+                        <button
+                            class="relative inline-flex items-center px-4 py-2 border border-border-light rounded-md text-sm font-medium text-slate-700 bg-white hover:bg-slate-50">
                             Previous
                         </button>
-<button class="relative inline-flex items-center px-4 py-2 border border-border-light rounded-md text-sm font-medium text-slate-700 bg-white hover:bg-slate-50">
+                        <button
+                            class="relative inline-flex items-center px-4 py-2 border border-border-light rounded-md text-sm font-medium text-slate-700 bg-white hover:bg-slate-50">
                             Next
                         </button>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

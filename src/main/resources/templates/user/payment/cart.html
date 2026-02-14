@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Course Cart &amp; Bundles - FlexLearn</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Icons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config -->
-<script id="tailwind-config">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Course Cart &amp; Bundles - FlexLearn</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -37,255 +43,321 @@
             },
         }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Lexend', sans-serif;
         }
+
         /* Custom scrollbar for webkit */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: transparent;
         }
+
         ::-webkit-scrollbar-thumb {
             background-color: #d1d5db;
             border-radius: 20px;
         }
+
         .dark ::-webkit-scrollbar-thumb {
             background-color: #4b5563;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display antialiased min-h-screen flex flex-col transition-colors duration-300">
-<!-- Navbar -->
-<header class="bg-white dark:bg-[#251830] border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="bg-primary/10 p-2 rounded-lg">
-<span class="material-icons-round text-primary">school</span>
-</div>
-<span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">FlexLearn</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Courses</a>
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Mentorship</a>
-<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Enterprise</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="relative p-2 text-slate-400 hover:text-primary transition-colors">
-<span class="material-icons-outlined">shopping_cart</span>
-<span class="absolute top-1 right-1 h-2 w-2 bg-primary rounded-full"></span>
-</button>
-<div class="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-purple-400 overflow-hidden ring-2 ring-white dark:ring-slate-700 cursor-pointer" title="User Profile">
-<img alt="User Avatar" class="h-full w-full object-cover" data-alt="Portrait of a young woman with a neutral expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NFGI3xVCc2Pw_gVElPw28l9xaC0ouDJa7MJRAyzZ5Wxkllo5Ry47XWs7PUXlx5_2L5BINzMFShYHdGZkxVBWVD6eYUeJnnx5Ul-0uRXm6O-FOt0XhT4jZx1E4vXrPhv5MpfTsw70cKccipQYQKPuxBo65eU-eZ3XXpZWW2iXDehHSmObV8elUSRq9Y8Og9M2usUhhtuvzjudhNNDxV-ZKV6Cz_AZ9R_sdalHqMw0H4tCJGez_rgi_e7a4Lzpo6cyY8qwsoR8dlc"/>
-</div>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-<div class="flex flex-col lg:flex-row gap-8 relative">
-<!-- Left Column: Cart Items -->
-<div class="flex-1 space-y-6">
-<h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Shopping Cart <span class="text-slate-400 text-lg font-medium ml-2">(3 Courses)</span></h1>
-<!-- Cart Item 1: With Upgrade Option -->
-<div class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md group">
-<div class="flex flex-col sm:flex-row gap-6">
-<!-- Thumbnail -->
-<div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 relative">
-<img alt="Programming code on a laptop screen" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Close up of computer code on a dark screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE-t6yeQuP7dNWNRThJinzFkuNOv90VGvKx8lyXlIyc8IMNrj1VtTUSV2OOSI-GMxPEmBs-P2VyOejdqKKeUYfV_qMxiyasC_d2wV1G5Vr6d0HR_HKK6gxBCv9oMdDEEUhtZh1tzEB9OX7TyJ1Vd9ZvNRQs1oP9Qi484La6YiZUNNbQ7vbAjuFUXKpl3i3EyvmTLNkkph-BV546-QS-b1uvfkh75VXG_QGjpjWBZkBv6aJXGet4PnMTQi2D8NESxYMwVBeMsxXQaQ"/>
-<div class="absolute top-2 left-2 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-slate-800 dark:text-white shadow-sm">
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display antialiased min-h-screen flex flex-col transition-colors duration-300">
+    <!-- Navbar -->
+    <header class="bg-white dark:bg-[#251830] border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary/10 p-2 rounded-lg">
+                    <span class="material-icons-round text-primary">school</span>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">FlexLearn</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#">Courses</a>
+                <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#">Mentorship</a>
+                <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#">Enterprise</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-icons-outlined">shopping_cart</span>
+                    <span class="absolute top-1 right-1 h-2 w-2 bg-primary rounded-full"></span>
+                </button>
+                <div class="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-purple-400 overflow-hidden ring-2 ring-white dark:ring-slate-700 cursor-pointer"
+                    title="User Profile">
+                    <img alt="User Avatar" class="h-full w-full object-cover"
+                        data-alt="Portrait of a young woman with a neutral expression"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NFGI3xVCc2Pw_gVElPw28l9xaC0ouDJa7MJRAyzZ5Wxkllo5Ry47XWs7PUXlx5_2L5BINzMFShYHdGZkxVBWVD6eYUeJnnx5Ul-0uRXm6O-FOt0XhT4jZx1E4vXrPhv5MpfTsw70cKccipQYQKPuxBo65eU-eZ3XXpZWW2iXDehHSmObV8elUSRq9Y8Og9M2usUhhtuvzjudhNNDxV-ZKV6Cz_AZ9R_sdalHqMw0H4tCJGez_rgi_e7a4Lzpo6cyY8qwsoR8dlc" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div class="flex flex-col lg:flex-row gap-8 relative">
+            <!-- Left Column: Cart Items -->
+            <div class="flex-1 space-y-6">
+                <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Shopping Cart <span
+                        class="text-slate-400 text-lg font-medium ml-2">(3 Courses)</span></h1>
+                <!-- Cart Item 1: With Upgrade Option -->
+                <div
+                    class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md group">
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <!-- Thumbnail -->
+                        <div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200 relative">
+                            <img alt="Programming code on a laptop screen"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Close up of computer code on a dark screen"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE-t6yeQuP7dNWNRThJinzFkuNOv90VGvKx8lyXlIyc8IMNrj1VtTUSV2OOSI-GMxPEmBs-P2VyOejdqKKeUYfV_qMxiyasC_d2wV1G5Vr6d0HR_HKK6gxBCv9oMdDEEUhtZh1tzEB9OX7TyJ1Vd9ZvNRQs1oP9Qi484La6YiZUNNbQ7vbAjuFUXKpl3i3EyvmTLNkkph-BV546-QS-b1uvfkh75VXG_QGjpjWBZkBv6aJXGet4PnMTQi2D8NESxYMwVBeMsxXQaQ" />
+                            <div
+                                class="absolute top-2 left-2 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-2 py-1 rounded text-slate-800 dark:text-white shadow-sm">
                                 Bestseller
                             </div>
-</div>
-<!-- Content -->
-<div class="flex-1 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-start">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3
+                                        class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
                                         Advanced Python for Data Science
                                     </h3>
-<h4 class="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap">$49.99</h4>
-</div>
-<p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Dr. Sarah Jenkins • 12.5 hrs total</p>
-<div class="flex items-center gap-1 mb-3">
-<span class="text-yellow-400 material-icons-round text-sm">star</span>
-<span class="text-yellow-400 material-icons-round text-sm">star</span>
-<span class="text-yellow-400 material-icons-round text-sm">star</span>
-<span class="text-yellow-400 material-icons-round text-sm">star</span>
-<span class="text-yellow-400 material-icons-round text-sm">star_half</span>
-<span class="text-xs font-semibold text-slate-600 dark:text-slate-300 ml-1">4.8 (1,240 ratings)</span>
-</div>
-</div>
-<div class="flex items-center gap-4 mt-auto">
-<button class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
-<button class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save for Later</button>
-</div>
-</div>
-</div>
-<!-- Upgrade Section -->
-<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
-<label class="relative flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/30 cursor-pointer transition-colors">
-<div class="flex items-start gap-3">
-<div class="flex items-center h-5 mt-1">
-<input class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" type="checkbox"/>
-</div>
-<div>
-<div class="font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                                    <h4 class="text-lg font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                                        $49.99</h4>
+                                </div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Dr. Sarah Jenkins • 12.5
+                                    hrs total</p>
+                                <div class="flex items-center gap-1 mb-3">
+                                    <span class="text-yellow-400 material-icons-round text-sm">star</span>
+                                    <span class="text-yellow-400 material-icons-round text-sm">star</span>
+                                    <span class="text-yellow-400 material-icons-round text-sm">star</span>
+                                    <span class="text-yellow-400 material-icons-round text-sm">star</span>
+                                    <span class="text-yellow-400 material-icons-round text-sm">star_half</span>
+                                    <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 ml-1">4.8
+                                        (1,240 ratings)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save
+                                    for Later</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upgrade Section -->
+                    <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+                        <label
+                            class="relative flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/30 cursor-pointer transition-colors">
+                            <div class="flex items-start gap-3">
+                                <div class="flex items-center h-5 mt-1">
+                                    <input class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                        type="checkbox" />
+                                </div>
+                                <div>
+                                    <div
+                                        class="font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                                         Upgrade to Live Sessions
-                                        <span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">Save 20%</span>
-</div>
-<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Includes 4 live mentoring calls + code reviews.</p>
-</div>
-</div>
-<div class="text-right">
-<span class="block text-sm font-bold text-primary">+$20.00</span>
-<span class="block text-xs text-slate-400 line-through">$25.00</span>
-</div>
-</label>
-</div>
-</div>
-<!-- Cart Item 2: Standard -->
-<div class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md">
-<div class="flex flex-col sm:flex-row gap-6">
-<div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Abstract colorful art design" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Abstract colorful flowing shapes in blue and purple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtQBCGdQPAK48r0o2GtpWPkE7EQtByc5HFdrvi6PmlK36FG0xNXpngC5F3yNMB6AMjZ7VqqCUmVEVFB12OhFK1XDbD5sq6Fp7ZCIMyl9ZWs_6pdCImcUuBkYVXJPaTeaey7TfZgZWOoQlzfPKcecKfX5sKUf26zLg_KXgJc-b5_QB_Flji5VPLggQIU9hBmXXMIo8sN5hWdnYoT3HJ-CE76D-ceNlCMK6auaHuyedK-hd2nf7YCDHUTK95JqhCLIZgtOpG1ojuTpE"/>
-</div>
-<div class="flex-1 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-start">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
+                                        <span
+                                            class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">Save
+                                            20%</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Includes 4 live
+                                        mentoring calls + code reviews.</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm font-bold text-primary">+$20.00</span>
+                                <span class="block text-xs text-slate-400 line-through">$25.00</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <!-- Cart Item 2: Standard -->
+                <div
+                    class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md">
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200">
+                            <img alt="Abstract colorful art design"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract colorful flowing shapes in blue and purple"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtQBCGdQPAK48r0o2GtpWPkE7EQtByc5HFdrvi6PmlK36FG0xNXpngC5F3yNMB6AMjZ7VqqCUmVEVFB12OhFK1XDbD5sq6Fp7ZCIMyl9ZWs_6pdCImcUuBkYVXJPaTeaey7TfZgZWOoQlzfPKcecKfX5sKUf26zLg_KXgJc-b5_QB_Flji5VPLggQIU9hBmXXMIo8sN5hWdnYoT3HJ-CE76D-ceNlCMK6auaHuyedK-hd2nf7YCDHUTK95JqhCLIZgtOpG1ojuTpE" />
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3
+                                        class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
                                         UI/UX Design Masterclass
                                     </h3>
-<div class="text-right">
-<h4 class="text-lg font-bold text-slate-900 dark:text-white">$89.99</h4>
-<span class="text-xs text-slate-400 line-through">$129.99</span>
-</div>
-</div>
-<p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Alex Rivera • 24 hrs total</p>
-<div class="flex items-center gap-2">
-<span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded font-medium">Self-Paced</span>
-</div>
-</div>
-<div class="flex items-center gap-4 mt-4 sm:mt-auto">
-<button class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
-<button class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save for Later</button>
-</div>
-</div>
-</div>
-<!-- Upgrade Teaser (Not active) -->
-<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center opacity-60 hover:opacity-100 transition-opacity">
-<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-<span class="material-icons-outlined text-sm">info</span>
-<span>Live sessions not available for this course.</span>
-</div>
-</div>
-</div>
-<!-- Cart Item 3: Standard -->
-<div class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md">
-<div class="flex flex-col sm:flex-row gap-6">
-<div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200">
-<img alt="Data visualization charts on screen" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Dashboard showing financial data charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGYNqgY36LAK3W-Tp4AAAp-gyrffAISlbxnUb3jSilRbkCrJ5Hi9_Q591k0iBYzLBrT9YGkXqIQH0XwLk6vLqeKCnzkZTFlMh-ezCAXyd9COqLpl2GifJMDyvlr2mEKmv1rLzA38hapOgMODNiEXdzBPDMcM0G8uIXHhTxyWw05PLtXM9Da9M4hio-_9pxnxloD4WvoYtncRYrp0ch82hzc-xz9B9Sa_9D-6qgI0z_1QumDewqrdw6P26qp72Mx79bPHHYxrmukNY"/>
-</div>
-<div class="flex-1 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-start">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
+                                    <div class="text-right">
+                                        <h4 class="text-lg font-bold text-slate-900 dark:text-white">$89.99</h4>
+                                        <span class="text-xs text-slate-400 line-through">$129.99</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Alex Rivera • 24 hrs total
+                                </p>
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded font-medium">Self-Paced</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 mt-4 sm:mt-auto">
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save
+                                    for Later</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upgrade Teaser (Not active) -->
+                    <div
+                        class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span class="material-icons-outlined text-sm">info</span>
+                            <span>Live sessions not available for this course.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cart Item 3: Standard -->
+                <div
+                    class="bg-white dark:bg-[#251830] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 sm:p-6 transition-all hover:shadow-md">
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <div class="w-full sm:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden bg-slate-200">
+                            <img alt="Data visualization charts on screen"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                data-alt="Dashboard showing financial data charts"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGYNqgY36LAK3W-Tp4AAAp-gyrffAISlbxnUb3jSilRbkCrJ5Hi9_Q591k0iBYzLBrT9YGkXqIQH0XwLk6vLqeKCnzkZTFlMh-ezCAXyd9COqLpl2GifJMDyvlr2mEKmv1rLzA38hapOgMODNiEXdzBPDMcM0G8uIXHhTxyWw05PLtXM9Da9M4hio-_9pxnxloD4WvoYtncRYrp0ch82hzc-xz9B9Sa_9D-6qgI0z_1QumDewqrdw6P26qp72Mx79bPHHYxrmukNY" />
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3
+                                        class="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1 hover:text-primary cursor-pointer transition-colors">
                                         Data Visualization with D3.js
                                     </h3>
-<h4 class="text-lg font-bold text-slate-900 dark:text-white">$34.99</h4>
-</div>
-<p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Chen Wei • 8 hrs total</p>
-</div>
-<div class="flex items-center gap-4 mt-4 sm:mt-auto">
-<button class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
-<button class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save for Later</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Bundle Upsell Banner -->
-<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 border border-primary/20 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-<div class="absolute -left-4 -bottom-10 opacity-10">
-<span class="material-icons-round text-9xl text-primary">local_offer</span>
-</div>
-<div class="z-10">
-<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Bundle &amp; Save More!</h3>
-<p class="text-sm text-slate-600 dark:text-slate-300">Add <span class="font-bold text-primary">1 more course</span> to unlock an extra <span class="font-bold text-primary">15% OFF</span> your entire cart.</p>
-</div>
-<button class="z-10 px-4 py-2 bg-white dark:bg-slate-800 text-primary dark:text-white font-medium rounded-lg text-sm shadow-sm hover:shadow-md border border-slate-200 dark:border-slate-700 transition-all whitespace-nowrap">
+                                    <h4 class="text-lg font-bold text-slate-900 dark:text-white">$34.99</h4>
+                                </div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mb-2">By Chen Wei • 8 hrs total</p>
+                            </div>
+                            <div class="flex items-center gap-4 mt-4 sm:mt-auto">
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors">Remove</button>
+                                <button
+                                    class="text-sm font-medium text-slate-400 hover:text-primary transition-colors">Save
+                                    for Later</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bundle Upsell Banner -->
+                <div
+                    class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 border border-primary/20 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="absolute -left-4 -bottom-10 opacity-10">
+                        <span class="material-icons-round text-9xl text-primary">local_offer</span>
+                    </div>
+                    <div class="z-10">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Bundle &amp; Save More!</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300">Add <span class="font-bold text-primary">1
+                                more course</span> to unlock an extra <span class="font-bold text-primary">15%
+                                OFF</span> your entire cart.</p>
+                    </div>
+                    <button
+                        class="z-10 px-4 py-2 bg-white dark:bg-slate-800 text-primary dark:text-white font-medium rounded-lg text-sm shadow-sm hover:shadow-md border border-slate-200 dark:border-slate-700 transition-all whitespace-nowrap">
                         Browse Recommendations
                     </button>
-</div>
-</div>
-<!-- Right Column: Order Summary (Sticky) -->
-<div class="lg:w-96 flex-shrink-0">
-<div class="sticky top-24 space-y-6">
-<div class="bg-white dark:bg-[#251830] rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-6">
-<h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Order Summary</h2>
-<div class="space-y-4 mb-6">
-<div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
-<span>Subtotal (3 items)</span>
-<span class="font-medium text-slate-900 dark:text-white">$174.97</span>
-</div>
-<div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
-<span>Live Upgrade</span>
-<span class="font-medium text-slate-900 dark:text-white">$0.00</span>
-</div>
-<div class="flex justify-between items-center text-primary text-sm bg-primary/5 -mx-2 px-2 py-1 rounded">
-<span class="flex items-center gap-1">
-<span class="material-icons-round text-sm">verified</span>
+                </div>
+            </div>
+            <!-- Right Column: Order Summary (Sticky) -->
+            <div class="lg:w-96 flex-shrink-0">
+                <div class="sticky top-24 space-y-6">
+                    <div
+                        class="bg-white dark:bg-[#251830] rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 p-6">
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Order Summary</h2>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
+                                <span>Subtotal (3 items)</span>
+                                <span class="font-medium text-slate-900 dark:text-white">$174.97</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600 dark:text-slate-400 text-sm">
+                                <span>Live Upgrade</span>
+                                <span class="font-medium text-slate-900 dark:text-white">$0.00</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center text-primary text-sm bg-primary/5 -mx-2 px-2 py-1 rounded">
+                                <span class="flex items-center gap-1">
+                                    <span class="material-icons-round text-sm">verified</span>
                                     Bundle Savings
                                 </span>
-<span class="font-bold">-$40.00</span>
-</div>
-<div class="border-t border-slate-100 dark:border-slate-700 my-4"></div>
-<div class="flex justify-between items-end">
-<span class="text-slate-900 dark:text-white font-semibold">Total</span>
-<div class="text-right">
-<span class="block text-2xl font-bold text-slate-900 dark:text-white">$134.97</span>
-<span class="text-xs text-slate-500 dark:text-slate-400">Tax included</span>
-</div>
-</div>
-</div>
-<button class="w-full py-3.5 bg-primary hover:bg-purple-700 text-white font-bold rounded-lg shadow-lg shadow-primary/30 transition-all transform active:scale-[0.98] mb-4">
+                                <span class="font-bold">-$40.00</span>
+                            </div>
+                            <div class="border-t border-slate-100 dark:border-slate-700 my-4"></div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-slate-900 dark:text-white font-semibold">Total</span>
+                                <div class="text-right">
+                                    <span class="block text-2xl font-bold text-slate-900 dark:text-white">$134.97</span>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">Tax included</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-3.5 bg-primary hover:bg-purple-700 text-white font-bold rounded-lg shadow-lg shadow-primary/30 transition-all transform active:scale-[0.98] mb-4">
                             Proceed to Checkout
                         </button>
-<div class="relative">
-<div aria-hidden="true" class="absolute inset-0 flex items-center">
-<div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
-</div>
-<div class="relative flex justify-center">
-<span class="bg-white dark:bg-[#251830] px-2 text-xs text-slate-400">Have a promo code?</span>
-</div>
-</div>
-<div class="mt-4 flex gap-2">
-<input class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow text-slate-900 dark:text-white" placeholder="Enter code" type="text"/>
-<button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-lg text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Apply</button>
-</div>
-</div>
-<!-- Trust Signals -->
-<div class="bg-white dark:bg-[#251830] rounded-xl border border-slate-100 dark:border-slate-800 p-4">
-<div class="grid grid-cols-2 gap-4">
-<div class="flex items-center gap-2">
-<span class="material-icons-outlined text-slate-400 text-xl">lock</span>
-<span class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight">Secure<br/>Checkout</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-icons-outlined text-slate-400 text-xl">card_giftcard</span>
-<span class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight">30-Day<br/>Guarantee</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Simple Footer -->
-<footer class="bg-white dark:bg-[#251830] border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
-<div class="max-w-7xl mx-auto px-4 text-center text-slate-500 dark:text-slate-400 text-sm">
-<p>© 2023 FlexLearn Inc. All rights reserved.</p>
-</div>
-</footer>
-</body></html>
+                        <div class="relative">
+                            <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+                            </div>
+                            <div class="relative flex justify-center">
+                                <span class="bg-white dark:bg-[#251830] px-2 text-xs text-slate-400">Have a promo
+                                    code?</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <input
+                                class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow text-slate-900 dark:text-white"
+                                placeholder="Enter code" type="text" />
+                            <button
+                                class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-lg text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Apply</button>
+                        </div>
+                    </div>
+                    <!-- Trust Signals -->
+                    <div
+                        class="bg-white dark:bg-[#251830] rounded-xl border border-slate-100 dark:border-slate-800 p-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons-outlined text-slate-400 text-xl">lock</span>
+                                <span
+                                    class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight">Secure<br />Checkout</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons-outlined text-slate-400 text-xl">card_giftcard</span>
+                                <span
+                                    class="text-xs font-medium text-slate-500 dark:text-slate-400 leading-tight">30-Day<br />Guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Simple Footer -->
+    <footer class="bg-white dark:bg-[#251830] border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 dark:text-slate-400 text-sm">
+            <p>© 2023 FlexLearn Inc. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

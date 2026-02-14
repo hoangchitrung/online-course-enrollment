@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Learning Dashboard - FlexLearn</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="en">
+
+<head>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Learning Dashboard - FlexLearn</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -28,294 +33,347 @@
                     fontFamily: {
                         "display": ["Lexend", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>
+    <style>
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: transparent;
         }
+
         ::-webkit-scrollbar-thumb {
             background-color: #cbd5e1;
             border-radius: 20px;
         }
+
         .dark ::-webkit-scrollbar-thumb {
             background-color: #4b5563;
         }
     </style>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 h-screen flex flex-col overflow-hidden transition-colors duration-200">
-<!-- Navbar -->
-<header class="h-16 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 shrink-0 z-20">
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">F</div>
-<span class="font-bold text-lg tracking-tight">FlexLearn</span>
-</div>
-<div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
-<nav class="hidden md:flex text-sm font-medium text-gray-500 dark:text-gray-400">
-<a class="hover:text-primary transition-colors" href="#">My Courses</a>
-<span class="mx-2">/</span>
-<span class="text-gray-900 dark:text-white">Advanced UX Principles</span>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
-<span class="material-icons text-xl">notifications_none</span>
-</button>
-<div class="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">
-<div class="text-right hidden sm:block">
-<p class="text-sm font-semibold leading-none">Alex Morgan</p>
-<p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Student</p>
-</div>
-<img alt="Profile Picture" class="w-9 h-9 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" data-alt="Young woman portrait smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy4hfdFakP0CoFhaZSVxSzYy8Lpygq0-DgVtE_rUYZOLvxDOVxTMjaxhLv_vCj1clwhfXKrxg0plvY8Bkr2_fjwROK8SrYVdx6BR7u1u4FgY5G-2mvBiIJ2i0Z7kd8UtWXLKNYKeX41WwV9jMk0mIi8yiKxXhwJ52W5n41Puyl1y1k9iH-wk1mdNHEUxeWr358fNPlrdFfoucdMDnpWMuM2nfu1VLHiKY3MEo0JvVYhRUhX5zoTaP8Pxadlr-57KgS0gUh_tabBNk"/>
-</div>
-</div>
-</header>
-<!-- Main Content Area -->
-<div class="flex flex-1 overflow-hidden">
-<!-- Left Column: Video & Resources -->
-<main class="flex-1 flex flex-col overflow-y-auto p-6 md:p-8 relative">
-<!-- Breadcrumbs Mobile -->
-<div class="md:hidden mb-4 text-sm text-gray-500">
-<span class="text-primary font-medium">Course</span> / UX Principles
+
+<body
+    class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 h-screen flex flex-col overflow-hidden transition-colors duration-200">
+    <!-- Navbar -->
+    <header
+        class="h-16 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 shrink-0 z-20">
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">
+                    F</div>
+                <span class="font-bold text-lg tracking-tight">FlexLearn</span>
             </div>
-<!-- Video Player Section -->
-<div class="w-full max-w-5xl mx-auto mb-8">
-<div class="relative bg-black rounded-xl overflow-hidden shadow-2xl aspect-video group">
-<img alt="Video Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" data-alt="Laptop with code on screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHn2zFVNIJuEBVqzXN4KUXkjgbPQTozj7FOhMei79kFNKh45Hqp3CNDnOLNTldkehnqdvH3ffdGQLgtaC44vWexgUHTqYxFxnaSyQKiRuu37MCvsU1H2nVvxJHSTCJ_B79saZJU5ayeO-bWJIZ01gUq7YteU8v2_ldfl4_oMac04Tq18xTwx9_zWKKBVr8m_oaiwNBdaGkVqy_H_YJRNESRhHNkwRavJUsBjXP0MbVNSfBSwy_HnS2rB8mwuHBL9rukSZTpnvtCbA"/>
-<!-- Fake Play Button Overlay -->
-<div class="absolute inset-0 flex items-center justify-center">
-<button class="w-16 h-16 md:w-20 md:h-20 bg-primary/90 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-<span class="material-icons text-4xl md:text-5xl ml-1">play_arrow</span>
-</button>
-</div>
-<!-- Video Controls Overlay (Simulated) -->
-<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<div class="h-1 bg-gray-600 rounded-full mb-4 cursor-pointer group/timeline relative">
-<div class="absolute top-0 left-0 h-full bg-primary w-1/3 rounded-full"></div>
-<div class="absolute top-1/2 -translate-y-1/2 left-1/3 w-3 h-3 bg-white rounded-full shadow opacity-0 group-hover/timeline:opacity-100"></div>
-</div>
-<div class="flex justify-between items-center text-white">
-<div class="flex items-center gap-4">
-<span class="material-icons cursor-pointer">pause</span>
-<span class="text-xs font-medium">04:20 / 12:45</span>
-</div>
-<div class="flex items-center gap-4">
-<span class="material-icons cursor-pointer text-sm">closed_caption</span>
-<span class="material-icons cursor-pointer text-sm">settings</span>
-<span class="material-icons cursor-pointer text-sm">fullscreen</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Video Title & Actions -->
-<div class="mt-6 flex flex-col md:flex-row md:items-start justify-between gap-4">
-<div>
-<h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">3.2 Understanding User Flows</h1>
-<p class="text-gray-500 dark:text-gray-400">Module 3: Design Patterns • 12 mins</p>
-</div>
-<div class="flex items-center gap-3">
-<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors text-sm font-medium">
-<span class="material-icons text-lg text-gray-400">thumb_up</span>
-<span>Like</span>
-</button>
-<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-sm font-medium">
-<span>Next Lesson</span>
-<span class="material-icons text-lg">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Tabbed Content Area -->
-<div class="w-full max-w-5xl mx-auto bg-surface-light dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex-1 mb-8 overflow-hidden flex flex-col">
-<!-- Tabs Header -->
-<div class="flex border-b border-gray-200 dark:border-gray-700 px-6">
-<button class="px-4 py-4 text-sm font-medium text-primary border-b-2 border-primary">About</button>
-<button class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Resources</button>
-<button class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Notes</button>
-<button class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Discussion</button>
-</div>
-<!-- Tab Content: About -->
-<div class="p-6 md:p-8 flex-1">
-<div class="prose dark:prose-invert max-w-none">
-<h3 class="text-lg font-semibold mb-3">Lesson Overview</h3>
-<p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                            In this lesson, we dive deep into the architecture of user flows. We will explore how to map out the journey a user takes to achieve a goal within your application. Understanding these paths is critical for identifying friction points and optimizing the overall user experience.
+            <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
+            <nav class="hidden md:flex text-sm font-medium text-gray-500 dark:text-gray-400">
+                <a class="hover:text-primary transition-colors" href="#">My Courses</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900 dark:text-white">Advanced UX Principles</span>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                <span class="material-icons text-xl">notifications_none</span>
+            </button>
+            <div class="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-gray-800">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-semibold leading-none">Alex Morgan</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Student</p>
+                </div>
+                <img alt="Profile Picture"
+                    class="w-9 h-9 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm"
+                    data-alt="Young woman portrait smiling"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy4hfdFakP0CoFhaZSVxSzYy8Lpygq0-DgVtE_rUYZOLvxDOVxTMjaxhLv_vCj1clwhfXKrxg0plvY8Bkr2_fjwROK8SrYVdx6BR7u1u4FgY5G-2mvBiIJ2i0Z7kd8UtWXLKNYKeX41WwV9jMk0mIi8yiKxXhwJ52W5n41Puyl1y1k9iH-wk1mdNHEUxeWr358fNPlrdFfoucdMDnpWMuM2nfu1VLHiKY3MEo0JvVYhRUhX5zoTaP8Pxadlr-57KgS0gUh_tabBNk" />
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Area -->
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Left Column: Video & Resources -->
+        <main class="flex-1 flex flex-col overflow-y-auto p-6 md:p-8 relative">
+            <!-- Breadcrumbs Mobile -->
+            <div class="md:hidden mb-4 text-sm text-gray-500">
+                <span class="text-primary font-medium">Course</span> / UX Principles
+            </div>
+            <!-- Video Player Section -->
+            <div class="w-full max-w-5xl mx-auto mb-8">
+                <div class="relative bg-black rounded-xl overflow-hidden shadow-2xl aspect-video group">
+                    <img alt="Video Thumbnail"
+                        class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300"
+                        data-alt="Laptop with code on screen"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHn2zFVNIJuEBVqzXN4KUXkjgbPQTozj7FOhMei79kFNKh45Hqp3CNDnOLNTldkehnqdvH3ffdGQLgtaC44vWexgUHTqYxFxnaSyQKiRuu37MCvsU1H2nVvxJHSTCJ_B79saZJU5ayeO-bWJIZ01gUq7YteU8v2_ldfl4_oMac04Tq18xTwx9_zWKKBVr8m_oaiwNBdaGkVqy_H_YJRNESRhHNkwRavJUsBjXP0MbVNSfBSwy_HnS2rB8mwuHBL9rukSZTpnvtCbA" />
+                    <!-- Fake Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button
+                            class="w-16 h-16 md:w-20 md:h-20 bg-primary/90 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                            <span class="material-icons text-4xl md:text-5xl ml-1">play_arrow</span>
+                        </button>
+                    </div>
+                    <!-- Video Controls Overlay (Simulated) -->
+                    <div
+                        class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="h-1 bg-gray-600 rounded-full mb-4 cursor-pointer group/timeline relative">
+                            <div class="absolute top-0 left-0 h-full bg-primary w-1/3 rounded-full"></div>
+                            <div
+                                class="absolute top-1/2 -translate-y-1/2 left-1/3 w-3 h-3 bg-white rounded-full shadow opacity-0 group-hover/timeline:opacity-100">
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-white">
+                            <div class="flex items-center gap-4">
+                                <span class="material-icons cursor-pointer">pause</span>
+                                <span class="text-xs font-medium">04:20 / 12:45</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="material-icons cursor-pointer text-sm">closed_caption</span>
+                                <span class="material-icons cursor-pointer text-sm">settings</span>
+                                <span class="material-icons cursor-pointer text-sm">fullscreen</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Title & Actions -->
+                <div class="mt-6 flex flex-col md:flex-row md:items-start justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">3.2 Understanding
+                            User Flows</h1>
+                        <p class="text-gray-500 dark:text-gray-400">Module 3: Design Patterns • 12 mins</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors text-sm font-medium">
+                            <span class="material-icons text-lg text-gray-400">thumb_up</span>
+                            <span>Like</span>
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors text-sm font-medium">
+                            <span>Next Lesson</span>
+                            <span class="material-icons text-lg">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Tabbed Content Area -->
+            <div
+                class="w-full max-w-5xl mx-auto bg-surface-light dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex-1 mb-8 overflow-hidden flex flex-col">
+                <!-- Tabs Header -->
+                <div class="flex border-b border-gray-200 dark:border-gray-700 px-6">
+                    <button class="px-4 py-4 text-sm font-medium text-primary border-b-2 border-primary">About</button>
+                    <button
+                        class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Resources</button>
+                    <button
+                        class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Notes</button>
+                    <button
+                        class="px-4 py-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Discussion</button>
+                </div>
+                <!-- Tab Content: About -->
+                <div class="p-6 md:p-8 flex-1">
+                    <div class="prose dark:prose-invert max-w-none">
+                        <h3 class="text-lg font-semibold mb-3">Lesson Overview</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                            In this lesson, we dive deep into the architecture of user flows. We will explore how to map
+                            out the journey a user takes to achieve a goal within your application. Understanding these
+                            paths is critical for identifying friction points and optimizing the overall user
+                            experience.
                         </p>
-<h3 class="text-lg font-semibold mb-3">Key Takeaways</h3>
-<ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-8">
-<li>Difference between task flows and user flows.</li>
-<li>How to create low-fidelity flow diagrams.</li>
-<li>Tools for effective mapping (Figma, Miro).</li>
-</ul>
-<div class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark rounded-lg border border-gray-200 dark:border-gray-700">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded bg-red-100 text-red-600 flex items-center justify-center">
-<span class="material-icons">picture_as_pdf</span>
-</div>
-<div>
-<p class="font-medium text-sm">Course Syllabus &amp; Guide</p>
-<p class="text-xs text-gray-500">PDF • 2.4 MB</p>
-</div>
-</div>
-<button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-hover transition-colors shadow-sm flex items-center gap-2">
-<span class="material-icons text-sm">download</span>
+                        <h3 class="text-lg font-semibold mb-3">Key Takeaways</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-8">
+                            <li>Difference between task flows and user flows.</li>
+                            <li>How to create low-fidelity flow diagrams.</li>
+                            <li>Tools for effective mapping (Figma, Miro).</li>
+                        </ul>
+                        <div
+                            class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded bg-red-100 text-red-600 flex items-center justify-center">
+                                    <span class="material-icons">picture_as_pdf</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm">Course Syllabus &amp; Guide</p>
+                                    <p class="text-xs text-gray-500">PDF • 2.4 MB</p>
+                                </div>
+                            </div>
+                            <button
+                                class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-hover transition-colors shadow-sm flex items-center gap-2">
+                                <span class="material-icons text-sm">download</span>
                                 Download Syllabus
                             </button>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Right Sidebar: Curriculum -->
-<aside class="w-80 lg:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-800 flex flex-col shrink-0 z-10 hidden lg:flex">
-<!-- Sidebar Header -->
-<div class="p-6 border-b border-gray-200 dark:border-gray-800">
-<h2 class="text-lg font-bold mb-1">Course Content</h2>
-<div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-<span>32% Completed</span>
-<span>12/48 Lessons</span>
-</div>
-<!-- Progress Bar -->
-<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-<div class="bg-primary h-2 rounded-full" style="width: 32%"></div>
-</div>
-</div>
-<!-- Modules List -->
-<div class="flex-1 overflow-y-auto">
-<!-- Module 1: Completed -->
-<div class="border-b border-gray-100 dark:border-gray-800/50">
-<div class="p-4 bg-gray-50 dark:bg-gray-900/30 flex items-center justify-between cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-<span class="material-icons text-sm">check</span>
-</div>
-<div>
-<p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Module 1: Introduction</p>
-<p class="text-xs text-gray-500">4 Lessons • 25m</p>
-</div>
-</div>
-<span class="material-icons text-gray-400 group-hover:text-gray-600 transition-transform">expand_more</span>
-</div>
-</div>
-<!-- Module 2: Completed -->
-<div class="border-b border-gray-100 dark:border-gray-800/50">
-<div class="p-4 bg-gray-50 dark:bg-gray-900/30 flex items-center justify-between cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-<span class="material-icons text-sm">check</span>
-</div>
-<div>
-<p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Module 2: Research Methods</p>
-<p class="text-xs text-gray-500">6 Lessons • 45m</p>
-</div>
-</div>
-<span class="material-icons text-gray-400 group-hover:text-gray-600 transition-transform">expand_more</span>
-</div>
-</div>
-<!-- Module 3: Active -->
-<div class="border-b border-gray-100 dark:border-gray-800/50">
-<div class="p-4 bg-background-light dark:bg-surface-dark flex items-center justify-between cursor-pointer">
-<div class="flex items-center gap-3">
-<div class="w-6 h-6 rounded-full border-2 border-primary text-primary flex items-center justify-center">
-<span class="text-[10px] font-bold">3</span>
-</div>
-<div>
-<p class="text-sm font-bold text-primary">Module 3: Design Patterns</p>
-<p class="text-xs text-gray-500">8 Lessons • 1h 10m</p>
-</div>
-</div>
-<span class="material-icons text-primary rotate-180 transition-transform">expand_more</span>
-</div>
-<!-- Expanded Lessons List -->
-<div class="bg-white dark:bg-surface-dark/50 pb-2">
-<!-- Lesson 3.1: Done -->
-<a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group" href="#">
-<span class="material-icons text-green-500 text-sm">check_circle</span>
-<div class="flex-1">
-<p class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200">3.1 Intro to Patterns</p>
-<span class="text-xs text-gray-400 flex items-center gap-1">
-<span class="material-icons text-[10px]">play_circle</span> 08:30
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Right Sidebar: Curriculum -->
+        <aside
+            class="w-80 lg:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-800 flex flex-col shrink-0 z-10 hidden lg:flex">
+            <!-- Sidebar Header -->
+            <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+                <h2 class="text-lg font-bold mb-1">Course Content</h2>
+                <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
+                    <span>32% Completed</span>
+                    <span>12/48 Lessons</span>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div class="bg-primary h-2 rounded-full" style="width: 32%"></div>
+                </div>
+            </div>
+            <!-- Modules List -->
+            <div class="flex-1 overflow-y-auto">
+                <!-- Module 1: Completed -->
+                <div class="border-b border-gray-100 dark:border-gray-800/50">
+                    <div
+                        class="p-4 bg-gray-50 dark:bg-gray-900/30 flex items-center justify-between cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <span class="material-icons text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Module 1: Introduction
+                                </p>
+                                <p class="text-xs text-gray-500">4 Lessons • 25m</p>
+                            </div>
+                        </div>
+                        <span
+                            class="material-icons text-gray-400 group-hover:text-gray-600 transition-transform">expand_more</span>
+                    </div>
+                </div>
+                <!-- Module 2: Completed -->
+                <div class="border-b border-gray-100 dark:border-gray-800/50">
+                    <div
+                        class="p-4 bg-gray-50 dark:bg-gray-900/30 flex items-center justify-between cursor-pointer group hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <span class="material-icons text-sm">check</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Module 2: Research
+                                    Methods</p>
+                                <p class="text-xs text-gray-500">6 Lessons • 45m</p>
+                            </div>
+                        </div>
+                        <span
+                            class="material-icons text-gray-400 group-hover:text-gray-600 transition-transform">expand_more</span>
+                    </div>
+                </div>
+                <!-- Module 3: Active -->
+                <div class="border-b border-gray-100 dark:border-gray-800/50">
+                    <div
+                        class="p-4 bg-background-light dark:bg-surface-dark flex items-center justify-between cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full border-2 border-primary text-primary flex items-center justify-center">
+                                <span class="text-[10px] font-bold">3</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-primary">Module 3: Design Patterns</p>
+                                <p class="text-xs text-gray-500">8 Lessons • 1h 10m</p>
+                            </div>
+                        </div>
+                        <span class="material-icons text-primary rotate-180 transition-transform">expand_more</span>
+                    </div>
+                    <!-- Expanded Lessons List -->
+                    <div class="bg-white dark:bg-surface-dark/50 pb-2">
+                        <!-- Lesson 3.1: Done -->
+                        <a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
+                            href="#">
+                            <span class="material-icons text-green-500 text-sm">check_circle</span>
+                            <div class="flex-1">
+                                <p
+                                    class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200">
+                                    3.1 Intro to Patterns</p>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <span class="material-icons text-[10px]">play_circle</span> 08:30
                                 </span>
-</div>
-</a>
-<!-- Lesson 3.2: Active -->
-<div class="flex items-center gap-3 px-4 py-3 pl-12 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary">
-<span class="material-icons text-primary text-sm animate-pulse">play_circle_filled</span>
-<div class="flex-1">
-<p class="text-sm font-semibold text-primary">3.2 Understanding User Flows</p>
-<span class="text-xs text-primary/70 flex items-center gap-1">
-<span class="material-icons text-[10px]">play_circle</span> 12:45
+                            </div>
+                        </a>
+                        <!-- Lesson 3.2: Active -->
+                        <div
+                            class="flex items-center gap-3 px-4 py-3 pl-12 bg-primary/5 dark:bg-primary/10 border-l-4 border-primary">
+                            <span class="material-icons text-primary text-sm animate-pulse">play_circle_filled</span>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-primary">3.2 Understanding User Flows</p>
+                                <span class="text-xs text-primary/70 flex items-center gap-1">
+                                    <span class="material-icons text-[10px]">play_circle</span> 12:45
                                 </span>
-</div>
-</div>
-<!-- Lesson 3.3: Locked/Next -->
-<a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group opacity-60" href="#">
-<span class="material-icons text-gray-300 text-sm">lock</span>
-<div class="flex-1">
-<p class="text-sm text-gray-600 dark:text-gray-400">3.3 Wireframing Basics</p>
-<span class="text-xs text-gray-400 flex items-center gap-1">
-<span class="material-icons text-[10px]">play_circle</span> 15:00
+                            </div>
+                        </div>
+                        <!-- Lesson 3.3: Locked/Next -->
+                        <a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group opacity-60"
+                            href="#">
+                            <span class="material-icons text-gray-300 text-sm">lock</span>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3.3 Wireframing Basics</p>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <span class="material-icons text-[10px]">play_circle</span> 15:00
                                 </span>
-</div>
-</a>
-<!-- Lesson 3.4 -->
-<a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group opacity-60" href="#">
-<span class="material-icons text-gray-300 text-sm">lock</span>
-<div class="flex-1">
-<p class="text-sm text-gray-600 dark:text-gray-400">3.4 Prototyping Interactions</p>
-<span class="text-xs text-gray-400 flex items-center gap-1">
-<span class="material-icons text-[10px]">play_circle</span> 10:20
+                            </div>
+                        </a>
+                        <!-- Lesson 3.4 -->
+                        <a class="flex items-center gap-3 px-4 py-3 pl-12 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group opacity-60"
+                            href="#">
+                            <span class="material-icons text-gray-300 text-sm">lock</span>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3.4 Prototyping Interactions</p>
+                                <span class="text-xs text-gray-400 flex items-center gap-1">
+                                    <span class="material-icons text-[10px]">play_circle</span> 10:20
                                 </span>
-</div>
-</a>
-</div>
-</div>
-<!-- Module 4: Locked -->
-<div class="border-b border-gray-100 dark:border-gray-800/50 opacity-60">
-<div class="p-4 flex items-center justify-between cursor-not-allowed">
-<div class="flex items-center gap-3">
-<div class="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center">
-<span class="text-[10px] font-bold">4</span>
-</div>
-<div>
-<p class="text-sm font-semibold text-gray-500">Module 4: Usability Testing</p>
-<p class="text-xs text-gray-400">5 Lessons • 50m</p>
-</div>
-</div>
-<span class="material-icons text-gray-300 text-sm">lock</span>
-</div>
-</div>
-<!-- Module 5: Locked -->
-<div class="border-b border-gray-100 dark:border-gray-800/50 opacity-60">
-<div class="p-4 flex items-center justify-between cursor-not-allowed">
-<div class="flex items-center gap-3">
-<div class="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center">
-<span class="text-[10px] font-bold">5</span>
-</div>
-<div>
-<p class="text-sm font-semibold text-gray-500">Module 5: Accessibility</p>
-<p class="text-xs text-gray-400">3 Lessons • 35m</p>
-</div>
-</div>
-<span class="material-icons text-gray-300 text-sm">lock</span>
-</div>
-</div>
-</div>
-<!-- Sticky Bottom Help -->
-<div class="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
-<button class="w-full py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:shadow-sm transition-all flex items-center justify-center gap-2">
-<span class="material-icons text-sm">help_outline</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Module 4: Locked -->
+                <div class="border-b border-gray-100 dark:border-gray-800/50 opacity-60">
+                    <div class="p-4 flex items-center justify-between cursor-not-allowed">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center">
+                                <span class="text-[10px] font-bold">4</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-500">Module 4: Usability Testing</p>
+                                <p class="text-xs text-gray-400">5 Lessons • 50m</p>
+                            </div>
+                        </div>
+                        <span class="material-icons text-gray-300 text-sm">lock</span>
+                    </div>
+                </div>
+                <!-- Module 5: Locked -->
+                <div class="border-b border-gray-100 dark:border-gray-800/50 opacity-60">
+                    <div class="p-4 flex items-center justify-between cursor-not-allowed">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center">
+                                <span class="text-[10px] font-bold">5</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-500">Module 5: Accessibility</p>
+                                <p class="text-xs text-gray-400">3 Lessons • 35m</p>
+                            </div>
+                        </div>
+                        <span class="material-icons text-gray-300 text-sm">lock</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Sticky Bottom Help -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+                <button
+                    class="w-full py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:shadow-sm transition-all flex items-center justify-center gap-2">
+                    <span class="material-icons text-sm">help_outline</span>
                     Need Help?
                 </button>
-</div>
-</aside>
-</div>
-</body></html>
+            </div>
+        </aside>
+    </div>
+</body>
+
+</html>

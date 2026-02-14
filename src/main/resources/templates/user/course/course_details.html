@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Course Details - FlexLearn</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Course Details - FlexLearn</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -21,358 +26,445 @@
                     fontFamily: {
                         "display": ["Lexend", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 antialiased selection:bg-primary/30 selection:text-primary">
-<!-- Navigation (Simplified for context) -->
-<nav class="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between h-16 items-center">
-<div class="flex items-center gap-2">
-<div class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">F</div>
-<span class="font-bold text-xl tracking-tight dark:text-white">FlexLearn</span>
-</div>
-<div class="hidden md:flex space-x-8">
-<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Courses</a>
-<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Mentors</a>
-<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Pricing</a>
-</div>
-<div class="flex items-center space-x-4">
-<button class="text-slate-500 hover:text-primary">
-<span class="material-icons">search</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden" data-alt="User avatar placeholder">
-<img alt="User Avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGcvbeuq4mmSnmubX1M5rCx3gvRt5w7r34TAX28LvRLHHCBqB8RYjkAulNEziTOwIWvpZNh6i3hjaKak18rVGnDSKweMICykW59D-2bjef8IqKAVX_cxhljJR5ftnPGOGxqqPAs7kV321SHoFqFHxuIgA_R5FppE-u9XMhWaqmATE5WPt7xaJZJPWOhHDZwGFOezrRnzlnznyPxt0B-IamvdIP2ZtUnE-H6rJPhLDRy3vwicagN2OZMF17vk20EZ67WwAFnX-GYIQ"/>
-</div>
-</div>
-</div>
-</div>
-</nav>
-<!-- Main Content Wrapper -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-<!-- Breadcrumbs -->
-<nav aria-label="Breadcrumb" class="flex mb-8 text-sm text-slate-500 dark:text-slate-400">
-<ol class="inline-flex items-center space-x-1 md:space-x-3">
-<li class="inline-flex items-center">
-<a class="hover:text-primary dark:hover:text-primary" href="#">Home</a>
-</li>
-<li><span class="mx-1 text-slate-300">/</span></li>
-<li>
-<a class="hover:text-primary dark:hover:text-primary" href="#">Development</a>
-</li>
-<li><span class="mx-1 text-slate-300">/</span></li>
-<li aria-current="page" class="text-slate-800 dark:text-white font-medium">Full Stack React</li>
-</ol>
-</nav>
-<div class="lg:grid lg:grid-cols-12 lg:gap-12">
-<!-- Left Column: Main Course Content -->
-<div class="lg:col-span-8 space-y-10">
-<!-- Hero Info -->
-<header class="space-y-4">
-<div class="flex items-center gap-2">
-<span class="px-3 py-1 text-xs font-semibold tracking-wide uppercase bg-primary/10 text-primary rounded-full">Bestseller</span>
-<div class="flex items-center text-amber-400 text-sm">
-<span class="material-icons text-sm">star</span>
-<span class="material-icons text-sm">star</span>
-<span class="material-icons text-sm">star</span>
-<span class="material-icons text-sm">star</span>
-<span class="material-icons text-sm">star_half</span>
-<span class="ml-1 text-slate-600 dark:text-slate-400 font-medium">(4.8)</span>
-</div>
-<span class="text-xs text-slate-400">• Last updated Oct 2023</span>
-</div>
-<h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 antialiased selection:bg-primary/30 selection:text-primary">
+    <!-- Navigation (Simplified for context) -->
+    <nav
+        class="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div
+                        class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                        F</div>
+                    <span class="font-bold text-xl tracking-tight dark:text-white">FlexLearn</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#">Courses</a>
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#">Mentors</a>
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors"
+                        href="#">Pricing</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-slate-500 hover:text-primary">
+                        <span class="material-icons">search</span>
+                    </button>
+                    <div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden"
+                        data-alt="User avatar placeholder">
+                        <img alt="User Avatar" class="h-full w-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGcvbeuq4mmSnmubX1M5rCx3gvRt5w7r34TAX28LvRLHHCBqB8RYjkAulNEziTOwIWvpZNh6i3hjaKak18rVGnDSKweMICykW59D-2bjef8IqKAVX_cxhljJR5ftnPGOGxqqPAs7kV321SHoFqFHxuIgA_R5FppE-u9XMhWaqmATE5WPt7xaJZJPWOhHDZwGFOezrRnzlnznyPxt0B-IamvdIP2ZtUnE-H6rJPhLDRy3vwicagN2OZMF17vk20EZ67WwAFnX-GYIQ" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="flex mb-8 text-sm text-slate-500 dark:text-slate-400">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a class="hover:text-primary dark:hover:text-primary" href="#">Home</a>
+                </li>
+                <li><span class="mx-1 text-slate-300">/</span></li>
+                <li>
+                    <a class="hover:text-primary dark:hover:text-primary" href="#">Development</a>
+                </li>
+                <li><span class="mx-1 text-slate-300">/</span></li>
+                <li aria-current="page" class="text-slate-800 dark:text-white font-medium">Full Stack React</li>
+            </ol>
+        </nav>
+        <div class="lg:grid lg:grid-cols-12 lg:gap-12">
+            <!-- Left Column: Main Course Content -->
+            <div class="lg:col-span-8 space-y-10">
+                <!-- Hero Info -->
+                <header class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="px-3 py-1 text-xs font-semibold tracking-wide uppercase bg-primary/10 text-primary rounded-full">Bestseller</span>
+                        <div class="flex items-center text-amber-400 text-sm">
+                            <span class="material-icons text-sm">star</span>
+                            <span class="material-icons text-sm">star</span>
+                            <span class="material-icons text-sm">star</span>
+                            <span class="material-icons text-sm">star</span>
+                            <span class="material-icons text-sm">star_half</span>
+                            <span class="ml-1 text-slate-600 dark:text-slate-400 font-medium">(4.8)</span>
+                        </div>
+                        <span class="text-xs text-slate-400">• Last updated Oct 2023</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
                         Mastering React &amp; Node.js: The Complete Guide
                     </h1>
-<p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-                        Become a full-stack developer with this comprehensive course. Build real-world projects, master modern hooks, and deploy scalable apps from scratch.
+                    <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+                        Become a full-stack developer with this comprehensive course. Build real-world projects, master
+                        modern hooks, and deploy scalable apps from scratch.
                     </p>
-<div class="flex items-center gap-4 pt-2">
-<div class="flex -space-x-2">
-<img alt="Student avatar 1" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" data-alt="Student avatar thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKOH4vYTvkNsV5dPmyiC8pHNuRtbRrzyuOe8ZFcnXRKKYw6nyuK3q9bSBJc6uSSabWY4A7-J5fj_9xWVaB8vWmQxM_reN1OoktXVdQ0-EnZD7KXsqXlJl7y179tR6vfw3WvHf6oTXeZWtNQEr4Oq8px0qb2e2lYlGGLcaMv12GvCc_uqb7rOLAaDPSnzUrbyeJaMxiLvi8VFwtIpTKVq-XFC2xoiZYyvYIJArgaTuBQUcVnSVXVum5Eq9zvckfGpa9nP7lvFpFyf8"/>
-<img alt="Student avatar 2" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" data-alt="Student avatar thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_7pbIWdgR7l3PbQbirrYO-thmE3K_5k1y5aH6FO4BHPWVleEUvfP-JKC8S8hcGUgHIUiPjMWn7DPXkexA2x2NGMrLw6_0ZiRTM7DB1200gjAhiL1RP0DrGfxJoYUp1G6WJqUixuRV5d96K361l9Trmb5wEn6EFCYu4trv1mwRnTwPWOOtndudYGZ5d8U-DyfSYMNvFb7BQosQsPpg60oMFVLoOelZiXFmHlPDoca7RZDWJnExNRp6qdy4iDeL0ryGHKzEMTDVJRk"/>
-<img alt="Student avatar 3" class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" data-alt="Student avatar thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0teZMa1QMN6-_n-At4l9N47KPKv5cS0KJ57KRilX6w-KXc7N8yQpeUMuKKynjGvv4M39Qjp-9racYRPMDNNmIvHOcF24a87vnKuRGv0Bz-aNRiak70ry4CF7dH6BZg7NGvaP8kAeZ0PU9-Zt374eFHtrFGoh1I9dELdeLQak1e_jkBXX-mgAPPArJbGgqgpnuoDtZN1SXZwkDo_5d9Us0TJy5QiGtztBOvZ1rlWNwqtkF3EAIQmHcCnYJX3iRSA8qdGvORUTwSQ"/>
-<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-medium text-slate-600 dark:text-slate-300">+2k</div>
-</div>
-<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Students enrolled</span>
-</div>
-</header>
-<!-- Course Visual -->
-<div class="aspect-video w-full rounded-xl overflow-hidden shadow-lg bg-slate-200 relative group cursor-pointer" data-alt="Abstract code gradient pattern">
-<img alt="React Course Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbuhXOI0kQ2L00cRBD8Itb4xlBtkIl1EX_5GXf87Foj7tzhUy7zBDFg08XdigeKL2IM3X3jwM7cPQdTEFvm01boJWR8o0htS5A4NcU8IJ7VmctlXkA0eSJHdTv-KO653Pf0a4YP3GqzfSDYCRGZpn5EQSE5JTNGNKLKz5DQyL-bihexBfla9IkGUTNhkTEjQA08yUZan35b5t_pvpbhewQAWngBj-5kPQNS1AIwiHGZEuZ-H6-NU7GbhJNxCvLQw7IL3EFL-MxV8A"/>
-<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-<div class="w-16 h-16 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-<span class="material-icons text-primary text-4xl ml-1">play_arrow</span>
-</div>
-</div>
-</div>
-<!-- Learning Mode Selection Tabs -->
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-1">
-<div class="grid grid-cols-2 gap-1" role="tablist">
-<!-- Active Tab -->
-<button class="py-3 px-4 rounded-lg bg-primary/10 text-primary font-semibold text-sm md:text-base flex items-center justify-center gap-2 transition-all">
-<span class="material-icons text-lg">school</span>
+                    <div class="flex items-center gap-4 pt-2">
+                        <div class="flex -space-x-2">
+                            <img alt="Student avatar 1"
+                                class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800"
+                                data-alt="Student avatar thumbnail"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKOH4vYTvkNsV5dPmyiC8pHNuRtbRrzyuOe8ZFcnXRKKYw6nyuK3q9bSBJc6uSSabWY4A7-J5fj_9xWVaB8vWmQxM_reN1OoktXVdQ0-EnZD7KXsqXlJl7y179tR6vfw3WvHf6oTXeZWtNQEr4Oq8px0qb2e2lYlGGLcaMv12GvCc_uqb7rOLAaDPSnzUrbyeJaMxiLvi8VFwtIpTKVq-XFC2xoiZYyvYIJArgaTuBQUcVnSVXVum5Eq9zvckfGpa9nP7lvFpFyf8" />
+                            <img alt="Student avatar 2"
+                                class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800"
+                                data-alt="Student avatar thumbnail"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_7pbIWdgR7l3PbQbirrYO-thmE3K_5k1y5aH6FO4BHPWVleEUvfP-JKC8S8hcGUgHIUiPjMWn7DPXkexA2x2NGMrLw6_0ZiRTM7DB1200gjAhiL1RP0DrGfxJoYUp1G6WJqUixuRV5d96K361l9Trmb5wEn6EFCYu4trv1mwRnTwPWOOtndudYGZ5d8U-DyfSYMNvFb7BQosQsPpg60oMFVLoOelZiXFmHlPDoca7RZDWJnExNRp6qdy4iDeL0ryGHKzEMTDVJRk" />
+                            <img alt="Student avatar 3"
+                                class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800"
+                                data-alt="Student avatar thumbnail"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0teZMa1QMN6-_n-At4l9N47KPKv5cS0KJ57KRilX6w-KXc7N8yQpeUMuKKynjGvv4M39Qjp-9racYRPMDNNmIvHOcF24a87vnKuRGv0Bz-aNRiak70ry4CF7dH6BZg7NGvaP8kAeZ0PU9-Zt374eFHtrFGoh1I9dELdeLQak1e_jkBXX-mgAPPArJbGgqgpnuoDtZN1SXZwkDo_5d9Us0TJy5QiGtztBOvZ1rlWNwqtkF3EAIQmHcCnYJX3iRSA8qdGvORUTwSQ" />
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xs font-medium text-slate-600 dark:text-slate-300">
+                                +2k</div>
+                        </div>
+                        <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Students enrolled</span>
+                    </div>
+                </header>
+                <!-- Course Visual -->
+                <div class="aspect-video w-full rounded-xl overflow-hidden shadow-lg bg-slate-200 relative group cursor-pointer"
+                    data-alt="Abstract code gradient pattern">
+                    <img alt="React Course Cover"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbuhXOI0kQ2L00cRBD8Itb4xlBtkIl1EX_5GXf87Foj7tzhUy7zBDFg08XdigeKL2IM3X3jwM7cPQdTEFvm01boJWR8o0htS5A4NcU8IJ7VmctlXkA0eSJHdTv-KO653Pf0a4YP3GqzfSDYCRGZpn5EQSE5JTNGNKLKz5DQyL-bihexBfla9IkGUTNhkTEjQA08yUZan35b5t_pvpbhewQAWngBj-5kPQNS1AIwiHGZEuZ-H6-NU7GbhJNxCvLQw7IL3EFL-MxV8A" />
+                    <div
+                        class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                        <div
+                            class="w-16 h-16 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                            <span class="material-icons text-primary text-4xl ml-1">play_arrow</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Learning Mode Selection Tabs -->
+                <div
+                    class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-1">
+                    <div class="grid grid-cols-2 gap-1" role="tablist">
+                        <!-- Active Tab -->
+                        <button
+                            class="py-3 px-4 rounded-lg bg-primary/10 text-primary font-semibold text-sm md:text-base flex items-center justify-center gap-2 transition-all">
+                            <span class="material-icons text-lg">school</span>
                             Self-Paced Learning
                         </button>
-<!-- Inactive Tab -->
-<button class="py-3 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium text-sm md:text-base flex items-center justify-center gap-2 transition-all">
-<span class="material-icons text-lg">groups</span>
+                        <!-- Inactive Tab -->
+                        <button
+                            class="py-3 px-4 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium text-sm md:text-base flex items-center justify-center gap-2 transition-all">
+                            <span class="material-icons text-lg">groups</span>
                             Live Boot Camp
                         </button>
-</div>
-</div>
-<!-- Live Cohort Selection (Conditional - simulating visibility for Live mode context, though design shows one state) -->
-<!-- Let's assume user clicked "Live Boot Camp" to see this section active, or we show the self-paced curriculum. 
+                    </div>
+                </div>
+                <!-- Live Cohort Selection (Conditional - simulating visibility for Live mode context, though design shows one state) -->
+                <!-- Let's assume user clicked "Live Boot Camp" to see this section active, or we show the self-paced curriculum. 
                      Given the prompt asks for "Course details page for FlexLearn", I will show the Curriculum content. 
                      However, I will include the Cohort Selector block as requested by prompt "include a 'Select Start Cohort' dropdown". 
                      I will style it as if the user is considering the Live option or it's a prominent upsell section. -->
-<section class="bg-primary/5 dark:bg-slate-800/50 border border-primary/20 rounded-xl p-6">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-<div>
-<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-<span class="material-icons text-primary">event</span>
+                <section class="bg-primary/5 dark:bg-slate-800/50 border border-primary/20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span class="material-icons text-primary">event</span>
                                 Live Boot Camp Cohorts
                             </h3>
-<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Join a cohort to learn with peers and get live mentorship.</p>
-</div>
-<div class="relative min-w-[200px]">
-<select class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2.5 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none cursor-pointer font-medium shadow-sm">
-<option>October 2023 (Filling Fast)</option>
-<option>November 2023</option>
-<option>January 2024</option>
-</select>
-<span class="material-icons absolute right-3 top-3 text-slate-400 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-3 text-xs md:text-sm font-medium text-slate-600 dark:text-slate-400">
-<div class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
-<span class="material-icons text-primary text-base">schedule</span>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Join a cohort to learn with peers
+                                and get live mentorship.</p>
+                        </div>
+                        <div class="relative min-w-[200px]">
+                            <select
+                                class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2.5 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none cursor-pointer font-medium shadow-sm">
+                                <option>October 2023 (Filling Fast)</option>
+                                <option>November 2023</option>
+                                <option>January 2024</option>
+                            </select>
+                            <span
+                                class="material-icons absolute right-3 top-3 text-slate-400 pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs md:text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <div
+                            class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
+                            <span class="material-icons text-primary text-base">schedule</span>
                             8 Weeks Duration
                         </div>
-<div class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
-<span class="material-icons text-primary text-base">videocam</span>
+                        <div
+                            class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
+                            <span class="material-icons text-primary text-base">videocam</span>
                             2x Weekly Live Sessions
                         </div>
-<div class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
-<span class="material-icons text-primary text-base">forum</span>
+                        <div
+                            class="flex items-center gap-1.5 bg-white dark:bg-slate-900 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700">
+                            <span class="material-icons text-primary text-base">forum</span>
                             Private Discord Community
                         </div>
-</div>
-</section>
-<!-- Curriculum Section -->
-<section>
-<div class="flex items-center justify-between mb-6">
-<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Curriculum</h2>
-<span class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">10 Modules • 45h 20m</span>
-</div>
-<div class="space-y-4">
-<!-- Module 1: Open -->
-<div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
-<button class="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left">
-<div class="flex items-center gap-4">
-<div class="flex flex-col items-center justify-center w-10 h-10 rounded bg-primary/10 text-primary font-bold leading-none">
-<span class="text-xs uppercase">Mod</span>
-<span class="text-lg">01</span>
-</div>
-<div>
-<h3 class="font-bold text-slate-900 dark:text-white">Introduction to React Ecosystem</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400">4 Lessons • 1h 15m</p>
-</div>
-</div>
-<span class="material-icons text-slate-400 transform rotate-180 transition-transform">expand_more</span>
-</button>
-<div class="divide-y divide-slate-100 dark:divide-slate-700/50">
-<a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors" href="#">
-<div class="flex items-center gap-3">
-<span class="material-icons text-primary/70 text-sm">play_circle</span>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Why React? Understanding the Virtual DOM</span>
-</div>
-<span class="text-xs text-slate-400">10:00</span>
-</a>
-<a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors" href="#">
-<div class="flex items-center gap-3">
-<span class="material-icons text-primary/70 text-sm">play_circle</span>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Setting up the Environment (Vite vs CRA)</span>
-</div>
-<span class="text-xs text-slate-400">15:30</span>
-</a>
-<a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors" href="#">
-<div class="flex items-center gap-3">
-<span class="material-icons text-slate-400 text-sm">lock</span>
-<span class="text-sm text-slate-500 dark:text-slate-400">JSX Deep Dive</span>
-</div>
-<span class="text-xs text-slate-400">22:15</span>
-</a>
-</div>
-</div>
-<!-- Module 2: Closed -->
-<div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
-<button class="w-full flex items-center justify-between p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left">
-<div class="flex items-center gap-4">
-<div class="flex flex-col items-center justify-center w-10 h-10 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-bold leading-none">
-<span class="text-xs uppercase">Mod</span>
-<span class="text-lg">02</span>
-</div>
-<div>
-<h3 class="font-bold text-slate-900 dark:text-white">Hooks &amp; State Management</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400">6 Lessons • 2h 45m</p>
-</div>
-</div>
-<span class="material-icons text-slate-400 transition-transform">expand_more</span>
-</button>
-</div>
-<!-- Module 3: Closed -->
-<div class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
-<button class="w-full flex items-center justify-between p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left">
-<div class="flex items-center gap-4">
-<div class="flex flex-col items-center justify-center w-10 h-10 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-bold leading-none">
-<span class="text-xs uppercase">Mod</span>
-<span class="text-lg">03</span>
-</div>
-<div>
-<h3 class="font-bold text-slate-900 dark:text-white">Component Composition</h3>
-<p class="text-sm text-slate-500 dark:text-slate-400">5 Lessons • 2h 10m</p>
-</div>
-</div>
-<span class="material-icons text-slate-400 transition-transform">expand_more</span>
-</button>
-</div>
-<div class="text-center pt-4">
-<button class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center justify-center w-full gap-1">
+                    </div>
+                </section>
+                <!-- Curriculum Section -->
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Curriculum</h2>
+                        <span class="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">10 Modules •
+                            45h 20m</span>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- Module 1: Open -->
+                        <div
+                            class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                            <button
+                                class="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex flex-col items-center justify-center w-10 h-10 rounded bg-primary/10 text-primary font-bold leading-none">
+                                        <span class="text-xs uppercase">Mod</span>
+                                        <span class="text-lg">01</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 dark:text-white">Introduction to React
+                                            Ecosystem</h3>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">4 Lessons • 1h 15m</p>
+                                    </div>
+                                </div>
+                                <span
+                                    class="material-icons text-slate-400 transform rotate-180 transition-transform">expand_more</span>
+                            </button>
+                            <div class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                                <a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors"
+                                    href="#">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-icons text-primary/70 text-sm">play_circle</span>
+                                        <span
+                                            class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Why
+                                            React? Understanding the Virtual DOM</span>
+                                    </div>
+                                    <span class="text-xs text-slate-400">10:00</span>
+                                </a>
+                                <a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors"
+                                    href="#">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-icons text-primary/70 text-sm">play_circle</span>
+                                        <span
+                                            class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Setting
+                                            up the Environment (Vite vs CRA)</span>
+                                    </div>
+                                    <span class="text-xs text-slate-400">15:30</span>
+                                </a>
+                                <a class="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 group transition-colors"
+                                    href="#">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-icons text-slate-400 text-sm">lock</span>
+                                        <span class="text-sm text-slate-500 dark:text-slate-400">JSX Deep Dive</span>
+                                    </div>
+                                    <span class="text-xs text-slate-400">22:15</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Module 2: Closed -->
+                        <div
+                            class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                            <button
+                                class="w-full flex items-center justify-between p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex flex-col items-center justify-center w-10 h-10 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-bold leading-none">
+                                        <span class="text-xs uppercase">Mod</span>
+                                        <span class="text-lg">02</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 dark:text-white">Hooks &amp; State
+                                            Management</h3>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">6 Lessons • 2h 45m</p>
+                                    </div>
+                                </div>
+                                <span class="material-icons text-slate-400 transition-transform">expand_more</span>
+                            </button>
+                        </div>
+                        <!-- Module 3: Closed -->
+                        <div
+                            class="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                            <button
+                                class="w-full flex items-center justify-between p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex flex-col items-center justify-center w-10 h-10 rounded bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-bold leading-none">
+                                        <span class="text-xs uppercase">Mod</span>
+                                        <span class="text-lg">03</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 dark:text-white">Component Composition</h3>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">5 Lessons • 2h 10m</p>
+                                    </div>
+                                </div>
+                                <span class="material-icons text-slate-400 transition-transform">expand_more</span>
+                            </button>
+                        </div>
+                        <div class="text-center pt-4">
+                            <button
+                                class="text-primary font-semibold hover:text-primary/80 transition-colors flex items-center justify-center w-full gap-1">
                                 Show all 10 modules
                                 <span class="material-icons text-sm">expand_more</span>
-</button>
-</div>
-</div>
-</section>
-<!-- Instructor Section -->
-<section class="border-t border-slate-200 dark:border-slate-800 pt-10">
-<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Your Instructor</h2>
-<div class="flex flex-col sm:flex-row gap-6 items-start">
-<div class="shrink-0" data-alt="Instructor portrait">
-<img alt="Sarah Jenkins" class="w-24 h-24 rounded-xl object-cover shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARd5Nqkhf7qTCgHDh9KRPe0rCzZ8c3OOFRx1A6g-LPstmcAk03AEXX7BK-AYALmRk1S-c8C657tbuOdOKfMHa9AiW_Ldm6Bvb8Pj844tUj26XO_VrtMJN2PT_bBiMvBD3XppGHmyFrfpmsccOQq6CcBU7Oz3eegdaO5gTtRho7tId8cchkQQuD8w71GGtxtN9EWuFVAQiKVSXXi7U3-QT2kUM_UKksXamwNR6PYhVEeg1fxIcE_PFjVZh2wE7o-fNdujtUckCnVCs"/>
-</div>
-<div>
-<h3 class="text-xl font-bold text-slate-900 dark:text-white">Sarah Jenkins</h3>
-<p class="text-primary font-medium mb-3">Senior Frontend Architect at TechFlow</p>
-<div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
-<span class="flex items-center gap-1"><span class="material-icons text-amber-400 text-base">star</span> 4.9 Instructor Rating</span>
-<span class="flex items-center gap-1"><span class="material-icons text-slate-400 text-base">people</span> 15,402 Students</span>
-<span class="flex items-center gap-1"><span class="material-icons text-slate-400 text-base">play_circle_filled</span> 8 Courses</span>
-</div>
-<p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
-                                Sarah has over 12 years of experience building scalable web applications for Fortune 500 companies. She is a core contributor to several open-source React libraries and specializes in performance optimization and accessible UI design. Her teaching style focuses on the "why" behind the code.
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Instructor Section -->
+                <section class="border-t border-slate-200 dark:border-slate-800 pt-10">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Your Instructor</h2>
+                    <div class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div class="shrink-0" data-alt="Instructor portrait">
+                            <img alt="Sarah Jenkins" class="w-24 h-24 rounded-xl object-cover shadow-md"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuARd5Nqkhf7qTCgHDh9KRPe0rCzZ8c3OOFRx1A6g-LPstmcAk03AEXX7BK-AYALmRk1S-c8C657tbuOdOKfMHa9AiW_Ldm6Bvb8Pj844tUj26XO_VrtMJN2PT_bBiMvBD3XppGHmyFrfpmsccOQq6CcBU7Oz3eegdaO5gTtRho7tId8cchkQQuD8w71GGtxtN9EWuFVAQiKVSXXi7U3-QT2kUM_UKksXamwNR6PYhVEeg1fxIcE_PFjVZh2wE7o-fNdujtUckCnVCs" />
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Sarah Jenkins</h3>
+                            <p class="text-primary font-medium mb-3">Senior Frontend Architect at TechFlow</p>
+                            <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
+                                <span class="flex items-center gap-1"><span
+                                        class="material-icons text-amber-400 text-base">star</span> 4.9 Instructor
+                                    Rating</span>
+                                <span class="flex items-center gap-1"><span
+                                        class="material-icons text-slate-400 text-base">people</span> 15,402
+                                    Students</span>
+                                <span class="flex items-center gap-1"><span
+                                        class="material-icons text-slate-400 text-base">play_circle_filled</span> 8
+                                    Courses</span>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                                Sarah has over 12 years of experience building scalable web applications for Fortune 500
+                                companies. She is a core contributor to several open-source React libraries and
+                                specializes in performance optimization and accessible UI design. Her teaching style
+                                focuses on the "why" behind the code.
                             </p>
-</div>
-</div>
-</section>
-</div>
-<!-- Right Column: Sticky Sidebar -->
-<aside class="lg:col-span-4 mt-10 lg:mt-0">
-<div class="sticky top-24 space-y-6">
-<!-- Pricing Card -->
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden relative">
-<div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Right Column: Sticky Sidebar -->
+            <aside class="lg:col-span-4 mt-10 lg:mt-0">
+                <div class="sticky top-24 space-y-6">
+                    <!-- Pricing Card -->
+                    <div
+                        class="bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden relative">
+                        <div
+                            class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
                             20% OFF
                         </div>
-<div class="p-6 md:p-8 space-y-6">
-<div>
-<p class="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1">Total Price</p>
-<div class="flex items-end gap-2">
-<span class="text-4xl font-bold text-slate-900 dark:text-white">$99.00</span>
-<span class="text-lg text-slate-400 line-through mb-1">$124.00</span>
-</div>
-<p class="text-xs text-red-500 font-medium mt-1 flex items-center gap-1">
-<span class="material-icons text-sm">schedule</span> Offer ends in 2 days
+                        <div class="p-6 md:p-8 space-y-6">
+                            <div>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1">Total Price</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-4xl font-bold text-slate-900 dark:text-white">$99.00</span>
+                                    <span class="text-lg text-slate-400 line-through mb-1">$124.00</span>
+                                </div>
+                                <p class="text-xs text-red-500 font-medium mt-1 flex items-center gap-1">
+                                    <span class="material-icons text-sm">schedule</span> Offer ends in 2 days
                                 </p>
-</div>
-<div class="space-y-3">
-<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+                            </div>
+                            <div class="space-y-3">
+                                <button
+                                    class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
                                     Enroll Now
                                     <span class="material-icons text-sm">arrow_forward</span>
-</button>
-<button class="w-full bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-lg transition-colors">
+                                </button>
+                                <button
+                                    class="w-full bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-lg transition-colors">
                                     Buy for Team
                                 </button>
-</div>
-<div class="pt-4 border-t border-slate-100 dark:border-slate-700">
-<h4 class="font-bold text-slate-900 dark:text-white text-sm mb-3">This course includes:</h4>
-<ul class="space-y-3">
-<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-<span class="material-icons text-primary text-base mt-0.5">all_inclusive</span>
-<span>Full lifetime access</span>
-</li>
-<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-<span class="material-icons text-primary text-base mt-0.5">verified</span>
-<span>Certificate of completion</span>
-</li>
-<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-<span class="material-icons text-primary text-base mt-0.5">folder_zip</span>
-<span>15 downloadable resources</span>
-</li>
-<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-<span class="material-icons text-primary text-base mt-0.5">devices</span>
-<span>Access on mobile and TV</span>
-</li>
-<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
-<span class="material-icons text-primary text-base mt-0.5">code</span>
-<span>Coding exercises</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="bg-slate-50 dark:bg-slate-700/50 p-4 text-center">
-<p class="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
-<span class="material-icons text-sm">security</span>
+                            </div>
+                            <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-3">This course includes:
+                                </h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                        <span class="material-icons text-primary text-base mt-0.5">all_inclusive</span>
+                                        <span>Full lifetime access</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                        <span class="material-icons text-primary text-base mt-0.5">verified</span>
+                                        <span>Certificate of completion</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                        <span class="material-icons text-primary text-base mt-0.5">folder_zip</span>
+                                        <span>15 downloadable resources</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                        <span class="material-icons text-primary text-base mt-0.5">devices</span>
+                                        <span>Access on mobile and TV</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+                                        <span class="material-icons text-primary text-base mt-0.5">code</span>
+                                        <span>Coding exercises</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-700/50 p-4 text-center">
+                            <p
+                                class="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
+                                <span class="material-icons text-sm">security</span>
                                 30-Day Money-Back Guarantee
                             </p>
-</div>
-</div>
-<!-- Upsell / Related -->
-<div class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
-<h4 class="font-bold text-slate-900 dark:text-white text-sm mb-3">Students also bought</h4>
-<div class="space-y-4">
-<a class="flex gap-3 group" href="#">
-<div class="w-16 h-12 rounded bg-slate-200 shrink-0 overflow-hidden" data-alt="Node JS course thumbnail">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDrZPQplTT4cE1h99NYPORzQNgga4TXAO3xxBbEGiJ3V1wYrFCM342nGEXX_uuj0UtP6qP6nwOUw9g22gmYSCAQ_r-YYdYVdE93l90jA_oncGkcPppdtNMcPRWai9D3b2TR_TK3Jl-N3CFljq7LMYq7ozQ3aqes38_AO5Xen-gdCD42Gnd_QJQvxxWjlRJCu1aXgFMpw9V3BJ2HJciXs9NnE92kqmlX3MYBcJTH9uUxAIosAicyqj1r34npraEC-BRKfyUuPElzv8"/>
-</div>
-<div>
-<h5 class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-2">Advanced Node.js Patterns</h5>
-<p class="text-xs text-slate-500 mt-1 font-medium">$49.00</p>
-</div>
-</a>
-<a class="flex gap-3 group" href="#">
-<div class="w-16 h-12 rounded bg-slate-200 shrink-0 overflow-hidden" data-alt="GraphQL course thumbnail">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnbfXfwcZXgPU3CEKY4a3o-bI7h7lXAo1aNZWNUgOYYdlNYqnoK5ZiGRwXaXk4aB_L7_DmSLkmWJCO8TANURnAXnXggJB3AVgzSx1dnMc-7TVqFaGwIlwGailT8Y10LnDWR5QziPPpDYH096IgecQInVO1yozSIW-inhwRPSv9ghXE_U5PZ7yo2Ik35rntrL_eVeRTgu73tenT64PA6wGVENga8k_FmhoJUdLCEBSMVlHO9jNmZg7HUqUPjWhdC_EVYP9cNBvNeW4"/>
-</div>
-<div>
-<h5 class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-2">GraphQL with Apollo Server</h5>
-<p class="text-xs text-slate-500 mt-1 font-medium">$34.00</p>
-</div>
-</a>
-</div>
-</div>
-</div>
-</aside>
-</div>
-</main>
-<!-- Footer Simple -->
-<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12 py-12">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="flex items-center gap-2">
-<div class="h-6 w-6 bg-primary rounded flex items-center justify-center text-white font-bold text-xs">F</div>
-<span class="font-bold text-lg text-slate-900 dark:text-white">FlexLearn</span>
-</div>
-<div class="flex gap-6 text-sm text-slate-500">
-<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-primary transition-colors" href="#">Help Center</a>
-</div>
-<p class="text-sm text-slate-400">© 2023 FlexLearn Inc.</p>
-</div>
-</footer>
-</body></html>
+                        </div>
+                    </div>
+                    <!-- Upsell / Related -->
+                    <div
+                        class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-3">Students also bought</h4>
+                        <div class="space-y-4">
+                            <a class="flex gap-3 group" href="#">
+                                <div class="w-16 h-12 rounded bg-slate-200 shrink-0 overflow-hidden"
+                                    data-alt="Node JS course thumbnail">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDrZPQplTT4cE1h99NYPORzQNgga4TXAO3xxBbEGiJ3V1wYrFCM342nGEXX_uuj0UtP6qP6nwOUw9g22gmYSCAQ_r-YYdYVdE93l90jA_oncGkcPppdtNMcPRWai9D3b2TR_TK3Jl-N3CFljq7LMYq7ozQ3aqes38_AO5Xen-gdCD42Gnd_QJQvxxWjlRJCu1aXgFMpw9V3BJ2HJciXs9NnE92kqmlX3MYBcJTH9uUxAIosAicyqj1r34npraEC-BRKfyUuPElzv8" />
+                                </div>
+                                <div>
+                                    <h5
+                                        class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-2">
+                                        Advanced Node.js Patterns</h5>
+                                    <p class="text-xs text-slate-500 mt-1 font-medium">$49.00</p>
+                                </div>
+                            </a>
+                            <a class="flex gap-3 group" href="#">
+                                <div class="w-16 h-12 rounded bg-slate-200 shrink-0 overflow-hidden"
+                                    data-alt="GraphQL course thumbnail">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnbfXfwcZXgPU3CEKY4a3o-bI7h7lXAo1aNZWNUgOYYdlNYqnoK5ZiGRwXaXk4aB_L7_DmSLkmWJCO8TANURnAXnXggJB3AVgzSx1dnMc-7TVqFaGwIlwGailT8Y10LnDWR5QziPPpDYH096IgecQInVO1yozSIW-inhwRPSv9ghXE_U5PZ7yo2Ik35rntrL_eVeRTgu73tenT64PA6wGVENga8k_FmhoJUdLCEBSMVlHO9jNmZg7HUqUPjWhdC_EVYP9cNBvNeW4" />
+                                </div>
+                                <div>
+                                    <h5
+                                        class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-2">
+                                        GraphQL with Apollo Server</h5>
+                                    <p class="text-xs text-slate-500 mt-1 font-medium">$34.00</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- Footer Simple -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-12 py-12">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="h-6 w-6 bg-primary rounded flex items-center justify-center text-white font-bold text-xs">F
+                </div>
+                <span class="font-bold text-lg text-slate-900 dark:text-white">FlexLearn</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                <a class="hover:text-primary transition-colors" href="#">Help Center</a>
+            </div>
+            <p class="text-sm text-slate-400">© 2023 FlexLearn Inc.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

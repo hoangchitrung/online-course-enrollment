@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>FlexLearn Login Screen</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FlexLearn Login Screen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -24,94 +29,118 @@
                     fontFamily: {
                         "display": ["Lexend", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-primary">
-<!-- Main Container -->
-<main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
-<!-- Decorative Background Elements (Soft Purple Glows) -->
-<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
-<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none translate-y-1/2"></div>
-<!-- Login Card -->
-<div class="w-full max-w-md bg-surface-light dark:bg-surface-dark rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-gray-100 dark:border-gray-800 p-8 sm:p-10 relative z-10 transition-all duration-300">
-<!-- Logo Area -->
-<div class="flex flex-col items-center mb-8">
-<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
-<span class="material-icons text-white text-3xl">school</span>
-</div>
-<h1 class="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">FlexLearn</h1>
-</div>
-<!-- Header Text -->
-<div class="text-center mb-8">
-<h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Welcome back</h2>
-<p class="text-sm text-gray-500 dark:text-gray-400">Please enter your details to sign in.</p>
-</div>
-<!-- Login Form -->
-<form action="#" class="space-y-5">
-<!-- Email Input -->
-<div class="space-y-1.5">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">Email</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-icons text-gray-400 text-lg">mail_outline</span>
-</div>
-<input class="block w-full pl-10 pr-3 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 sm:text-sm" id="email" name="email" placeholder="user@example.com" required="" type="email"/>
-</div>
-</div>
-<!-- Password Input -->
-<div class="space-y-1.5">
-<div class="flex justify-between items-center">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">Password</label>
-</div>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-icons text-gray-400 text-lg">lock_outline</span>
-</div>
-<input class="block w-full pl-10 pr-10 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 sm:text-sm" id="password" name="password" placeholder="••••••••" required="" type="password"/>
-<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer hover:text-gray-600 dark:hover:text-gray-300">
-<span class="material-icons text-gray-400 text-lg">visibility_off</span>
-</div>
-</div>
-<!-- Forgot Password Link (Right Aligned under input as requested in plan, or usually best placed near label or bottom) -->
-<div class="flex justify-end pt-1">
-<a class="text-sm font-medium text-primary hover:text-primary-hover transition-colors" href="#">Forgot password?</a>
-</div>
-</div>
-<!-- Submit Button -->
-<button class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 shadow-lg shadow-primary/25 mt-2" type="submit">
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-primary">
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+        <!-- Decorative Background Elements (Soft Purple Glows) -->
+        <div
+            class="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none translate-y-1/2">
+        </div>
+        <!-- Login Card -->
+        <div
+            class="w-full max-w-md bg-surface-light dark:bg-surface-dark rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-gray-100 dark:border-gray-800 p-8 sm:p-10 relative z-10 transition-all duration-300">
+            <!-- Logo Area -->
+            <div class="flex flex-col items-center mb-8">
+                <div
+                    class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
+                    <span class="material-icons text-white text-3xl">school</span>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">FlexLearn</h1>
+            </div>
+            <!-- Header Text -->
+            <div class="text-center mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Welcome back</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Please enter your details to sign in.</p>
+            </div>
+            <!-- Login Form -->
+            <form action="#" class="space-y-5">
+                <!-- Email Input -->
+                <div class="space-y-1.5">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">Email</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="material-icons text-gray-400 text-lg">mail_outline</span>
+                        </div>
+                        <input
+                            class="block w-full pl-10 pr-3 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 sm:text-sm"
+                            id="email" name="email" placeholder="user@example.com" required="" type="email" />
+                    </div>
+                </div>
+                <!-- Password Input -->
+                <div class="space-y-1.5">
+                    <div class="flex justify-between items-center">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                            for="password">Password</label>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="material-icons text-gray-400 text-lg">lock_outline</span>
+                        </div>
+                        <input
+                            class="block w-full pl-10 pr-10 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 sm:text-sm"
+                            id="password" name="password" placeholder="••••••••" required="" type="password" />
+                        <div
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer hover:text-gray-600 dark:hover:text-gray-300">
+                            <span class="material-icons text-gray-400 text-lg">visibility_off</span>
+                        </div>
+                    </div>
+                    <!-- Forgot Password Link (Right Aligned under input as requested in plan, or usually best placed near label or bottom) -->
+                    <div class="flex justify-end pt-1">
+                        <a class="text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+                            href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <button
+                    class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 shadow-lg shadow-primary/25 mt-2"
+                    type="submit">
                     Log in
                 </button>
-<!-- Divider -->
-<div class="relative my-6">
-<div class="absolute inset-0 flex items-center">
-<div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
-</div>
-<div class="relative flex justify-center text-sm">
-<span class="px-2 bg-surface-light dark:bg-surface-dark text-gray-500 dark:text-gray-400">Or continue with</span>
-</div>
-</div>
-<!-- Social Login -->
-<div class="grid grid-cols-1 gap-3">
-<button class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-200 dark:focus:ring-gray-600" type="button">
-<img alt="Google logo" class="h-5 w-5 mr-2" data-alt="Google G logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbnwBA_hkqW7kzgCJoEjbo_-EvZs66JUYxC5CFARscGgIBxHUIE5QjU3mtLjtLpj2Z79sY9mPNcvcpiYS8dTTQSbbEx2FFHarILjQVpTqTuxP8F-pN4WFfghaichFRRRUhfz9s_1LUgQ5LNPVHs6Vli9aAjpeaO9KoIsd8KIekoL5zGtnQ2-ZfC_dnGWlKhsUCcTBBWKWxoYmYHb69yZc6Yyb1JTwQ-mMjUYgRCyoSl_JoeHeBi2eqEmpss9kllg4sNItVmax0kyA"/>
-<span class="sr-only">Sign in with Google</span>
+                <!-- Divider -->
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-surface-light dark:bg-surface-dark text-gray-500 dark:text-gray-400">Or
+                            continue with</span>
+                    </div>
+                </div>
+                <!-- Social Login -->
+                <div class="grid grid-cols-1 gap-3">
+                    <button
+                        class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-200 dark:focus:ring-gray-600"
+                        type="button">
+                        <img alt="Google logo" class="h-5 w-5 mr-2" data-alt="Google G logo"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbnwBA_hkqW7kzgCJoEjbo_-EvZs66JUYxC5CFARscGgIBxHUIE5QjU3mtLjtLpj2Z79sY9mPNcvcpiYS8dTTQSbbEx2FFHarILjQVpTqTuxP8F-pN4WFfghaichFRRRUhfz9s_1LUgQ5LNPVHs6Vli9aAjpeaO9KoIsd8KIekoL5zGtnQ2-ZfC_dnGWlKhsUCcTBBWKWxoYmYHb69yZc6Yyb1JTwQ-mMjUYgRCyoSl_JoeHeBi2eqEmpss9kllg4sNItVmax0kyA" />
+                        <span class="sr-only">Sign in with Google</span>
                         Google
                     </button>
-</div>
-</form>
-<!-- Footer Sign Up Link -->
-<p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
-                Don't have an account? 
-                <a class="font-semibold text-primary hover:text-primary-hover transition-colors" href="#">Sign up for free</a>
-</p>
-</div>
-<!-- Simple Footer (Optional for context) -->
-<div class="absolute bottom-4 text-center w-full">
-<p class="text-xs text-gray-400 dark:text-gray-600">© 2023 FlexLearn Inc. All rights reserved.</p>
-</div>
-</main>
-</body></html>
+                </div>
+            </form>
+            <!-- Footer Sign Up Link -->
+            <p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                Don't have an account?
+                <a class="font-semibold text-primary hover:text-primary-hover transition-colors" href="#">Sign up for
+                    free</a>
+            </p>
+        </div>
+        <!-- Simple Footer (Optional for context) -->
+        <div class="absolute bottom-4 text-center w-full">
+            <p class="text-xs text-gray-400 dark:text-gray-600">© 2023 FlexLearn Inc. All rights reserved.</p>
+        </div>
+    </main>
+</body>
+
+</html>
