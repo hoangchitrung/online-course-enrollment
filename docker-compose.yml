@@ -1,12 +1,19 @@
 services:
-  app:
-    build: .
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/flexlearn_database?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SERVER_PORT: 8081
-    ports:
-      - "8081:8081"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    app:
+        image: maven:3.9-eclipse-temurin-21
+        working_dir: /workspace
+        command: mvn spring-boot:run
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/flexlearn_database?useSSL=false&serverTimeZone=UTC&allowPublickeyRetrieval=true
+            SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+            SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+            SERVER_PORT: 8081
+        ports:
+            - "8081:8081"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        volumes:
+            - ./:/workspace:Z
+            - m2_cache:/root/.m2
+volumes:
+    m2_cache:
