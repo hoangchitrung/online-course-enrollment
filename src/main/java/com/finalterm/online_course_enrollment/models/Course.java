@@ -62,6 +62,12 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<CourseCohort> cohorts = new HashSet<>();
 
+    @OneToMany(mappedBy = "course")
+    private Set<Module> modules = new HashSet<>();
+
+    @OneToMany(mappedBy = "courseCart")
+    private Set<Cart> carts = new HashSet<>();
+
     public Course() {
     }
 
