@@ -45,7 +45,7 @@ CREATE TABLE courses (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Course cohorts (for Live Boot Camp)
+-- Course cohorts
 CREATE TABLE course_cohorts (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     course_id BIGINT NOT NULL,
