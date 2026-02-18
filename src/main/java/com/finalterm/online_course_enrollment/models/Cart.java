@@ -48,4 +48,71 @@ public class Cart {
     @JoinColumn(name = "selected_cohort_id")
     private CourseCohort courseCohort;
 
+    public Cart() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getSelectedCohortDate() {
+        return selectedCohortDate;
+    }
+
+    public void setSelectedCohortDate(LocalDate selectedCohortDate) {
+        this.selectedCohortDate = selectedCohortDate;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public User getUserCart() {
+        return userCart;
+    }
+
+    public void setUserCart(User userCart) {
+        this.userCart = userCart;
+    }
+
+    public Course getCourseCart() {
+        return courseCart;
+    }
+
+    public void setCourseCart(Course courseCart) {
+        this.courseCart = courseCart;
+    }
+
+    public CourseCohort getCourseCohort() {
+        return courseCohort;
+    }
+
+    public void setCourseCohort(CourseCohort courseCohort) {
+        this.courseCohort = courseCohort;
+    }
+
 }

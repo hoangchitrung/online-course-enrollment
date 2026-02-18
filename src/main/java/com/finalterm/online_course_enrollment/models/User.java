@@ -70,15 +70,13 @@ public class User {
     @OneToMany(mappedBy = "userCart")
     private Set<Cart> carts = new HashSet<>();
 
+    @OneToMany(mappedBy = "userOrder")
+    private Set<Order> orders = new HashSet<>();
+
+    @OneToMany(mappedBy = "paymentUser")
+    private Set<Payment> payments = new HashSet<>();
+
     public User() {
-    }
-
-    public Set<Interest> getInterests() {
-        return interests;
-    }
-
-    public void setInterests(Set<Interest> interests) {
-        this.interests = interests;
     }
 
     public Long getId() {
@@ -160,5 +158,39 @@ public class User {
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
+
+    public Set<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(Set<Interest> interests) {
+        this.interests = interests;
+    }
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
+    }
+
+    
 
 }

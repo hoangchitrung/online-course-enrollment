@@ -62,15 +62,10 @@ public class CourseCohort {
     @OneToMany(mappedBy = "courseCohort")
     private Set<Cart> carts = new HashSet<>();
 
+    @OneToMany(mappedBy = "orderItemCohort")
+    private Set<OrderItem> orderItems;
+
     public CourseCohort() {
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
     }
 
     public Long getId() {
@@ -136,4 +131,30 @@ public class CourseCohort {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    
 }

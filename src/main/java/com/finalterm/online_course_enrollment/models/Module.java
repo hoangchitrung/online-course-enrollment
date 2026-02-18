@@ -48,6 +48,9 @@ public class Module {
     @OneToMany(mappedBy = "module")
     private Set<Lesson> lessons = new HashSet<>();
 
+    public Module() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -94,6 +97,14 @@ public class Module {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
 }
