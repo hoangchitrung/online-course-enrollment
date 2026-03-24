@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/user/dashboard", true))
+                        .defaultSuccessUrl("/", true))
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
                 .httpBasic(httpBasic -> httpBasic.disable()); // prevent to popup basic auth

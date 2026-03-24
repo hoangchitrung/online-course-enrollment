@@ -6,11 +6,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.finalterm.online_course_enrollment.models.enums.CourseType;
+import com.finalterm.online_course_enrollment.models.enums.CourseTypeConverter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +24,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "courses")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +46,7 @@ public class Course {
     private String author;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = CourseTypeConverter.class)
     @Column(name = "type", nullable = false)
     private CourseType courseType;
 
@@ -59,15 +63,19 @@ public class Course {
     @Column(name = "updated_at", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private Set<CourseCohort> cohorts = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private Set<Module> modules = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "courseCart")
     private Set<Cart> carts = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "orderItemCourse")
     private Set<OrderItem> orderItems = new HashSet<>();
 

@@ -7,6 +7,8 @@ import java.util.Set;
 
 import com.finalterm.online_course_enrollment.models.enums.CourseCohortStatus;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -55,13 +57,16 @@ public class CourseCohort {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "courseCohort")
     private Set<Cart> carts = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "orderItemCohort")
     private Set<OrderItem> orderItems;
 
@@ -156,5 +161,4 @@ public class CourseCohort {
         this.orderItems = orderItems;
     }
 
-    
 }
