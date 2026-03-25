@@ -28,7 +28,13 @@
                         <p class="mb-2">Loại: <strong th:text="${course.courseType}"></strong></p>
                         <p class="mb-2">Giá: <strong th:text="${course.price} + ' VNĐ'"></strong></p>
                         <p class="mb-3" th:text="${course.description}"></p>
-                        <a href="/" class="btn btn-secondary">Quay về</a>
+                        <div class="d-flex gap-2">
+                            <a href="/" class="btn btn-secondary">Quay về</a>
+                            <form th:action="@{'/cart/add/' + ${course.id}}" method="post"
+                                sec:authorize="isAuthenticated()">
+                                <button type="submit" class="btn btn-success">Đăng ký (Enroll)</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
