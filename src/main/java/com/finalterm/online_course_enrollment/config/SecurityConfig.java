@@ -17,10 +17,10 @@ public class SecurityConfig {
                         auth -> auth
                                 // Public
                                 .requestMatchers("/", "/signin", "/signup", "/login", "/register", "/error",
-                                        "/favicon.ico")
+                                        "/favicon.ico", "/courses")
                                 .permitAll()
-                                // Public API - Courses
-                                .requestMatchers("/api/courses", "/api/courses/**").permitAll()
+                                // Public pages and API - Courses
+                                .requestMatchers("/course/**", "/api/courses", "/api/courses/**").permitAll()
                                 // User + Admin
                                 .requestMatchers("/user/**", "/cart/**", "/order/**", "/payment/**", "/learning/**")
                                 .hasAnyRole("USER", "ADMIN")
@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/", true))
+                        .defaultSuccessUrl("/user/dashboard", false))
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
                 .httpBasic(httpBasic -> httpBasic.disable()); // prevent to popup basic auth

@@ -3,8 +3,10 @@ package com.finalterm.online_course_enrollment.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.finalterm.online_course_enrollment.controllers.dto.RegisterRequest;
 import com.finalterm.online_course_enrollment.models.User;
 import com.finalterm.online_course_enrollment.services.AuthService;
+import com.finalterm.online_course_enrollment.services.CourseService;
+import com.finalterm.online_course_enrollment.repositories.ModuleRepository;
 
 import jakarta.validation.Valid;
 
@@ -20,14 +24,35 @@ import jakarta.validation.Valid;
 @Validated
 public class AuthController {
     private final AuthService authService;
+    private final CourseService courseService;
+    private final ModuleRepository moduleRepository;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, CourseService courseService, ModuleRepository moduleRepository) {
         this.authService = authService;
+        this.courseService = courseService;
+        this.moduleRepository = moduleRepository;
     }
 
     @GetMapping("/")
     public String homePage() {
         return "index";
+    }
+
+    @GetMapping("/courses")
+    public String coursesPage() {
+        return "index";
+    }
+
+    @GetMapping("/course/{id}")
+    public String courseDetail(@PathVariable Long id, Model model) {
+        return courseService.getCourseById(id)
+                .map(course -> {
+                    model.addAttribute("course", course);
+                    var modules = moduleRepository.findByCourseIdOrderByModuleNumberAsc(id);
+                    model.addAttribute("modules", modules);
+                    return "course-detail";
+                })
+                .orElse("redirect:/");
     }
 
     @GetMapping("/signin")

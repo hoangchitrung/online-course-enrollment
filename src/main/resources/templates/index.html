@@ -61,6 +61,45 @@
             <h2 class="mb-2">Các khóa học nổi bật</h2>
             <p class="text-muted mb-4">Chọn từ hàng trăm khóa học</p>
 
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Thêm khóa học mới</h5>
+                    <form id="create-course-form" class="row g-2">
+                        <div class="col-md-6">
+                            <input id="course-name" type="text" class="form-control" placeholder="Tên khóa học"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="course-author" type="text" class="form-control" placeholder="Tác giả" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="course-type" type="text" class="form-control"
+                                placeholder="Loại (SELF_PACED / LIVE_BOOT_CAMP)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="course-price" type="number" step="0.01" class="form-control" placeholder="Giá"
+                                required>
+                        </div>
+                        <div class="col-12">
+                            <input id="course-image" type="text" class="form-control" placeholder="URL ảnh">
+                        </div>
+                        <div class="col-12">
+                            <textarea id="course-description" class="form-control" rows="2"
+                                placeholder="Mô tả"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="course-modules" type="number" class="form-control" placeholder="Số modules">
+                        </div>
+                        <div class="col-md-6 d-grid">
+                            <button type="submit" class="btn btn-success">Thêm khóa học</button>
+                        </div>
+                        <div class="col-12">
+                            <div id="create-course-message" class="text-success d-none"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <div id="loading" class="text-center">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
@@ -115,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="card-footer bg-white">
-                                <button class="btn btn-primary btn-sm w-100" onclick="goToSignIn(${c.id})">Xem chi tiết</button>
+                                <button class="btn btn-primary btn-sm w-100" onclick="goToCourseDetail(${c.id})">Xem chi tiết</button>
                             </div>
                         </div>
                     </div>
@@ -143,11 +182,60 @@
             return div.innerHTML;
         }
 
-        function goToSignIn(courseId) {
-            window.location.href = `/signin?redirect=/course/${courseId}`;
+        function goToCourseDetail(courseId) {
+            window.location.href = `/course/${courseId}`;
         }
 
-        document.addEventListener('DOMContentLoaded', loadCourses);
+        async function createCourse(e) {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById('course-name').value.trim(),
+                author: document.getElementById('course-author').value.trim(),
+                courseType: document.getElementById('course-type').value.trim(),
+                price: parseFloat(document.getElementById('course-price').value),
+                image: document.getElementById('course-image').value.trim() || null,
+                description: document.getElementById('course-description').value.trim() || null,
+                modulesCount: Number(document.getElementById('course-modules').value || 0)
+            };
+
+            const msg = document.getElementById('create-course-message');
+            msg.classList.add('d-none');
+            msg.classList.remove('text-danger', 'text-success');
+
+            try {
+                const res = await fetch('/api/courses', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!res.ok) {
+                    const err = await res.text();
+                    msg.textContent = 'Lỗi thêm khóa học: ' + err;
+                    msg.classList.remove('d-none');
+                    msg.classList.add('text-danger');
+                    return;
+                }
+
+                msg.textContent = 'Thêm khóa học thành công.';
+                msg.classList.remove('d-none');
+                msg.classList.add('text-success');
+                document.getElementById('create-course-form').reset();
+                loadCourses();
+            } catch (err) {
+                msg.textContent = 'Lỗi thêm khóa học: ' + err.message;
+                msg.classList.remove('d-none');
+                msg.classList.add('text-danger');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCourses();
+            document.getElementById('create-course-form').addEventListener('submit', createCourse);
+        });
     </script>
 </body>
 

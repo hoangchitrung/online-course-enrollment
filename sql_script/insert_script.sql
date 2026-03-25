@@ -158,3 +158,15 @@ INSERT INTO user_lesson_progress (user_id, lesson_id, is_completed, completed_at
 (4, 5, 1, '2026-02-08 15:20:00'),   -- Bob completed Python lesson 1 (Java M2 L1)
 (4, 6, 1, '2026-02-09 11:45:00'),   -- Bob completed Python lesson 2 (Java M2 L2)
 (4, 7, 1, '2026-02-10 14:30:00');   -- Bob completed Python lesson 3 (Java M2 L3)
+
+UPDATE courses
+SET
+    type = 'SELF_PACED'
+WHERE
+    LOWER(type) LIKE '%self%';
+
+UPDATE courses
+SET
+    type = 'LIVE_BOOT_CAMP'
+WHERE
+    LOWER(type) LIKE '%live%';
