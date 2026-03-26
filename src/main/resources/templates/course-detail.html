@@ -18,8 +18,8 @@
 
     <header class="course-header bg-light py-5">
         <div class="container text-center">
-            <h1 class="display-4" th:text="${course.name}">Tên khóa học</h1>
-            <p class="lead">Cung cấp bởi <span th:text="${course.author}">Tác giả</span></p>
+            <h1 class="display-4" th:text="${course.name}">Course Name</h1>
+            <p class="lead">Provided by <span th:text="${course.author}">Author</span></p>
         </div>
     </header>
 
@@ -27,15 +27,15 @@
         <div class="row g-5">
             <!-- Course Content -->
             <div class="col-lg-8 course-content">
-                <h2 class="mb-4">Mô tả khóa học</h2>
-                <p class="lead" th:text="${course.description}">Mô tả chi tiết về nội dung khóa học...</p>
+                <h2 class="mb-4">Course Description</h2>
+                <p class="lead" th:text="${course.description}">Course details and description...</p>
 
                 <hr class="my-5">
 
-                <h2 class="mb-4">Nội dung khóa học</h2>
+                <h2 class="mb-4">Course Content</h2>
                 <div class="accordion" id="modulesAccordion">
                     <div th:if="${#lists.isEmpty(modules)}">
-                        <p class="text-muted">Chưa có module nào cho khóa học này.</p>
+                        <p class="text-muted">No modules available for this course.</p>
                     </div>
                     <div class="accordion-item mb-3 shadow-sm" th:each="module, iterStat : ${modules}">
                         <h2 class="accordion-header" th:id="'heading' + ${iterStat.index}">
@@ -87,54 +87,60 @@
                         onerror="this.src='https://via.placeholder.com/350x200?text=FlexLearn';" />
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4"
-                            th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Giá khóa
-                            học</h3>
+                            th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Course
+                            price</h3>
 
                         <div sec:authorize="isAuthenticated()">
-                            <form id="enrollForm" th:action="@{'/cart/add/' + ${course.id}}" method="post">
-                                <div th:if="${errorMessage != null}" class="alert alert-danger text-center mb-3"
-                                    th:text="${errorMessage}"></div>
-                                <div class="mb-3" th:if="${course.courseType.name() == 'LIVE_BOOT_CAMP'}">
-                                    <label for="cohortId" class="form-label fw-bold">Chọn lớp học:</label>
-                                    <th:block th:if="${#lists.isEmpty(cohorts)}">
-                                        <p class="text-warning">Hiện chưa có lớp đăng ký sẵn. Vui lòng kiểm tra lại sau.
-                                        </p>
-                                        <select id="cohortId" name="cohortId" class="form-select" disabled>
-                                            <option value="">-- Không có lớp để chọn --</option>
-                                        </select>
-                                    </th:block>
-                                    <th:block th:unless="${#lists.isEmpty(cohorts)}">
-                                        <select id="cohortId" name="cohortId" class="form-select" required>
-                                            <option value="" th:selected="${selectedCohortId == null}" disabled>-- Vui
-                                                lòng chọn một lớp --</option>
-                                            <th:block th:each="cohort : ${cohorts}">
-                                                <option th:value="${cohort.id}"
-                                                    th:text="${cohort.cohortName} + ' (Bắt đầu: ' + ${#temporals.format(cohort.startDate, 'dd/MM/yyyy')} + ')'"
-                                                    th:disabled="${cohort.courseCohortStatus.name() != 'UPCOMING'}"
-                                                    th:selected="${selectedCohortId != null} ? (${cohort.id} == ${selectedCohortId}) : false">
-                                                </option>
-                                            </th:block>
-                                        </select>
-                                    </th:block>
-                                </div>
-                                <div class="d-grid">
-                                    <button id="enrollButton" type="submit" class="btn btn-primary btn-lg">Thêm vào giỏ
-                                        hàng</button>
-                                </div>
-                            </form>
+                            <div th:if="${enrolled}" class="d-grid">
+                                <a th:href="@{/user/dashboard}" class="btn btn-success btn-lg">Already Enrolled - Go to
+                                    My Learning</a>
+                            </div>
+                            <div th:unless="${enrolled}">
+                                <form id="enrollForm" th:action="@{'/cart/add/' + ${course.id}}" method="post">
+                                    <div th:if="${errorMessage != null}" class="alert alert-danger text-center mb-3"
+                                        th:text="${errorMessage}"></div>
+                                    <div class="mb-3" th:if="${course.courseType.name() == 'LIVE_BOOT_CAMP'}">
+                                        <label for="cohortId" class="form-label fw-bold">Select cohort:</label>
+                                        <th:block th:if="${#lists.isEmpty(cohorts)}">
+                                            <p class="text-warning">No cohorts are available right now. Please check
+                                                again later.</p>
+                                            <select id="cohortId" name="cohortId" class="form-select" disabled>
+                                                <option value="">-- No cohort available --</option>
+                                            </select>
+                                        </th:block>
+                                        <th:block th:unless="${#lists.isEmpty(cohorts)}">
+                                            <select id="cohortId" name="cohortId" class="form-select" required>
+                                                <option value="" th:selected="${selectedCohortId == null}" disabled>--
+                                                    Please choose a cohort --</option>
+                                                <th:block th:each="cohort : ${cohorts}">
+                                                    <option th:value="${cohort.id}"
+                                                        th:text="${cohort.cohortName} + ' (Start: ' + ${#temporals.format(cohort.startDate, 'dd/MM/yyyy')} + ')'"
+                                                        th:disabled="${cohort.courseCohortStatus.name() != 'UPCOMING'}"
+                                                        th:selected="${selectedCohortId != null} ? (${cohort.id} == ${selectedCohortId}) : false">
+                                                    </option>
+                                                </th:block>
+                                            </select>
+                                        </th:block>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button id="enrollButton" type="submit" class="btn btn-primary btn-lg">Add to
+                                            Cart</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
                         <div sec:authorize="isAnonymous()" class="d-grid">
-                            <a th:href="@{/signin}" class="btn btn-primary btn-lg">Đăng nhập để đăng ký</a>
+                            <a th:href="@{/signin}" class="btn btn-primary btn-lg">Sign in to enroll</a>
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="fas fa-user-tie me-2 text-muted"></i> Tác giả: <strong
+                        <li class="list-group-item"><i class="fas fa-user-tie me-2 text-muted"></i> Author: <strong
                                 th:text="${course.author}"></strong></li>
-                        <li class="list-group-item"><i class="fas fa-layer-group me-2 text-muted"></i> Thể loại: <strong
+                        <li class="list-group-item"><i class="fas fa-layer-group me-2 text-muted"></i> Type: <strong
                                 th:text="${course.courseType.displayName}"></strong></li>
                         <li class="list-group-item"><i class="fas fa-user-graduate me-2 text-muted"></i> <span
-                                th:text="${course.enrollmentCount}">1,234</span> học viên</li>
+                                th:text="${course.enrollmentCount}">1,234</span> students</li>
                     </ul>
                 </div>
             </div>

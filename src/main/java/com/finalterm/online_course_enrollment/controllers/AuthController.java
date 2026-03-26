@@ -15,6 +15,7 @@ import com.finalterm.online_course_enrollment.models.User;
 import com.finalterm.online_course_enrollment.models.enums.CourseType;
 import com.finalterm.online_course_enrollment.services.AuthService;
 import com.finalterm.online_course_enrollment.services.CourseService;
+import com.finalterm.online_course_enrollment.controllers.dto.RegisterRequest;
 import com.finalterm.online_course_enrollment.repositories.CourseCohortRepository;
 import com.finalterm.online_course_enrollment.repositories.LessonRepository;
 import com.finalterm.online_course_enrollment.repositories.ModuleRepository;
@@ -80,6 +81,15 @@ public class AuthController {
                     if (course.getCourseType() == CourseType.LIVE_BOOT_CAMP) {
                         model.addAttribute("cohorts", courseCohortRepository.findByCourseId(id));
                     }
+
+                    boolean enrolled = false;
+                    if (principal != null) {
+                        enrolled = cartService.getOrdersForUser(principal.getName()).stream()
+                                .flatMap(order -> order.getOrderItems().stream())
+                                .anyMatch(item -> item.getOrderItemCourse() != null
+                                        && item.getOrderItemCourse().getId().equals(id));
+                    }
+                    model.addAttribute("enrolled", enrolled);
                     return "course-detail";
                 })
                 .orElse("redirect:/");
