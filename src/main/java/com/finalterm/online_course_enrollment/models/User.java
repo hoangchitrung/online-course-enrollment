@@ -1,5 +1,6 @@
 package com.finalterm.online_course_enrollment.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -72,6 +73,9 @@ public class User {
 
     @OneToMany(mappedBy = "userOrder")
     private Set<Order> orders = new HashSet<>();
+
+    @Column(name = "balance", precision = 10, scale = 2, nullable = false)
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @OneToMany(mappedBy = "paymentUser")
     private Set<Payment> payments = new HashSet<>();
@@ -183,6 +187,14 @@ public class User {
         this.orders = orders;
     }
 
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public Set<Payment> getPayments() {
         return payments;
     }
@@ -190,7 +202,5 @@ public class User {
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
     }
-
-    
 
 }

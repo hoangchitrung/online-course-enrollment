@@ -31,24 +31,76 @@
                     <tr th:each="item : ${cartItems}">
                         <td th:text="${item.courseCart.name}">Tên khóa học</td>
                         <td>
-                            <span th:if="${item.courseCohort != null}"
-                                th:text="${item.courseCohort.cohortName}">Tên lớp học</span>
+                            <span th:if="${item.courseCohort != null}" th:text="${item.courseCohort.cohortName}">Tên lớp
+                                học</span>
                             <span th:if="${item.courseCohort == null}" class="text-muted">N/A</span>
                         </td>
-                        <td th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">1,234,567 VNĐ</td>
+                        <td th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'">1,234,567
+                            VNĐ</td>
                         <td>
-                            <a href="#" class="btn btn-danger btn-sm">Xóa</a>
+                            <form th:action="@{'/cart/remove/' + ${item.id}}" method="post" style="display:inline">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Bạn có chắc muốn xóa mục này không?');">Xóa</button>
+                            </form>
+                            <span th:if="${item.courseCart.courseType.name() == 'SELF_PACED'}">
+                                <button type="button" class="btn btn-warning btn-sm ms-1"
+                                    th:onclick="|toggleUpgradePanel(${item.id})|">Nâng cấp</button>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr th:each="item : ${cartItems}" th:if="${item.courseCart.courseType.name() == 'SELF_PACED'}">
+                        <td colspan="4" class="p-0 border-0">
+                            <div th:id="${'upgrade-panel-' + item.id}"
+                                class="upgrade-panel border rounded p-3 mb-2 d-none">
+                                <form th:action="@{'/cart/upgrade/' + ${item.id}}" method="post"
+                                    class="d-flex align-items-center gap-2">
+                                    <label th:for="${'cohort-' + item.id}" class="mb-0">Chọn cohort nâng cấp:</label>
+                                    <select th:id="${'cohort-' + item.id}" name="cohortId"
+                                        class="form-select form-select-sm" required>
+                                        <option value="" selected disabled>-- Vui lòng chọn --</option>
+                                        <option
+                                            th:each="cohort : ${courseCohortMap[item.id] != null ? courseCohortMap[item.id] : {}}"
+                                            th:value="${cohort.id}"
+                                            th:text="${cohort.cohortName} + ' (BĐ:' + ${#temporals.format(cohort.startDate,'dd/MM/yyyy')} + ')'"
+                                            th:disabled="${cohort.courseCohortStatus.name() != 'UPCOMING'}"></option>
+                                    </select>
+                                    <button type="submit" class="btn btn-success btn-sm">Xác nhận nâng cấp</button>
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        th:onclick="|toggleUpgradePanel(${item.id})|">Hủy</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-primary">Tiến hành thanh toán</a>
+            <div class="card p-3 mb-3">
+                <h5>Thông tin thanh toán</h5>
+                <p>Tổng giá hàng: <strong
+                        th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></strong></p>
+                <p th:if="${discountRate > 0}">Giảm giá <strong
+                        th:text="${#numbers.formatDecimal(discountRate.multiply(new java.math.BigDecimal(100)), 0, 'COMMA', 0, 'POINT')} + '%'">10%</strong>:
+                    <strong
+                        th:text="${#numbers.formatDecimal(discountAmount, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></strong>
+                </p>
+                <p th:if="${discountRate == 0}"><small class="text-muted">Chọn 3 khóa học trở lên để được giảm giá
+                        10%.</small></p>
+                <h5>Thanh toán cuối: <strong
+                        th:text="${#numbers.formatDecimal(finalPrice, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></strong></h5>
+                <form th:action="@{/cart/checkout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-primary">Tiến hành thanh toán</button>
+                </form>
             </div>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleUpgradePanel(itemId) {
+            const panel = document.getElementById('upgrade-panel-' + itemId);
+            if (!panel) return;
+            panel.classList.toggle('d-none');
+        }
+    </script>
 </body>
 
 </html>
