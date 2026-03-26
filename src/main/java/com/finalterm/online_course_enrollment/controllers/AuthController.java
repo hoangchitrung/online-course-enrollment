@@ -71,7 +71,7 @@ public class AuthController {
                 .map(course -> {
                     model.addAttribute("course", course);
                     var modules = moduleRepository.findByCourseIdOrderByModuleNumberAsc(id);
-                    // Sắp xếp các bài học trong mỗi module theo lessonNumber tăng dần
+                    // Sort lessons in each module by lessonNumber in ascending order
                     modules.forEach(module -> {
                         var sortedLessons = lessonRepository.findByModuleIdOrderByLessonNumberAsc(module.getId());
                         module.setLessons(new java.util.LinkedHashSet<>(sortedLessons));

@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${course.name} + ' - FlexLearn'">Chi tiết khóa học</title>
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32x32.png?text=F" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-p6LL+7uN2d5ZdBqS8h4lkjw2Py1QnBiA+2aBzQkx1mszUuOxltEbxMt/jkFikDLP4xDn2KNUMzW0M9cTY7TRDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
@@ -47,8 +47,7 @@
                                     th:text="${module.title}"></span>
                             </button>
                         </h2>
-                        <div th:id="'collapse' + ${iterStat.index}"
-                            class="accordion-collapse collapse"
+                        <div th:id="'collapse' + ${iterStat.index}" class="accordion-collapse collapse"
                             th:classappend="${iterStat.index == 0} ? 'show' : ''"
                             th:aria-labelledby="'heading' + ${iterStat.index}">
                             <div class="accordion-body">
@@ -87,24 +86,40 @@
                     <img th:src="${course.image}" class="card-img-top" th:alt="${course.name}"
                         onerror="this.src='https://via.placeholder.com/350x200?text=FlexLearn';" />
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-4" th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Giá khóa học</h3>
+                        <h3 class="card-title text-center mb-4"
+                            th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Giá khóa
+                            học</h3>
 
                         <div sec:authorize="isAuthenticated()">
                             <form id="enrollForm" th:action="@{'/cart/add/' + ${course.id}}" method="post">
+                                <div th:if="${errorMessage != null}" class="alert alert-danger text-center mb-3"
+                                    th:text="${errorMessage}"></div>
                                 <div class="mb-3" th:if="${course.courseType.name() == 'LIVE_BOOT_CAMP'}">
                                     <label for="cohortId" class="form-label fw-bold">Chọn lớp học:</label>
-                                    <select id="cohortId" name="cohortId" class="form-select" required>
-                                        <option value="" selected disabled>-- Vui lòng chọn một lớp --</option>
-                                        <th:block th:each="cohort : ${cohorts}">
-                                            <option th:value="${cohort.id}"
-                                                th:text="${cohort.cohortName} + ' (Bắt đầu: ' + ${#temporals.format(cohort.startDate, 'dd/MM/yyyy')} + ')'"
-                                                th:disabled="${cohort.courseCohortStatus.name() != 'REGISTRATION_OPEN'}">
-                                            </option>
-                                        </th:block>
-                                    </select>
+                                    <th:block th:if="${#lists.isEmpty(cohorts)}">
+                                        <p class="text-warning">Hiện chưa có lớp đăng ký sẵn. Vui lòng kiểm tra lại sau.
+                                        </p>
+                                        <select id="cohortId" name="cohortId" class="form-select" disabled>
+                                            <option value="">-- Không có lớp để chọn --</option>
+                                        </select>
+                                    </th:block>
+                                    <th:block th:unless="${#lists.isEmpty(cohorts)}">
+                                        <select id="cohortId" name="cohortId" class="form-select" required>
+                                            <option value="" th:selected="${selectedCohortId == null}" disabled>-- Vui
+                                                lòng chọn một lớp --</option>
+                                            <th:block th:each="cohort : ${cohorts}">
+                                                <option th:value="${cohort.id}"
+                                                    th:text="${cohort.cohortName} + ' (Bắt đầu: ' + ${#temporals.format(cohort.startDate, 'dd/MM/yyyy')} + ')'"
+                                                    th:disabled="${cohort.courseCohortStatus.name() != 'UPCOMING'}"
+                                                    th:selected="${selectedCohortId != null} ? (${cohort.id} == ${selectedCohortId}) : false">
+                                                </option>
+                                            </th:block>
+                                        </select>
+                                    </th:block>
                                 </div>
                                 <div class="d-grid">
-                                    <button id="enrollButton" type="submit" class="btn btn-primary btn-lg">Thêm vào giỏ hàng</button>
+                                    <button id="enrollButton" type="submit" class="btn btn-primary btn-lg">Thêm vào giỏ
+                                        hàng</button>
                                 </div>
                             </form>
                         </div>
@@ -114,9 +129,12 @@
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="fas fa-user-tie me-2 text-muted"></i> Tác giả: <strong th:text="${course.author}"></strong></li>
-                        <li class="list-group-item"><i class="fas fa-layer-group me-2 text-muted"></i> Thể loại: <strong th:text="${course.courseType.displayName}"></strong></li>
-                        <li class="list-group-item"><i class="fas fa-user-graduate me-2 text-muted"></i> <span th:text="${course.enrollmentCount}">1,234</span> học viên</li>
+                        <li class="list-group-item"><i class="fas fa-user-tie me-2 text-muted"></i> Tác giả: <strong
+                                th:text="${course.author}"></strong></li>
+                        <li class="list-group-item"><i class="fas fa-layer-group me-2 text-muted"></i> Thể loại: <strong
+                                th:text="${course.courseType.displayName}"></strong></li>
+                        <li class="list-group-item"><i class="fas fa-user-graduate me-2 text-muted"></i> <span
+                                th:text="${course.enrollmentCount}">1,234</span> học viên</li>
                     </ul>
                 </div>
             </div>
@@ -134,10 +152,19 @@
         const cohortSelect = document.getElementById('cohortId');
 
         // Disable button for LIVE_BOOT_CAMP until a cohort is selected
-        if (courseType === 'LIVE_BOOT_CAMP') {
+        if (courseType === 'LIVE_BOOT_CAMP' && cohortSelect) {
             enrollButton.disabled = true;
             cohortSelect.addEventListener('change', function () {
                 enrollButton.disabled = !this.value;
+            });
+
+            // Ensure disabled options in cohort list do not become selectable erroneously
+            cohortSelect.addEventListener('invalid', function () {
+                if (!this.value) {
+                    this.setCustomValidity('Vui lòng chọn lớp học cho khóa Live Boot Camp.');
+                } else {
+                    this.setCustomValidity('');
+                }
             });
         }
         /*]]>*/

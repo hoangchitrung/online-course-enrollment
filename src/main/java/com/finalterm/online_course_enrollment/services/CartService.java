@@ -22,7 +22,8 @@ public class CartService {
     private final CourseRepository courseRepository;
     private final CourseCohortRepository courseCohortRepository;
 
-    public CartService(CartRepository cartRepository, UserRepository userRepository, CourseRepository courseRepository, CourseCohortRepository courseCohortRepository) {
+    public CartService(CartRepository cartRepository, UserRepository userRepository, CourseRepository courseRepository,
+            CourseCohortRepository courseCohortRepository) {
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.courseRepository = courseRepository;
@@ -31,8 +32,16 @@ public class CartService {
 
     @Transactional
     public void addCourseToCart(String username, Long courseId, Long cohortId) {
-        User user = userRepository.findByEmail(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Course course = courseRepository.findById(courseId).orElseThrow(() -> new IllegalArgumentException("Course not found"));
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+
+        // Nếu là LIVE_BOOT_CAMP mà không có cohortId thì báo lỗi
+        if (course.getCourseType() != null && course.getCourseType().name().equals("LIVE_BOOT_CAMP")
+                && cohortId == null) {
+            throw new IllegalArgumentException("Bạn phải chọn lớp học (cohort) cho khóa học Live Boot Camp.");
+        }
 
         // Check if the item is already in the cart
         Optional<Cart> existingCartItem = cartRepository.findByUserCartAndCourseCart(user, course);
@@ -47,9 +56,15 @@ public class CartService {
         cartItem.setPrice(course.getPrice());
 
         if (cohortId != null) {
-            CourseCohort cohort = courseCohortRepository.findById(cohortId).orElseThrow(() -> new IllegalArgumentException("Cohort not found"));
+            CourseCohort cohort = courseCohortRepository.findById(cohortId)
+                    .orElseThrow(() -> new IllegalArgumentException("Cohort not found"));
             if (!cohort.getCourse().getId().equals(courseId)) {
                 throw new IllegalArgumentException("Cohort does not belong to this course.");
+            }
+            // Only allow UPCOMING cohort enrollments
+            if (cohort
+                    .getCourseCohortStatus() != com.finalterm.online_course_enrollment.models.enums.CourseCohortStatus.UPCOMING) {
+                throw new IllegalArgumentException("Chỉ có thể đăng ký các lớp UPCOMING.");
             }
             cartItem.setCourseCohort(cohort);
         }
@@ -63,5 +78,13 @@ public class CartService {
 
     public int getCartItemCount(String username) {
         return cartRepository.countByUserCart_Email(username);
+    }
+
+    public java.util.Optional<Course> findCourseById(Long courseId) {
+        return courseRepository.findById(courseId);
+    }
+
+    public java.util.List<CourseCohort> findCohortsByCourseId(Long courseId) {
+        return courseCohortRepository.findByCourseId(courseId);
     }
 }
