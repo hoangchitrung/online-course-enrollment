@@ -101,8 +101,10 @@
                                 </div>
                             </div>
                             <div class="card-footer bg-white">
-                                <a th:href="@{'/course/' + ${course.id}}" class="btn btn-primary btn-sm w-100">Chi
-                                    tiết</a>
+                                <a th:href="@{'/course/' + ${course.id}}"
+                                    class="btn btn-primary btn-sm w-100">Details</a>
+                                <a th:href="@{'/user/syllabus/' + ${course.id}}"
+                                    class="btn btn-outline-secondary btn-sm w-100 mt-2">Download Syllabus</a>
                             </div>
                         </div>
                     </div>
