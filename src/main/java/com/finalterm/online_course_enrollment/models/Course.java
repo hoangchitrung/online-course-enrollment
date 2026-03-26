@@ -57,6 +57,9 @@ public class Course {
     @Column(name = "modules_count", nullable = false)
     private int modulesCount = 0;
 
+    @Column(name = "enrollment_count", nullable = false)
+    private int enrollmentCount = 0;
+
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -144,6 +147,14 @@ public class Course {
 
     public void setModulesCount(int modulesCount) {
         this.modulesCount = modulesCount;
+    }
+
+    public int getEnrollmentCount() {
+        return enrollmentCount;
+    }
+
+    public void setEnrollmentCount(int enrollmentCount) {
+        this.enrollmentCount = enrollmentCount;
     }
 
     public LocalDateTime getCreatedAt() {

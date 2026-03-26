@@ -10,143 +10,138 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-p6LL+7uN2d5ZdBqS8h4lkjw2Py1QnBiA+2aBzQkx1mszUuOxltEbxMt/jkFikDLP4xDn2KNUMzW0M9cTY7TRDw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Ensure consistent box model */
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        .navbar {
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar-dark .navbar-nav .nav-link,
-        .navbar-brand,
-        .navbar-dark .navbar-nav .nav-link:focus,
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #fff !important;
-        }
-
-        .navbar .dropdown-menu {
-            background: #0c4dab;
-        }
-
-        .navbar .dropdown-item,
-        .navbar .dropdown-item:hover,
-        .navbar .dropdown-item:focus {
-            color: #fff;
-        }
-
-        body {
-            padding-top: 70px;
-            /* Ensure content is not hidden under the sticky navbar */
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark"
-        style="background: linear-gradient(90deg, #1a73e8 0%, #00b0ff 100%);">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-                <i class="fa-solid fa-atom fa-lg"></i>
-                <span>FlexLearn</span>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link position-relative" href="/cart">
-                            <i class="fa-solid fa-cart-shopping me-1"></i> Giỏ hàng
-                            <span
-                                class="badge bg-danger position-absolute top-0 start-100 translate-middle p-1 rounded-circle">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAnonymous()">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="/signin">Đăng nhập</a>
-                    </li>
-                </ul>
-            </div>
+    <div th:replace="~{fragments/header :: navbar}"></div>
+
+    <header class="course-header bg-light py-5">
+        <div class="container text-center">
+            <h1 class="display-4" th:text="${course.name}">Tên khóa học</h1>
+            <p class="lead">Cung cấp bởi <span th:text="${course.author}">Tác giả</span></p>
         </div>
-    </nav>
+    </header>
 
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card mb-4">
-                    <div class="position-relative text-center" style="min-height:300px;">
-                        <img th:src="${course.image != null ? course.image : null}" class="card-img-top"
-                            th:alt="${course.name}"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                        <div class="placeholder-image d-flex flex-column justify-content-center align-items-center position-absolute top-50 start-50 translate-middle"
-                            th:if="${course.image == null}">
-                            <i class="fa-solid fa-image fa-3x text-muted"></i>
-                            <div class="mt-2 text-muted">Ảnh không khả dụng</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-title" th:text="${course.name}"></h2>
-                        <p class="text-muted mb-2">Tác giả: <span th:text="${course.author}"></span></p>
-                        <p class="mb-2">Loại: <strong th:text="${course.courseType}"></strong></p>
-                        <p class="mb-2">Giá: <strong th:text="${course.price} + ' VNĐ'"></strong></p>
-                        <p class="mb-3" th:text="${course.description}"></p>
-                        <div class="d-flex gap-2">
-                            <a href="/" class="btn btn-secondary">Quay về</a>
-                            <form th:action="@{'/cart/add/' + ${course.id}}" method="post"
-                                sec:authorize="isAuthenticated()">
-                                <button type="submit" class="btn btn-success">Đăng ký (Enroll)</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <main class="container py-5">
+        <div class="row g-5">
+            <!-- Course Content -->
+            <div class="col-lg-8 course-content">
+                <h2 class="mb-4">Mô tả khóa học</h2>
+                <p class="lead" th:text="${course.description}">Mô tả chi tiết về nội dung khóa học...</p>
 
-                <!-- Modules and Lessons -->
-                <div class="card mb-4">
-                    <div class="card-header bg-info text-white">
-                        <h4 class="mb-0">Danh sách Modules</h4>
+                <hr class="my-5">
+
+                <h2 class="mb-4">Nội dung khóa học</h2>
+                <div class="accordion" id="modulesAccordion">
+                    <div th:if="${#lists.isEmpty(modules)}">
+                        <p class="text-muted">Chưa có module nào cho khóa học này.</p>
                     </div>
-                    <div class="card-body">
-                        <div th:if="${#lists.isEmpty(modules)}">
-                            <p class="text-muted">Chưa có module nào cho khóa học này.</p>
-                        </div>
-                        <div th:each="module : ${modules}">
-                            <div class="mb-3">
-                                <h5 class="mb-1">Module <span th:text="${module.moduleNumber}"></span>: <span
-                                        th:text="${module.title}"></span></h5>
-                                <p class="mb-1 text-muted" th:text="${module.description}"></p>
+                    <div class="accordion-item mb-3 shadow-sm" th:each="module, iterStat : ${modules}">
+                        <h2 class="accordion-header" th:id="'heading' + ${iterStat.index}">
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapse' + ${iterStat.index}"
+                                th:aria-expanded="${iterStat.index == 0}"
+                                th:aria-controls="'collapse' + ${iterStat.index}">
+                                Module <span th:text="${module.moduleNumber}"></span>: <span
+                                    th:text="${module.title}"></span>
+                            </button>
+                        </h2>
+                        <div th:id="'collapse' + ${iterStat.index}"
+                            class="accordion-collapse collapse"
+                            th:classappend="${iterStat.index == 0} ? 'show' : ''"
+                            th:aria-labelledby="'heading' + ${iterStat.index}">
+                            <div class="accordion-body">
+                                <p class="text-muted" th:text="${module.description}"></p>
                                 <div th:if="${#lists.isEmpty(module.lessons)}">
                                     <span class="text-muted small">Chưa có bài học nào.</span>
                                 </div>
                                 <ul class="list-group list-group-flush" th:if="${!#lists.isEmpty(module.lessons)}">
-                                    <li class="list-group-item px-0 py-1" th:each="lesson : ${module.lessons}">
-                                        <strong>Bài <span th:text="${lesson.lessonNumber}"></span>:</strong>
-                                        <span th:text="${lesson.title}"></span>
-                                        <span class="text-muted small" th:if="${lesson.durationMinutes != null}">
-                                            (Thời lượng: <span th:text="${lesson.durationMinutes}"></span> phút)
-                                        </span>
-                                        <span class="badge bg-secondary ms-2" th:if="${lesson.isPreview}">Preview</span>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                                        th:each="lesson : ${module.lessons}">
+                                        <div>
+                                            <i class="far fa-play-circle me-2 text-primary"></i>
+                                            <strong>Bài <span th:text="${lesson.lessonNumber}"></span>:</strong>
+                                            <span th:text="${lesson.title}"></span>
+                                        </div>
+                                        <div>
+                                            <span class="text-muted small me-3"
+                                                th:if="${lesson.durationMinutes != null}">
+                                                <i class="far fa-clock me-1"></i>
+                                                <span th:text="${lesson.durationMinutes} + ' phút'"></span>
+                                            </span>
+                                            <span class="badge bg-success-subtle text-success-emphasis"
+                                                th:if="${lesson.isPreview}">Preview</span>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
-                            <hr />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Enrollment Card -->
+            <div class="col-lg-4">
+                <div class="card enroll-card shadow-lg">
+                    <img th:src="${course.image}" class="card-img-top" th:alt="${course.name}"
+                        onerror="this.src='https://via.placeholder.com/350x200?text=FlexLearn';" />
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4" th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">Giá khóa học</h3>
+
+                        <div sec:authorize="isAuthenticated()">
+                            <form id="enrollForm" th:action="@{'/cart/add/' + ${course.id}}" method="post">
+                                <div class="mb-3" th:if="${course.courseType.name() == 'LIVE_BOOT_CAMP'}">
+                                    <label for="cohortId" class="form-label fw-bold">Chọn lớp học:</label>
+                                    <select id="cohortId" name="cohortId" class="form-select" required>
+                                        <option value="" selected disabled>-- Vui lòng chọn một lớp --</option>
+                                        <th:block th:each="cohort : ${cohorts}">
+                                            <option th:value="${cohort.id}"
+                                                th:text="${cohort.cohortName} + ' (Bắt đầu: ' + ${#temporals.format(cohort.startDate, 'dd/MM/yyyy')} + ')'"
+                                                th:disabled="${cohort.courseCohortStatus.name() != 'REGISTRATION_OPEN'}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button id="enrollButton" type="submit" class="btn btn-primary btn-lg">Thêm vào giỏ hàng</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div sec:authorize="isAnonymous()" class="d-grid">
+                            <a th:href="@{/signin}" class="btn btn-primary btn-lg">Đăng nhập để đăng ký</a>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fas fa-user-tie me-2 text-muted"></i> Tác giả: <strong th:text="${course.author}"></strong></li>
+                        <li class="list-group-item"><i class="fas fa-layer-group me-2 text-muted"></i> Thể loại: <strong th:text="${course.courseType.displayName}"></strong></li>
+                        <li class="list-group-item"><i class="fas fa-user-graduate me-2 text-muted"></i> <span th:text="${course.enrollmentCount}">1,234</span> học viên</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script th:inline="javascript" sec:authorize="isAuthenticated()">
+        /*<![CDATA[*/
+        const courseType = /*[[${course.courseType.name()}]]*/ 'SELF_PACED';
+        const enrollButton = document.getElementById('enrollButton');
+        const cohortSelect = document.getElementById('cohortId');
+
+        // Disable button for LIVE_BOOT_CAMP until a cohort is selected
+        if (courseType === 'LIVE_BOOT_CAMP') {
+            enrollButton.disabled = true;
+            cohortSelect.addEventListener('change', function () {
+                enrollButton.disabled = !this.value;
+            });
+        }
+        /*]]>*/
+    </script>
 </body>
 
 </html>

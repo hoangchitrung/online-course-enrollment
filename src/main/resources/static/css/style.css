@@ -1,0 +1,147 @@
+body {
+    background-color: #f8f9fa;
+    padding-top: 70px;
+}
+
+.course-header {
+    background: linear-gradient(90deg, #1a73e8 0%, #00b0ff 100%);
+    color: white;
+    padding: 3rem 0;
+}
+
+.course-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.course-header p {
+    font-size: 1.15rem;
+}
+
+.enroll-card {
+    position: sticky;
+    top: 90px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.enroll-card .card-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.enroll-card .list-group-item {
+    border: none;
+    padding: 0.75rem 1.25rem;
+}
+
+.btn-enroll {
+    background-color: #1a73e8;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-enroll:hover {
+    background-color: #0c4dab;
+    color: white;
+}
+
+.course-content h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0c4dab;
+    background-color: #e7f1ff;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+}
+
+.accordion-item {
+    border-radius: 0.5rem;
+    border: 1px solid #dee2e6;
+}
+
+.navbar {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar-brand,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff !important;
+}
+
+.navbar .dropdown-menu {
+    background: #0c4dab;
+}
+
+.navbar .dropdown-item,
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(90deg, #1a73e8 0%, #00b0ff 100%);
+    /* Lighter version of navbar gradient */
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.25rem;
+}
+
+.hero .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.hero .btn:hover {
+    transform: scale(1.1);
+}
+
+/* Courses Section */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background: #0c4dab;
+    color: #fff;
+}
+
+footer a {
+    color: #ffeb3b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+}

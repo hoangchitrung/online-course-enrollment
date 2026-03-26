@@ -1,17 +1,23 @@
 package com.finalterm.online_course_enrollment.models.enums;
 
 public enum CourseType {
-    SELF_PACED("SELF_PACED"),
-    LIVE_BOOT_CAMP("LIVE_BOOT_CAMP");
+    SELF_PACED("SELF_PACED", "Tự học"),
+    LIVE_BOOT_CAMP("LIVE_BOOT_CAMP", "Lớp học trực tiếp");
 
     private final String code;
+    private final String displayName;
 
-    CourseType(String code) {
+    CourseType(String code, String displayName) {
         this.code = code;
+        this.displayName = displayName;
     }
 
     public String getCode() {
         return code;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public static CourseType fromString(String raw) {
