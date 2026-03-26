@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
+    java.util.List<Lesson> findByModuleIdOrderByLessonNumberAsc(Long moduleId);
 }

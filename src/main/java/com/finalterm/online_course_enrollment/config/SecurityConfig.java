@@ -17,7 +17,8 @@ public class SecurityConfig {
                         auth -> auth
                                 // Public
                                 .requestMatchers("/", "/signin", "/signup", "/login", "/register", "/error",
-                                        "/favicon.ico", "/courses")
+                                        "/favicon.ico", "/courses",
+                                        "/css/**", "/js/**", "/images/**", "/webjars/**")
                                 .permitAll()
                                 // Public pages and API - Courses
                                 .requestMatchers("/course/**", "/api/courses", "/api/courses/**").permitAll()
@@ -33,7 +34,8 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/user/dashboard", false))
+                        // always redirect to dashboard after successful login
+                        .defaultSuccessUrl("/user/dashboard", true))
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
                 .httpBasic(httpBasic -> httpBasic.disable()); // prevent to popup basic auth
