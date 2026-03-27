@@ -5,17 +5,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.finalterm.online_course_enrollment.controllers.dto.LoginRequest;
+import com.finalterm.online_course_enrollment.controllers.dto.LoginResponse;
 import com.finalterm.online_course_enrollment.controllers.dto.RegisterRequest;
 import com.finalterm.online_course_enrollment.models.User;
 import com.finalterm.online_course_enrollment.models.enums.CourseType;
+import com.finalterm.online_course_enrollment.security.JwtUtils;
 import com.finalterm.online_course_enrollment.services.AuthService;
 import com.finalterm.online_course_enrollment.services.CourseService;
-import com.finalterm.online_course_enrollment.controllers.dto.RegisterRequest;
 import com.finalterm.online_course_enrollment.repositories.CourseCohortRepository;
 import com.finalterm.online_course_enrollment.repositories.LessonRepository;
 import com.finalterm.online_course_enrollment.repositories.ModuleRepository;
@@ -31,16 +37,22 @@ public class AuthController {
     private final LessonRepository lessonRepository;
     private final CourseCohortRepository courseCohortRepository;
     private final com.finalterm.online_course_enrollment.services.CartService cartService;
+    private final JwtUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
 
     public AuthController(AuthService authService, CourseService courseService, ModuleRepository moduleRepository,
             LessonRepository lessonRepository, CourseCohortRepository courseCohortRepository,
-            com.finalterm.online_course_enrollment.services.CartService cartService) {
+            com.finalterm.online_course_enrollment.services.CartService cartService,
+            JwtUtils jwtUtils,
+            AuthenticationManager authenticationManager) {
         this.authService = authService;
         this.courseService = courseService;
         this.moduleRepository = moduleRepository;
         this.lessonRepository = lessonRepository;
         this.courseCohortRepository = courseCohortRepository;
         this.cartService = cartService;
+        this.jwtUtils = jwtUtils;
+        this.authenticationManager = authenticationManager;
     }
 
     private void addCartCountToModel(Model model, java.security.Principal principal) {
@@ -56,6 +68,19 @@ public class AuthController {
         addCartCountToModel(model, principal);
         model.addAttribute("courses", courseService.getAllCourses());
         return "index";
+    }
+
+    @PostMapping("/api/auth/login")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
+
+            String jwt = jwtUtils.generateToken(loginRequest.email());
+            return ResponseEntity.ok(new LoginResponse(jwt, "Bearer", loginRequest.email()));
+        } catch (AuthenticationException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
+        }
     }
 
     @GetMapping("/courses")

@@ -1,18 +1,32 @@
 package com.finalterm.online_course_enrollment.config;
 
+import com.finalterm.online_course_enrollment.security.JwtAuthenticationFilter;
+import com.finalterm.online_course_enrollment.services.CustomerUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final CustomerUserDetailsService customerUserDetailsService;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
+            CustomerUserDetailsService customerUserDetailsService) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.customerUserDetailsService = customerUserDetailsService;
+    }
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(crsf -> crsf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         auth -> auth
                                 // Public
@@ -20,8 +34,9 @@ public class SecurityConfig {
                                         "/favicon.ico", "/courses",
                                         "/css/**", "/js/**", "/images/**", "/webjars/**")
                                 .permitAll()
-                                // Public pages and API - Courses
-                                .requestMatchers("/course/**", "/api/courses", "/api/courses/**").permitAll()
+                                // Public pages and API - Courses and auth
+                                .requestMatchers("/course/**", "/api/courses", "/api/courses/**", "/api/auth/**")
+                                .permitAll()
                                 // User + Admin
                                 .requestMatchers("/user/**", "/cart/**", "/order/**", "/payment/**", "/learning/**")
                                 .hasAnyRole("USER", "ADMIN")
@@ -34,16 +49,29 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
-                        // always redirect to dashboard after successful login
-                        .defaultSuccessUrl("/user/dashboard", true))
+                        .defaultSuccessUrl("/user/dashboard", true)
+                        .permitAll())
+                .rememberMe(remember -> remember
+                        .rememberMeParameter("remember-me")
+                        .tokenValiditySeconds(7 * 24 * 60 * 60)
+                        .key("remember-me-key")
+                        .userDetailsService(customerUserDetailsService))
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
-                .httpBasic(httpBasic -> httpBasic.disable()); // prevent to popup basic auth
+                .httpBasic(httpBasic -> httpBasic.disable())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public org.springframework.security.authentication.AuthenticationManager authenticationManager(
+            org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration config)
+            throws Exception {
+        return config.getAuthenticationManager();
     }
 }

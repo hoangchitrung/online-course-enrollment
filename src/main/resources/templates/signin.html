@@ -13,8 +13,8 @@
     <main class="container min-vh-100 d-flex align-items-center justify-content-center py-4">
         <div class="card shadow-sm border-0" style="max-width: 440px; width: 100%;">
             <div class="card-body p-4 p-md-5">
-                <h1 class="h3 fw-bold text-center mb-2">Đăng Nhập 🔐</h1>
-                <p class="text-body-secondary text-center mb-4">Đăng nhập vào tài khoản của bạn để tiếp tục</p>
+                <h1 class="h3 fw-bold text-center mb-2">Sign In 🔐</h1>
+                <p class="text-body-secondary text-center mb-4">Sign in to your account to continue</p>
 
                 <form action="/login" method="post">
                     <div class="mb-3">
@@ -24,19 +24,25 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="password" class="form-label">Mật khẩu</label>
+                        <label for="password" class="form-label">Password</label>
                         <input id="password" name="password" type="password" class="form-control" placeholder="••••••••"
                             required />
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me"
+                            value="true" />
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Sign In</button>
                 </form>
 
                 <hr class="my-4" />
 
                 <p class="text-body-secondary text-center small mb-0">
-                    Chưa có tài khoản? <a href="/signup" class="link-primary text-decoration-none">Tạo tài khoản
-                        ngay</a>
+                    Don’t have an account? <a href="/signup" class="link-primary text-decoration-none">Create one
+                        now</a>
                 </p>
             </div>
         </div>
