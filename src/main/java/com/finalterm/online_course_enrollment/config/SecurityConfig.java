@@ -2,13 +2,18 @@ package com.finalterm.online_course_enrollment.config;
 
 import com.finalterm.online_course_enrollment.security.JwtAuthenticationFilter;
 import com.finalterm.online_course_enrollment.services.CustomerUserDetailsService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -35,6 +40,7 @@ public class SecurityConfig {
                                         "/css/**", "/js/**", "/images/**", "/webjars/**")
                                 .permitAll()
                                 // Public pages and API - Courses and auth
+                                .requestMatchers(HttpMethod.POST, "/api/courses").hasRole("ADMIN")
                                 .requestMatchers("/course/**", "/api/courses", "/api/courses/**", "/api/auth/**")
                                 .permitAll()
                                 // User + Admin
@@ -45,6 +51,21 @@ public class SecurityConfig {
                                 // the rest will the authenticated
                                 .requestMatchers("/api/**").authenticated()
                                 .anyRequest().authenticated())
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            if (request.getRequestURI().startsWith("/api/")) {
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                            } else {
+                                response.sendRedirect("/signin");
+                            }
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            if (request.getRequestURI().startsWith("/api/")) {
+                                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
+                            } else {
+                                response.sendRedirect("/signin");
+                            }
+                        }))
                 .formLogin(form -> form
                         .loginPage("/signin")
                         .loginProcessingUrl("/login")
