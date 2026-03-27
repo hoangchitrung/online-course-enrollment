@@ -6,5 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 public record RegisterRequest(
         @Email @NotBlank String email,
         @NotBlank String fullName,
-        @NotBlank String password) {
+        @NotBlank String password,
+        String preferredLanguage,
+        String jobTitle,
+        String educationBackground) {
 }

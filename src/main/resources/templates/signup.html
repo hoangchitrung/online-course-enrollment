@@ -13,8 +13,8 @@
     <main class="container min-vh-100 d-flex align-items-center justify-content-center py-4">
         <div class="card shadow-sm border-0" style="max-width: 440px; width: 100%;">
             <div class="card-body p-4 p-md-5">
-                <h1 class="h3 fw-bold text-center mb-2">Tạo Tài Khoản 📝</h1>
-                <p class="text-body-secondary text-center mb-4">Đăng ký để bắt đầu học tập</p>
+                <h1 class="h3 fw-bold text-center mb-2">Create Account 📝</h1>
+                <p class="text-body-secondary text-center mb-4">Register and start learning</p>
 
                 <form id="signup-form" method="post">
                     <div class="mb-3">
@@ -30,14 +30,68 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="password" class="form-label">Mật khẩu</label>
+                        <label for="password" class="form-label">Password</label>
                         <input id="password" name="password" type="password" class="form-control"
-                            placeholder="Tối thiểu 8 ký tự" minlength="8" required />
+                            placeholder="At least 8 characters" minlength="8" required />
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Tạo Tài Khoản</button>
+                    <div class="mb-3">
+                        <label for="preferredLanguage" class="form-label">Preferred Language</label>
+                        <input id="preferredLanguage" name="preferredLanguage" type="text" class="form-control"
+                            placeholder="e.g., English" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jobTitle" class="form-label">Job Title</label>
+                        <input id="jobTitle" name="jobTitle" type="text" class="form-control"
+                            placeholder="e.g., Software Engineer" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="educationBackground" class="form-label">Education Background</label>
+                        <input id="educationBackground" name="educationBackground" type="text" class="form-control"
+                            placeholder="e.g., Bachelor's in Computer Science" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
                     <div id="error-message" class="alert alert-danger mt-3 d-none" role="alert"></div>
                 </form>
+
+                <script>
+                    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const errorDiv = document.getElementById('error-message');
+                        errorDiv.classList.add('d-none');
+
+                        const data = {
+                            fullName: document.getElementById('fullName').value,
+                            email: document.getElementById('email').value,
+                            password: document.getElementById('password').value,
+                            preferredLanguage: document.getElementById('preferredLanguage').value,
+                            jobTitle: document.getElementById('jobTitle').value,
+                            educationBackground: document.getElementById('educationBackground').value
+                        };
+
+                        try {
+                            const response = await fetch('/register', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(data)
+                            });
+
+                            if (response.ok) {
+                                window.location.href = '/signin?registered=true';
+                            } else {
+                                const error = await response.json();
+                                errorDiv.textContent = error.message || 'Registration failed. Please try again';
+                                errorDiv.classList.remove('d-none');
+                            }
+                        } catch (error) {
+                            errorDiv.textContent = 'Error occured: ' + error.message;
+                            errorDiv.classList.remove('d-none');
+                        }
+                    });
+                </script>
 
                 <hr class="my-4" />
 

@@ -31,6 +31,9 @@ public class AuthService {
         user.setFullName(request.fullName());
         user.setPassword((passwordEncoder.encode(request.password()))); // Brcrypt here
         user.setUserType(UserType.USER);
+        user.setPreferredLanguage(request.preferredLanguage());
+        user.setJobTitle(request.jobTitle());
+        user.setEducationBackground(request.educationBackground());
 
         return userRepository.save(user);
     }

@@ -58,6 +58,9 @@ public class User {
     @Column(name = "job_title")
     private String jobTitle;
 
+    @Column(name = "education_background")
+    private String educationBackground;
+
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createAt;
 
@@ -145,6 +148,14 @@ public class User {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public String getEducationBackground() {
+        return educationBackground;
+    }
+
+    public void setEducationBackground(String educationBackground) {
+        this.educationBackground = educationBackground;
     }
 
     public LocalDateTime getCreateAt() {
