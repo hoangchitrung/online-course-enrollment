@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${course != null} ? 'Edit Course' : 'Create Course'">Course Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container py-5">
+        <h1 th:text="${course != null} ? 'Edit Course' : 'Create Course'"></h1>
+
+        <form th:action="${course != null} ? @{'/admin/courses/' + ${course.id} + '/edit'} : @{/admin/courses}"
+            method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" name="name" class="form-control" type="text" required
+                    th:value="${course != null} ? ${course.name} : ''" />
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="description" class="form-control" rows="3" required
+                    th:text="${course != null} ? ${course.description} : ''"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL</label>
+                <input id="image" name="image" class="form-control" type="text"
+                    th:value="${course != null} ? ${course.image} : ''" />
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input id="author" name="author" class="form-control" type="text" required
+                    th:value="${course != null} ? ${course.author} : ''" />
+            </div>
+            <div class="mb-3">
+                <label for="courseType" class="form-label">Course Type</label>
+                <select id="courseType" name="courseType" class="form-select" required>
+                    <option value="SELF_PACED"
+                        th:selected="${course != null} ? (${course.courseType} == 'SELF_PACED') : false">SELF_PACED
+                    </option>
+                    <option value="LIVE_BOOT_CAMP"
+                        th:selected="${course != null} ? (${course.courseType} == 'LIVE_BOOT_CAMP') : false">
+                        LIVE_BOOT_CAMP</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input id="price" name="price" class="form-control" type="number" step="0.01" required
+                    th:value="${course != null} ? ${course.price} : ''" />
+            </div>
+            <div class="mb-3">
+                <label for="modulesCount" class="form-label">Modules Count</label>
+                <input id="modulesCount" name="modulesCount" class="form-control" type="number" min="0" required
+                    th:value="${course != null} ? ${course.modulesCount} : '0'" />
+            </div>
+
+            <h4 class="mt-4">Module (optional, create one module for now)</h4>
+            <div class="mb-3">
+                <label for="moduleNumber" class="form-label">Module Number</label>
+                <input id="moduleNumber" name="moduleNumber" class="form-control" type="number" min="1" />
+            </div>
+            <div class="mb-3">
+                <label for="moduleTitle" class="form-label">Module Title</label>
+                <input id="moduleTitle" name="moduleTitle" class="form-control" type="text" />
+            </div>
+            <div class="mb-3">
+                <label for="moduleDescription" class="form-label">Module Description</label>
+                <textarea id="moduleDescription" name="moduleDescription" class="form-control" rows="2"></textarea>
+            </div>
+
+            <h4 class="mt-4">Lesson (optional, will be attached to module above)</h4>
+            <div class="mb-3">
+                <label for="lessonNumber" class="form-label">Lesson Number</label>
+                <input id="lessonNumber" name="lessonNumber" class="form-control" type="number" min="1" />
+            </div>
+            <div class="mb-3">
+                <label for="lessonTitle" class="form-label">Lesson Title</label>
+                <input id="lessonTitle" name="lessonTitle" class="form-control" type="text" />
+            </div>
+            <div class="mb-3">
+                <label for="lessonDescription" class="form-label">Lesson Description</label>
+                <textarea id="lessonDescription" name="lessonDescription" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="lessonVideoUrl" class="form-label">Lesson Video URL</label>
+                <input id="lessonVideoUrl" name="lessonVideoUrl" class="form-control" type="text" />
+            </div>
+            <div class="mb-3">
+                <label for="lessonDurationMinutes" class="form-label">Lesson Duration (minutes)</label>
+                <input id="lessonDurationMinutes" name="lessonDurationMinutes" class="form-control" type="number"
+                    min="0" />
+            </div>
+            <div class="form-check mb-3">
+                <input id="lessonIsPreview" name="lessonIsPreview" class="form-check-input" type="checkbox"
+                    value="true" />
+                <label for="lessonIsPreview" class="form-check-label">Lesson Is Preview</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>

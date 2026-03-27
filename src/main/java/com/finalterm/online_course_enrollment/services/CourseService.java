@@ -26,6 +26,26 @@ public class CourseService {
         return courseRepository.findById(id);
     }
 
+    public Course updateCourse(Long id, CreateCourseRequest request) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+        course.setName(request.name());
+        course.setDescription(request.description());
+        course.setImage(request.image());
+        course.setAuthor(request.author());
+        course.setCourseType(CourseType.fromString(request.courseType));
+        course.setPrice(request.price());
+        course.setModulesCount(request.modulesCount() != null ? request.modulesCount() : 0);
+        return courseRepository.save(course);
+    }
+
+    public void deleteCourse(Long id) {
+        if (!courseRepository.existsById(id)) {
+            throw new IllegalArgumentException("Course not found");
+        }
+        courseRepository.deleteById(id);
+    }
+
     public Course createCourse(CreateCourseRequest request) {
         if (request.name == null || request.name.isBlank()) {
             throw new IllegalArgumentException("Course name is required");
